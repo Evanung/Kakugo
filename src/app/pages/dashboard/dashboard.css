@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+@import 'tailwindcss-primeui';
+
+.nav-link {
+  @apply flex p-3 rounded-lg cursor-pointer transition-colors
+  duration-150 border
+  w-full
+  h-auto
+  font-bold
+  text-xl
+  dark:hover:border-surface-700;
+}

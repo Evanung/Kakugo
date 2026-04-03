@@ -1,0 +1,20 @@
+.post-box {
+  border-bottom: 5px solid;
+  padding: 10px;
+  margin-bottom: 10px;
+
+}
+
+.text-box {
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 10px;
+
+}
+
+.button-box {
+  display: flex;
+  margin-top: 10px;
+  gap: 5px;
+
+}

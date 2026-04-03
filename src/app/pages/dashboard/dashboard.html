@@ -1,0 +1,25 @@
+<div class="flex flex-col flex-1">
+  <div class="p-8 flex flex-1 px-70">
+    <div class="flex h-auto rounded-xl
+      lg:flex-row  w-full gap-10">
+
+      <div class="flex flex-[3] lg:flex-col">
+        <div class="flex gap-5 lg:flex-row mb-5">
+          <a class="nav-link bg-violet-600 dark:hover:bg-violet-700 border-4 border-violet-500">Write</a>
+          <a class="nav-link bg-violet-500 dark:hover:bg-hover:bg-violet-600 border-1 border-violet-500 ">Prompts</a>
+        </div>
+
+        <div class="flex lg:flex-col gap-5">
+          <app-weekly-prompt-dashboard></app-weekly-prompt-dashboard>
+          <app-feedlist></app-feedlist>
+        </div>
+      </div>
+
+      <div class="flex flex-[1] lg:flex-col gap-10">
+        <p-datepicker [(ngModel)]="date" />
+        <div class="flex justify-center items-center w-full h-100 bg-gray-900 rounded-xl">Profile Stats</div>
+      </div>
+
+    </div>
+  </div>
+</div>
