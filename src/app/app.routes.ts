@@ -1,9 +1,5 @@
 import { Routes } from '@angular/router';
 import { Dashboard } from './pages/dashboard/dashboard';
-import { WritePage } from './pages/write-page/write-page';
-import { PromptsPage } from './pages/prompts-page/prompts-page';
-import {DiscussionPage} from './pages/discussion-page/discussion-page';
-import {LearnPage} from './pages/learn-page/learn-page';
 
 export const routes: Routes = [
   {
@@ -13,18 +9,22 @@ export const routes: Routes = [
   },
   {
     path: 'write-page',
-    component: WritePage
+    loadComponent: () => import('./pages/write-page/write-page')
+      .then(m => m.WritePage),
   },
   {
     path: 'prompts-page',
-    component: PromptsPage
+    loadComponent: () => import('./pages/prompts-page/prompts-page')
+      .then(m => m.PromptsPage),
   },
   {
     path: 'discussion-page',
-    component: DiscussionPage
+    loadComponent: () => import('./pages/discussion-page/discussion-page')
+    .then(m => m.DiscussionPage),
   },
   {
     path: 'learn-page',
-    component: LearnPage
+    loadComponent: () => import('./pages/learn-page/learn-page')
+    .then(m => m.LearnPage),
   }
 ];
