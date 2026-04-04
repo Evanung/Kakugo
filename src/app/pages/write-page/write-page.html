@@ -1,7 +1,38 @@
-<div class="flex flex-col flex-1">
-  <div class="p-8 bg-surface-50 dark:bg-surface-950 flex flex-1">
-    <div class="flex-1 bg-surface-0 dark:bg-surface-900 rounded-xl border-2 border-dashed border-surface-200 dark:border-surface-700">
-      <h1>prompts works</h1>
-    </div>
-  </div>
+<div class="flex h-[80vh] w-screen px-10 mb-10">
+  <p-splitter [panelSizes]="[40, 60]" class="flex-1 min-w-0 gap-4">
+
+    <ng-template #panel>
+      <div class="card border rounded-lg border-gray-700">
+        <p-tabs lazy value="0">
+          <p-tablist>
+            <p-tab value="0">Prompt</p-tab>
+            <p-tab value="1">Dictionary</p-tab>
+            <p-tab value="2">Grammar</p-tab>
+          </p-tablist>
+          <p-tabpanels>
+            <p-tabpanel value="0">
+              <p class="m-0">
+                Prompt Description here
+              </p>
+            </p-tabpanel>
+            <p-tabpanel value="1">
+              <p class="m-0">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
+                enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+              </p>
+            </p-tabpanel>
+            <p-tabpanel value="2">
+              <ng-template #content>Complex components that should only be initialized when the tab becomes active</ng-template>
+            </p-tabpanel>
+          </p-tabpanels>
+        </p-tabs>
+      </div>
+    </ng-template>
+
+
+    <ng-template #panel>
+      <app-text-box></app-text-box>
+    </ng-template>
+  </p-splitter>
 </div>
+

@@ -1,0 +1,27 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  flex: 0 0 auto;  /* never grow or shrink, stay at natural height */
+}
+
+.app-main {
+  flex: 1 1 0;     /* take all remaining space */
+  min-height: 0;   /* allow shrinking */
+  overflow: auto;  /* scroll if content overflows */
+}

@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.p-editor {
+  height: 40%;
+  width: 100%;
+}
+
+.p-editor-toolbar {
+  height: 100%;
+  width: 100%;
+}

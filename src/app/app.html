@@ -1,6 +1,9 @@
-<nav class="sticky top-0 z-50">
-  <app-header></app-header>
-</nav>
-
-<router-outlet></router-outlet>
+<div class="flex flex-col h-full">
+  <nav class="sticky top-0 z-50">
+    <app-header></app-header>
+  </nav>
+  <main class="flex flex-1 justify-center pt-10">
+    <router-outlet></router-outlet>
+  </main>
+</div>
 <app-footer></app-footer>
