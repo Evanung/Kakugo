@@ -8,7 +8,7 @@
         class="fill-white dark:fill-surface-0"
       />
     </svg>
-    <div class="text-white dark:text-surface-100 font-semibold text-lg">Kakugo</div>
+    <div class="text-white font-semibold text-lg">Kakugo</div>
   </div>
 
   <a
@@ -18,7 +18,7 @@
     [hideOnOutsideClick]="true"
     resizeSelector=".resize-container-1"
     [hideOnResize]="true"
-    class="cursor-pointer block lg:hidden text-white dark:text-surface-100"
+    class="cursor-pointer block lg:hidden text-white"
   >
     <i class="pi pi-bars text-xl! leading-normal!"></i>
   </a>
@@ -36,7 +36,7 @@
            hover:border-white dark:hover:border-surface-700"
         >
           <i [class]="'pi ' + item.icon + ' text-base! leading-normal!'" style="color:white"></i>
-          <span class="text-white dark:text-surface-800 font-bold">{{ item.label }}</span>
+          <span class="text-white font-bold">{{ item.label }}</span>
         </a>
       }
     </div>
