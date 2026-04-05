@@ -3,11 +3,6 @@
   color: oklch(62.7% 0.265 303.9) !important;
 }
 
-/* Hover state */
-::ng-deep .p-tab:hover {
-
-}
-
 /* The active tab underline indicator */
 ::ng-deep .p-tablist-active-bar {
   background-color: oklch(62.7% 0.265 303.9) !important;
@@ -40,4 +35,11 @@
 ::ng-deep .p-splitter-panel {
   background-color: transparent !important;
   border: none !important;
+  overflow: hidden;
+
+}
+
+::ng-deep .p-tabs {
+  display: flex;
+  flex: 1;
 }
