@@ -6,7 +6,6 @@
   duration-150 border
   w-full
   h-auto
-  text-xl
-
+  text-lg
   dark:hover:border-violet-500;
 }

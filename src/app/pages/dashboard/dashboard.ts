@@ -3,11 +3,11 @@ import { Feedlist } from '../../components/feed/feedlist/feedlist';
 import { FormsModule } from '@angular/forms';
 import { WeeklyPromptDashboard } from '../../components/prompts/weekly-prompt-dashboard/weekly-prompt-dashboard';
 import { DatePickerModule } from 'primeng/datepicker';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [Feedlist, FormsModule, WeeklyPromptDashboard, DatePickerModule, RouterLink, RouterLinkActive],
+  imports: [Feedlist, FormsModule, WeeklyPromptDashboard, DatePickerModule, RouterLink],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
   standalone: true

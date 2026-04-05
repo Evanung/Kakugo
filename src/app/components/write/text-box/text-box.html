@@ -1,10 +1,9 @@
 <p-editor [(ngModel)]="text">
-    <ng-template #header>
-      <span class="ql-formats">
-        <button type="button" class="ql-bold" aria-label="Bold"></button>
-        <button type="button" class="ql-italic" aria-label="Italic"></button>
-        <button type="button" class="ql-underline" aria-label="Underline"></button>
-      </span>
-    </ng-template>
+  <ng-template #header>
+    <span class="flex ql-formats h-10 content-center">
+      <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
+      <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
+      <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
+    </span>
+  </ng-template>
 </p-editor>
-

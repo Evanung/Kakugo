@@ -1,0 +1,31 @@
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+::ng-deep .p-datatable table {
+  border-collapse: separate;
+  border-spacing: 0 4px; /* adds vertical gap between rows */
+}
+
+
+
+/* Odd rows */
+:host-context(.dark)  ::ng-deep .p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) > td {
+  background-color: transparent;
+
+}
+
+/* Even rows (the striped ones) */
+:host-context(.dark) ::ng-deep .p-datatable-striped .p-datatable-tbody > tr:nth-child(even) > td {
+  background-color: transparent;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block; /* Required for text-overflow to work */
+
+}
+

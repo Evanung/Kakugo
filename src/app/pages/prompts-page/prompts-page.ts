@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, signal} from '@angular/core';
+import { PromptList} from '../../components/prompts/prompt-list/prompt-list';
 
 @Component({
   selector: 'app-prompts-page',
-  imports: [],
+  imports: [
+    PromptList
+  ],
   templateUrl: './prompts-page.html',
   styleUrl: './prompts-page.css',
 })
-export class PromptsPage {}
+export class PromptsPage {
+
+
+}

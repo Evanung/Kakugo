@@ -10,3 +10,19 @@
   width: 100%;
 }
 
+
+/* Active/toggled on state - Quill adds .ql-active automatically */
+::ng-deep .toolbar-btn.ql-active {
+  color: oklch(62.7% 0.265 303.9) !important;
+
+}
+
+::ng-deep .toolbar-btn:hover .ql-stroke{
+  stroke: purple;
+}
+/* For SVG-based icons */
+::ng-deep .toolbar-btn.ql-active .ql-stroke {
+  stroke: oklch(62.7% 0.265 303.9)!important;
+}
+
+
