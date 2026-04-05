@@ -1,4 +1,8 @@
-
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
 ::ng-deep .p-tab.p-tab-active {
   color: oklch(62.7% 0.265 303.9) !important;
 }
@@ -41,5 +45,7 @@
 
 ::ng-deep .p-tabs {
   display: flex;
+  flex-direction: column;
   flex: 1;
+  width: 100%;
 }

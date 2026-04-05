@@ -7,7 +7,6 @@
   w-full
   h-auto
   text-xl
-  border-1
-  border-gray-900
+
   dark:hover:border-violet-500;
 }

@@ -7,11 +7,6 @@
 .p-editor {
   display: flex;
   flex-direction: column;
-  flex: 1;
   width: 100%;
 }
 
-.p-editor-toolbar {
-  height: 100%;
-  width: 100%;
-}
