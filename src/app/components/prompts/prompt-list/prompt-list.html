@@ -1,12 +1,27 @@
-<p-table [value]="prompt()" stripedRows
-         class="flex g"
->
+
+<p-table #dt1 [value]="prompt()" stripedRows
+         [globalFilterFields]="['title',]"
+         (sortFunction)="customSort($event)" [customSort]="true"
+         class="flex g">
+
+  <ng-template #caption>
+    <div class="flex justify-between">
+      <p-iconfield>
+        <p-inputicon>
+          <i class="pi pi-search"></i>
+        </p-inputicon>
+        <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+      </p-iconfield>
+      <p-button class="border-purple-600" label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
+
+    </div>
+  </ng-template>
   <ng-template #header>
     <tr>
-      <th>Status</th>
-      <th>Title</th>
-      <th>Difficulty</th>
-      <th>Responses</th>
+      <th pSortableColumn='status'>Status <p-sortIcon field="code" /></th>
+      <th pSortableColumn='title'>Title <p-sortIcon field="code" /></th>
+      <th pSortableColumn='difficulty'>Difficulty <p-sortIcon field="code" /></th>
+      <th pSortableColumn='responses'>Responses <p-sortIcon field="code" /></th>
     </tr>
   </ng-template>
   <ng-template #body let-prompt>
