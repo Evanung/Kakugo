@@ -1,3 +1,14 @@
-<div class="flex shrink w-screen max-w-6xl mx-auto px-4 sm:px-8 mb-8 ">
+<div class="flex flex-wrap shrink w-screen max-w-6xl mx-auto px-4 sm:px-8 mb-8 lg:flex-col">
+  <div class="card">
+    <p-carousel [value]="prompts()"
+                [numVisible]="3"
+                [numScroll]="3"
+                [circular]="false"
+                [responsiveOptions]="responsiveOptions">
+      <ng-template let-prompt #item>
+        <div class="flex bg-blue-400 h-30 w-30 border"> Learn</div>
+      </ng-template>
+    </p-carousel>
+  </div>
   <app-prompt-list></app-prompt-list>
 </div>

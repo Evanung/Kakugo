@@ -11,7 +11,7 @@ import { FilterService } from 'primeng/api';
 interface prompts {
   status: boolean;
   title: string;
-  difficulty: string;
+  difficulty: number;
   responses: number;
 }
 
@@ -28,10 +28,12 @@ export class PromptList {
   isSorted: boolean | null = null
 
   initialValue: prompts[] = [
-    { status: true, title: "Describe your daily routine", difficulty: "Easy", responses: 10 },
-    { status: false, title: "Why did you start learning Japanese?", difficulty: "Easy", responses: 54 },
-    { status: false, title: "Introduce something from your culture to someone who has never been", difficulty: "Medium", responses: 5 },
-    { status: true, title: "Write a business email apologizing to your boss for a mistake", difficulty: "Hard", responses: 13 }
+    { status: true, title: "Describe your daily routine", difficulty: 1, responses: 10 },
+    { status: false, title: "Why did you start learning Japanese?", difficulty: 1, responses: 54 },
+    { status: false, title: "Introduce something from your culture", difficulty: 2, responses: 5 },
+    { status: true, title: "Write a business email apologizing to your boss for a mistake", difficulty: 3, responses: 13 },
+    { status: true, title: "Introduce yourself", difficulty: 1, responses: 100 }
+
   ];
 
   prompt = signal<prompts[]>([...this.initialValue]);

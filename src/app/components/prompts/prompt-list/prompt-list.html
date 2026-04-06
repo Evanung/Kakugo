@@ -34,13 +34,13 @@
 
       <td >{{ prompt.title }}</td>
 
-      @if (prompt.difficulty === 'Easy'){
-        <td class="text-lime-600"> {{ prompt.difficulty }} </td>
+      @if (prompt.difficulty === 1){
+        <td class="text-lime-600">Easy</td>
       }
-      @else if (prompt.difficulty === 'Medium'){
-        <td class="text-orange-600">{{ prompt.difficulty }}</td>
+      @else if (prompt.difficulty === 2){
+        <td class="text-orange-600">Medium</td>
       }@else {
-        <td class="text-red-600"> {{ prompt.difficulty }}</td>
+        <td class="text-red-600">Hard</td>
       }
       <td>{{ prompt.responses }}</td>
     </tr>
