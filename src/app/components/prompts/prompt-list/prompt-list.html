@@ -1,6 +1,6 @@
 
-<p-table #dt1 [value]="prompt()" stripedRows
-         [globalFilterFields]="['title',]"
+<p-table #dt1 [value]="prompts()" stripedRows
+         [globalFilterFields]="['prompt_title',]"
          (sortFunction)="customSort($event)" [customSort]="true"
          class="flex g">
 
@@ -19,11 +19,22 @@
   <ng-template #header>
     <tr>
       <th pSortableColumn='status'>Status <p-sortIcon field="code" /></th>
-      <th pSortableColumn='title'>Title <p-sortIcon field="code" /></th>
+      <th pSortableColumn='prompt_title'>Title <p-sortIcon field="code" /></th>
       <th pSortableColumn='difficulty'>Difficulty <p-sortIcon field="code" /></th>
       <th pSortableColumn='responses'>Responses <p-sortIcon field="code" /></th>
     </tr>
   </ng-template>
+  @if (isLoading){
+  <ng-template #body let-prompt>
+
+    <tr>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+    </tr>
+  </ng-template>
+  }
   <ng-template #body let-prompt>
     <tr class="rounded-sm">
       @if (prompt.status === true){
@@ -32,12 +43,12 @@
         <td></td>
       }
 
-      <td >{{ prompt.title }}</td>
+      <td >{{ prompt.prompt_title }}</td>
 
-      @if (prompt.difficulty === 1){
+      @if (prompt.difficulty == 1){
         <td class="text-lime-600">Easy</td>
       }
-      @else if (prompt.difficulty === 2){
+      @else if (prompt.difficulty == 2){
         <td class="text-orange-600">Medium</td>
       }@else {
         <td class="text-red-600">Hard</td>
@@ -45,5 +56,6 @@
       <td>{{ prompt.responses }}</td>
     </tr>
   </ng-template>
+
 </p-table>
 

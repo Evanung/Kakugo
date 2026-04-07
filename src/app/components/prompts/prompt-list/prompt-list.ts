@@ -1,51 +1,53 @@
-import { Component, signal, ViewChild } from '@angular/core';
-import { TableModule, Table} from 'primeng/table';
+import { Component, signal, ViewChild, OnInit } from '@angular/core';
+import { PromptService, Prompt } from '../../../services/prompt-service';
+import { TableModule, Table } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { SortEvent } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { IconField} from 'primeng/iconfield';
+import { IconField } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
-import { FilterService } from 'primeng/api';
-
-interface prompts {
-  status: boolean;
-  title: string;
-  difficulty: number;
-  responses: number;
-}
-
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-prompt-list',
-  imports: [TableModule, TagModule, ButtonModule, IconField, InputIconModule, InputTextModule],
+  imports: [TableModule, TagModule, ButtonModule, IconField, InputIconModule, InputTextModule, SkeletonModule],
   templateUrl: './prompt-list.html',
   styleUrl: './prompt-list.css',
 })
-export class PromptList {
+export class PromptList implements OnInit {
   @ViewChild('dt1') dt1!: Table;
   searchValue = signal('');
-  isSorted: boolean | null = null
+  isSorted: boolean | null = null;
+  isLoading: boolean = true;
 
-  initialValue: prompts[] = [
-    { status: true, title: "Describe your daily routine", difficulty: 1, responses: 10 },
-    { status: false, title: "Why did you start learning Japanese?", difficulty: 1, responses: 54 },
-    { status: false, title: "Introduce something from your culture", difficulty: 2, responses: 5 },
-    { status: true, title: "Write a business email apologizing to your boss for a mistake", difficulty: 3, responses: 13 },
-    { status: true, title: "Introduce yourself", difficulty: 1, responses: 100 }
+  initialValue: Prompt[] = [];
+  prompts = signal<Prompt[]>([]);
 
-  ];
+  constructor(private promptService: PromptService) {}
 
-  prompt = signal<prompts[]>([...this.initialValue]);
+  ngOnInit() {
+    this.promptService.getPrompts().subscribe({
+      next: ({ data, error }) => {
+        if (error) {
+          console.error(error);
+          return;
+        }
+        this.initialValue = data ?? [];
+        this.prompts.set(this.initialValue);
+        this.isLoading = false;
+      }
+    });
+
+  }
 
   clear(table: Table) {
     table.clear();
     this.searchValue.set('');
-    this.prompt.set([...this.initialValue]);
+    this.prompts.set([...this.initialValue]);
     this.isSorted = null;
   }
 
-  // Check whether the table is sorted
   customSort(event: SortEvent) {
     if (this.isSorted === null) {
       this.isSorted = true;
@@ -55,11 +57,11 @@ export class PromptList {
       this.sortTableData(event);
     } else {
       this.isSorted = null;
-      this.prompt.set([...this.initialValue]);
+      this.prompts.set([...this.initialValue]);
       this.dt1.reset();
     }
   }
-  // Sorts table based on logic
+
   sortTableData(event: SortEvent) {
     event.data!.sort((data1, data2) => {
       let value1 = data1[event.field!];
