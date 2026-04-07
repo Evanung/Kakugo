@@ -8,6 +8,7 @@ import { IconField } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
+import { finalize} from 'rxjs';
 
 @Component({
   selector: 'app-prompt-list',
@@ -27,7 +28,9 @@ export class PromptList implements OnInit {
   constructor(private promptService: PromptService) {}
 
   ngOnInit() {
-    this.promptService.getPrompts().subscribe({
+    this.promptService.getPrompts()
+      .pipe(finalize(() => this.isLoading = false))
+      .subscribe({
       next: ({ data, error }) => {
         if (error) {
           console.error(error);

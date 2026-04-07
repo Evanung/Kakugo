@@ -12,7 +12,7 @@
         </svg>
         <div class="text-lg font-semibold text-surface-900 dark:text-surface-0">Kakugo</div>
       </div>
-      <p-carousel [value]="features" [numVisible]="1" [numScroll]="1" [circular]="true" [showIndicators]="true" [autoplayInterval]="3000" class="hidden! lg:block!">
+      <p-carousel [value]="features" [numVisible]="1" [numScroll]="1" [circular]="true" [showIndicators]="true" [autoplayInterval]="5000" class="hidden! lg:block!">
         <ng-template #item let-feature>
           <div class="flex flex-col gap-10">
             <div class="flex flex-col items-center gap-2">
@@ -35,7 +35,7 @@
           <div class="text-2xl font-semibold text-surface-900 dark:text-surface-0">Login</div>
           <div>
             <span class="text-surface-600 dark:text-surface-300">Don't have an account? </span>
-            <span class="text-primary font-medium cursor-pointer">Sign up</span>
+            <a class="text-primary font-medium cursor-pointer" [routerLink]="['/signup-page']">Sign up</a>
           </div>
         </div>
         <div class="flex flex-col gap-8">

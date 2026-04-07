@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { AuthGuard } from './services/auth-guard';
+import {Login} from './pages/user-pages/login/login';
 
 export const routes: Routes = [
   {
@@ -36,8 +37,13 @@ export const routes: Routes = [
   {
     path: 'login-page',
     data: { hideLayout: true },
-    loadComponent: () => import('./pages/user-pages/login/login')
-      .then(m => m.Login),
-
+    component: Login
+  }
+  ,
+  {
+    path: 'signup-page',
+    data: { hideLayout: true },
+    loadComponent: () => import('./pages/user-pages/sign-up/sign-up')
+      .then(m => m.SignUp),
   }
 ];

@@ -22,6 +22,15 @@ export class SupabaseService {
     return this.client.auth.signOut();
   }
 
+  signUp(display_name: string, email: string, password: string) {
+    return this.client.auth.signUp({ email, password,
+      options: {
+        data: {
+          display_name: display_name
+        }
+      }
+    });
+  }
   getSession() {
     return this.client.auth.getSession();
   }

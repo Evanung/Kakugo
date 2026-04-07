@@ -14,6 +14,12 @@ export class AuthService {
     return data;
   }
 
+  async signUp(display_name: string, email: string, password: string) {
+    const { data, error } = await this.supabase.signUp(display_name, email, password);
+    if (error) throw new Error(error.message);
+    return data;
+  }
+
   async logout() {
     await this.supabase.signOut();
     this.router.navigate(['/login-page']);
