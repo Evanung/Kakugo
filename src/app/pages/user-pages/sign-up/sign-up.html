@@ -33,9 +33,12 @@
       <div class="md:p-16 p-8 bg-surface-0 dark:bg-surface-900 rounded-2xl shadow-sm flex flex-col gap-12 h-full">
         <div class="flex flex-col gap-4">
           <div class="text-2xl font-semibold text-surface-900 dark:text-surface-0">Sign Up</div>
+          <div>
+            <span class="text-surface-600 dark:text-surface-300">Have an account already?</span>
+            <a class="text-primary font-medium cursor-pointer" [routerLink]="['/login-page']"> Sign in</a>
+          </div>
         </div>
         <div class="flex flex-col gap-8">
-
           <div class="flex flex-col gap-6">
             <div class="flex flex-col gap-2">
               <label for="email4" class="text-surface-900 dark:text-surface-0 font-medium">Email Address</label>
@@ -63,17 +66,18 @@
               <input pInputText id="confirmPassword4" type="password"
                      placeholder="Confirm Password"
                      [ngModel]="confirmPassword()"
-                     (ngModelChange)="confirmPassword.set($event)" class="w-full rounded-md shadow-sm" />>
+                     (ngModelChange)="confirmPassword.set($event)" class="w-full rounded-md shadow-sm" />
             </div>
 
             <button pButton (click)="onSignup()"
                     [disabled]="loading()"
                     class="w-full">
-              <span pButtonLabel>Sign In</span>
+              <span pButtonLabel>Sign Up</span>
             </button>
             @if (errorMessage()) {
               <p class="text-red-500 text-sm">{{ errorMessage() }}</p>
             }
+
           </div>
         </div>
       </div>

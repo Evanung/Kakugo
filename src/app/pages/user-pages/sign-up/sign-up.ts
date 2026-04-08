@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import {Component, signal, inject, booleanAttribute} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -7,14 +7,18 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthService} from '../../../services/auth-service';
-import { Router } from '@angular/router';
-import {CardModule} from 'primeng/card';
+import { Router, RouterLink} from '@angular/router';
+import { CardModule } from 'primeng/card';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-up',
-    imports: [
-        FormsModule, ButtonModule, InputTextModule, CardModule, CheckboxModule, DividerModule, InputTextModule, CarouselModule, CommonModule
-    ],
+  imports: [
+    FormsModule, ButtonModule, InputTextModule, CardModule,
+    CheckboxModule, DividerModule, InputTextModule,
+    CarouselModule, CommonModule, RouterLink, ToastModule,
+  ],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
 })
@@ -29,6 +33,7 @@ export class SignUp {
   constructor(private authService: AuthService, private router: Router) {}
 
   async onSignup() {
+
     if (this.password() !== this.confirmPassword()) {
       this.errorMessage.set('Passwords do not match.');
       return;
