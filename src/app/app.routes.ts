@@ -7,8 +7,8 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
-    pathMatch: 'full',
-    component: Dashboard
+    loadComponent: () => import('./pages/dashboard/dashboard')
+      .then(m => m.Dashboard),
   },
   {
     path: 'write/:id',
@@ -43,6 +43,7 @@ export const routes: Routes = [
   {
     path: 'login-page',
     data: { hideLayout: true },
+    pathMatch: 'full',
     component: Login
   }
   ,
