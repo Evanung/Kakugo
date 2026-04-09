@@ -1,4 +1,4 @@
-import {Component, signal, inject, booleanAttribute} from '@angular/core';
+import { Component, signal, inject, booleanAttribute } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -10,7 +10,6 @@ import { AuthService} from '../../../services/auth-service';
 import { Router, RouterLink} from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-up',

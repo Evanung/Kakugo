@@ -21,10 +21,10 @@ export class Header {
 
   menuItems = signal<MenuItem[]>([
     { label: 'Dashboard', icon: 'pi-th-large', route: '/' },
-    { label: 'Write', icon: 'pi-pencil', route: '/write-page'},
-    { label: 'Prompts', icon: 'pi-list', route: '/prompts-page' },
-    { label: 'Discussion', icon: 'pi-comments', route: '/discussion-page' },
-    { label: 'Learn', icon: 'pi-clone', route: '/learn-page' }
+    { label: 'Write', icon: 'pi-pencil', route: '/write'},
+    { label: 'Prompts', icon: 'pi-list', route: '/prompts' },
+    { label: 'Discussion', icon: 'pi-comments', route: '/discussion' },
+    { label: 'Learn', icon: 'pi-clone', route: '/learn' }
   ]);
 
   setActiveItem = (index: number): void => {

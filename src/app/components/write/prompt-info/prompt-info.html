@@ -1,0 +1,24 @@
+<div class="flex lg:flex-col gap-3 flex-wrap overflow-auto">
+  <div class="text-xl font-bold">{{ prompt.prompt_title }}</div>
+  <div class="flex w-15 px-10 justify-center rounded-xl border">
+    @if (prompt.difficulty == 1){
+      <td class="text-lime-600">Easy</td>
+    }
+    @else if (prompt.difficulty == 2){
+      <td class="text-orange-600">Medium</td>
+    }@else {
+      <td class="text-red-600">Hard</td>
+    }
+  </div>
+
+  @for (description of prompt.description; track $index) {
+    <div class="mb-2"> {{ description }} </div>
+  }
+  <div>Possible questions:</div>
+  <ul class="list-disc">
+    @for (question of prompt.questions; track $index) {
+      <li class="ml-5"> {{ question }} </li>
+    }
+  </ul>
+</div>
+

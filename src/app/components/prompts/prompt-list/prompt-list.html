@@ -2,6 +2,7 @@
 <p-table #dt1 [value]="prompts()" stripedRows
          [globalFilterFields]="['prompt_title',]"
          (sortFunction)="customSort($event)" [customSort]="true"
+         selectionMode="single" [(selection)]="selectedPrompt" (onRowSelect)="onRowSelect($event)"
          class="flex g">
 
   <ng-template #caption>
@@ -10,7 +11,7 @@
         <p-inputicon>
           <i class="pi pi-search"></i>
         </p-inputicon>
-        <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+        <input pInputText type="text" (input)="dt1.filterGlobal($event.target!, 'contains')" placeholder="Search keyword" />
       </p-iconfield>
       <p-button class="border-purple-600" label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
 
@@ -36,13 +37,13 @@
   </ng-template>
   }
   <ng-template #body let-prompt>
-    <tr class="rounded-sm">
+
+    <tr class="rounded-sm" [pSelectableRow]="prompt">
       @if (prompt.status === true){
         <td><i class="pi pi-check" style="color: green"></i></td>
       } @else {
         <td></td>
       }
-
       <td >{{ prompt.prompt_title }}</td>
 
       @if (prompt.difficulty == 1){

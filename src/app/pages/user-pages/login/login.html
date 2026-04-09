@@ -35,7 +35,7 @@
           <div class="text-2xl font-semibold text-surface-900 dark:text-surface-0">Login</div>
           <div>
             <span class="text-surface-600 dark:text-surface-300">Don't have an account? </span>
-            <a class="text-primary font-medium cursor-pointer" [routerLink]="['/signup-page']">Sign up</a>
+            <a class="text-purple-500 text-primary font-medium cursor-pointer" [routerLink]="['/signup']" >Sign up</a>
           </div>
         </div>
         <div class="flex flex-col gap-8">
@@ -64,7 +64,7 @@
             </div>
             <button pButton (click)="onLogin()"
                     [disabled]="loading()"
-                    class="w-full">
+                    class="">
               <span pButtonLabel>Sign In</span>
             </button>
             @if (errorMessage()) {

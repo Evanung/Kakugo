@@ -4,12 +4,14 @@ import { SupabaseService } from './supabase-service';
 
 export interface Prompt {
   id: number;
-  createdAt: Date;
-  responses: number;
-  difficulty: number;
-  category: string[];
-  prompt_title: string;
-  description: string;
+  status?: boolean;
+  createdAt?: Date;
+  responses?: number;
+  difficulty?: number;
+  category?: string[];
+  prompt_title?: string;
+  description?: string[];
+  questions?: string[];
 }
 
 @Injectable({
@@ -29,5 +31,15 @@ export class PromptService {
         .select('*')
         .order('created_at', { ascending: false })
     );
+  }
+
+  getPromptById(id: string | null) {
+    return from(
+      this.supabase
+      .from('prompt')
+        .select('*')
+        .eq('id', id)
+        .single()
+    )
   }
 }

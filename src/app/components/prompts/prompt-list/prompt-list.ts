@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild, OnInit } from '@angular/core';
+import { Component, signal, ViewChild, OnInit, inject } from '@angular/core';
 import { PromptService, Prompt } from '../../../services/prompt-service';
 import { TableModule, Table } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -9,6 +9,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 import { finalize} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prompt-list',
@@ -21,11 +22,13 @@ export class PromptList implements OnInit {
   searchValue = signal('');
   isSorted: boolean | null = null;
   isLoading: boolean = true;
-
+  selectedPrompt!: Prompt;
   initialValue: Prompt[] = [];
+  private router = inject(Router);
   prompts = signal<Prompt[]>([]);
 
   constructor(private promptService: PromptService) {}
+
 
   ngOnInit() {
     this.promptService.getPrompts()
@@ -79,5 +82,9 @@ export class PromptList implements OnInit {
 
       return event.order! * result;
     });
+  }
+
+  onRowSelect(event: any) {
+    this.router.navigate(['/write', event.data.id]);
   }
 }

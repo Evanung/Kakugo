@@ -11,25 +11,31 @@ export const routes: Routes = [
     component: Dashboard
   },
   {
-    path: 'write-page',
+    path: 'write/:id',
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/write-page/write-page')
       .then(m => m.WritePage),
   },
   {
-    path: 'prompts-page',
+    path: 'write',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/write-page/write-page')
+      .then(m => m.WritePage),
+  },
+  {
+    path: 'prompts',
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/prompts-page/prompts-page')
       .then(m => m.PromptsPage),
   },
   {
-    path: 'discussion-page',
+    path: 'discussion',
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/discussion-page/discussion-page')
     .then(m => m.DiscussionPage),
   },
   {
-    path: 'learn-page',
+    path: 'learn',
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/learn-page/learn-page')
     .then(m => m.LearnPage),
@@ -41,7 +47,7 @@ export const routes: Routes = [
   }
   ,
   {
-    path: 'signup-page',
+    path: 'signup',
     data: { hideLayout: true },
     loadComponent: () => import('./pages/user-pages/sign-up/sign-up')
       .then(m => m.SignUp),
