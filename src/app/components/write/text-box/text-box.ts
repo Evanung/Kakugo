@@ -11,5 +11,5 @@ import { EditorModule } from 'primeng/editor';
   styleUrl: './text-box.css',
 })
 export class TextBox {
-  text: string = 'Title Here';
+  text: string = 'Text here';
 }

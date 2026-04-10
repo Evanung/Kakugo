@@ -5,16 +5,18 @@ import { TabsModule } from 'primeng/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { PromptInfo } from '../../components/write/prompt-info/prompt-info';
 import {Prompt, PromptService} from '../../services/prompt-service';
+import { SubmissionList} from '../../components/write/submission-list/submission-list';
 
 @Component({
   selector: 'app-write-page',
-  imports: [SplitterModule, TextBox, TabsModule, PromptInfo],
+  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList],
   templateUrl: './write-page.html',
   styleUrl: './write-page.css',
 })
 export class WritePage {
   private route = inject(ActivatedRoute);
   private promptService = inject(PromptService);
+
 
   promptId = this.route.snapshot.paramMap.get('id');
 

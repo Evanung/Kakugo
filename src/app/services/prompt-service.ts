@@ -29,7 +29,7 @@ export class PromptService {
       this.supabase
         .from('prompt')
         .select('*')
-        .order('created_at', { ascending: false })
+        .order('id', { ascending: true })
     );
   }
 
