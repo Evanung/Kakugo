@@ -34,4 +34,5 @@ export class SupabaseService {
   getSession() {
     return this.client.auth.getSession();
   }
+
 }

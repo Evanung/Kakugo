@@ -11,9 +11,9 @@
               <a
                 class="cursor-pointer py-4 px-4 flex items-center transition-colors duration-150 hover:text-purple-500 font-medium leading-normal"
                 [ngClass]="{
-                                            'text-purple-500 font-semibold': selectedNav() === navItem.id,
-                                            'text-surface-900 dark:text-surface-0': selectedNav() !== navItem.id
-                                        }"
+                    'text-purple-500 font-semibold': selectedNav() === navItem.id,
+                    'text-surface-900 dark:text-surface-0': selectedNav() !== navItem.id
+                }"
                 (click)="setActiveTab(index)"
               >
                 <span>{{ navItem.label }}</span>

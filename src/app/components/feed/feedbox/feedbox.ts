@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Avatar} from 'primeng/avatar';
 import { AvatarModule } from 'primeng/avatar';
 
 @Component({

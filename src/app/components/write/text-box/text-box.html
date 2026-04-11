@@ -1,9 +1,12 @@
-<p-editor [(ngModel)]="text">
-  <ng-template #header>
-    <span class="flex ql-formats h-10 content-center">
-      <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
-      <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
-      <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
-    </span>
-  </ng-template>
-</p-editor>
+<div class="flex w-full h-full lg:flex-col">
+  <p-editor class="h-full" [(ngModel)]="text" (ngModelChange)="onTextChange.emit($event)">
+    <ng-template #header>
+      <span class="flex ql-formats h-10 content-center">
+        <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
+        <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
+        <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
+      </span>
+    </ng-template>
+  </p-editor>
+</div>
+

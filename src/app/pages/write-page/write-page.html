@@ -1,9 +1,9 @@
-<div class="flex shrink h-[80vh] w-screen px-8 mx-auto mb-10">
+<div class="flex flex-col h-[80vh] w-screen px-8 mx-auto mb-10">
   <p-splitter
-    [panelSizes]="[40, 60]" class="flex flex-1 flex-wrap min-w-0 gap-4">
+    [panelSizes]="[40, 60]" class="flex flex-1 flex-wrap min-w-0 gap-4 mb-3">
 
     <ng-template #panel>
-      <div class="rounded-lg bg-surface-900 border border-surface-200 dark:border-surface-600 h-full overflow-auto">
+      <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full overflow-auto">
         <p-tabs lazy value="0">
           <p-tablist>
             <p-tab value="0">Prompt</p-tab>
@@ -35,8 +35,15 @@
 
 
     <ng-template #panel>
-      <app-text-box></app-text-box>
+      <app-text-box (onTextChange)="onTextChange($event)"></app-text-box>
     </ng-template>
   </p-splitter>
+
+  <div class="flex gap-2 justify-center mb-5">
+    <p-select-button [options]="visibilityOptions" [(ngModel)]="isVisible" optionLabel="label" optionValue="value"></p-select-button>
+    <p-button label="Submit Post" (onClick)="submit()"></p-button>
+  </div>
+
 </div>
+
 
