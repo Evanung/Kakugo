@@ -1,16 +1,15 @@
 <div class="flex lg:flex-col gap-3 flex-wrap overflow-auto">
   <div class="text-xl font-bold">{{ prompt.prompt_title }}</div>
-  <div class="flex w-15 px-10 justify-center rounded-xl border">
     @if (prompt.difficulty == 1){
-      <td class="text-lime-600">Easy</td>
+      <div class="flex w-15 px-10 justify-center rounded-xl border border-lime-600"><td class="text-lime-600">Easy</td></div>
     }
     @else if (prompt.difficulty == 2){
-      <td class="text-orange-600">Medium</td>
-    }@else {
-      <td class="text-red-600">Hard</td>
-    }
-  </div>
+      <div class="flex w-15 px-10 justify-center rounded-xl border border-orange-600"><td class="text-orange-600">Medium</td></div>
 
+    }@else {
+      <div class="flex w-15 px-10 justify-center rounded-xl border border-red-600"><td class="text-red-600">Hard</td></div>
+    }
+  
   @for (description of prompt.description; track $index) {
     <div class="mb-2"> {{ description }} </div>
   }

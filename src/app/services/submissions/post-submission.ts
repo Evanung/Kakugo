@@ -12,6 +12,7 @@ export interface Post {
   profiles: {
     display_name: string;
   };
+  is_public: boolean;
 }
 
 export interface CreatePost {
