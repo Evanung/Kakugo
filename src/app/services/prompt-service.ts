@@ -24,11 +24,15 @@ export class PromptService {
     this.supabase = supabaseClient.client;
   }
 
-  getPrompts() {
+  getPrompts(userId: string) {
     return from(
       this.supabase
         .from('prompt')
-        .select('*')
+        .select(`
+        *,
+        prompt_status!left(completed_at)
+      `)
+        .eq('prompt_status.user_id', userId)
         .order('id', { ascending: true })
     );
   }

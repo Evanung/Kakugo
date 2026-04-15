@@ -14,7 +14,5 @@ import { TagModule } from 'primeng/tag';
   styleUrl: './prompts-page.css',
 })
 export class PromptsPage {
-  prompts = signal<any>([1,2,3,4,5,6]);
-  responsiveOptions: any[] | undefined;
 
 }

@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 import { finalize} from 'rxjs';
 import { Router } from '@angular/router';
+import { SupabaseService } from '../../../services/supabase-service';
 
 @Component({
   selector: 'app-prompt-list',
@@ -27,24 +28,33 @@ export class PromptList implements OnInit {
   private router = inject(Router);
   prompts = signal<Prompt[]>([]);
 
-  constructor(private promptService: PromptService) {}
+  constructor(
+    private promptService: PromptService,
+    private supabaseService: SupabaseService
+  ) {}
 
+  async ngOnInit() {
+    const { data: { user } } = await this.supabaseService.client.auth.getUser();
 
-  ngOnInit() {
-    this.promptService.getPrompts()
+    this.promptService.getPrompts(user!.id)
       .pipe(finalize(() => this.isLoading = false))
       .subscribe({
-      next: ({ data, error }) => {
-        if (error) {
-          console.error(error);
-          return;
-        }
-        this.initialValue = data ?? [];
-        this.prompts.set(this.initialValue);
-        this.isLoading = false;
-      }
-    });
+        next: ({ data, error }) => {
+          if (error) {
+            console.error(error);
+            return;
+          }
 
+          const prompts = (data ?? []).map(p => ({
+            ...p,
+            status: p.prompt_status?.length > 0
+          }));
+
+          this.initialValue = prompts;
+          this.prompts.set(prompts);
+          this.isLoading = false;
+        }
+      });
   }
 
   clear(table: Table) {
