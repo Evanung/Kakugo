@@ -14,44 +14,50 @@
   </p-iconfield>
   <p-button (click)="onSearch()">Search</p-button>
 </div>
+
 @if (isLoading()) {
   @for(i of [1,2,3,4,5,6]; track $index){
-    <div class="rounded dark:border-surface-700 bg-surface-0 dark:bg-surface-900 my-5">
-      <div class="flex">
-        <p-skeleton size="2rem" class="mr-2" />
-        <p-skeleton size="2rem" class="mr-2" />
-        <div class="self-center" style="flex: 1">
-          <p-skeleton width="100%" class="mb-5" />
-          <p-skeleton width="75%" class="mb-5" />
-          <p-skeleton width="100" class="mb-5" />
+    <div class="grid grid-cols-5 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 my-5">
+        <div class="col-span-1">
+          <p-skeleton size="3rem" class="mb-2" />
+          <p-skeleton width="25%" class="mr-2" />
         </div>
-      </div>
+        <div class="col-span-3 flex flex-col gap-2">
+          <p-skeleton width="100%" class="mb-2" />
+          <p-skeleton width="75%" class="mb-2" />
+          <p-skeleton width="100" />
+        </div>
     </div>
   }
 }
+
 @if (error()) {
   <div>{{ error() }}</div>
 }
 
 @for (result of englishResults(); track $index) {
-  <div class="flex gap-1 border-b mb-5">
-    @if (result.kanji?.[0]; as k) {
-      <span class="text-2xl">{{ k.form }}</span>
-      @if (result.readings?.[0]; as r) {
-        <span >({{ r.reading }})</span>
+  <div class="grid grid-cols-5 gap-4 border-b border-gray-300 dark:border-surface-700 py-5">
+    <div class="col-span-1">
+      @if (result.kanji?.[0]; as k) {
+        <div class="text-2xl">{{ k.form }}</div>
+        @if (result.readings?.[0]; as r) {
+          <div class="text-sm text-gray-500">{{ r.reading }}</div>
+        }
       }
-    }
-    @else if (result.readings?.[0]; as r) {
-      <span class="text-2xl">{{ r.reading }}</span>
-    }
-    <div class="flex lg:flex-col gap-2 ml-1">
-    @for (sense of result.senses ?? []; track $index) {
-      <div>
-        <span>{{ sense.glosses.join('; ') }}</span>
-        <span class="text-gray-500 ml-1">({{ sense.pos.join(', ') }})</span>
-
-      </div>
-    }
+      @else if (result.readings?.[0]; as r) {
+        <div class="text-2xl">{{ r.reading }}</div>
+      }
+    </div>
+    <div class="col-span-3 flex flex-col gap-2">
+      @for (sense of result.senses ?? []; track $index) {
+        <div class="flex gap-2">
+          <span class="text-gray-400 text-sm min-w-4">{{ $index + 1 }}.</span>
+          <div>
+            <span>{{ sense.glosses.join('; ') }}</span>
+            <span class="text-gray-500 text-sm ml-1">({{ sense.pos.join(', ') }})</span>
+          </div>
+        </div>
+      }
     </div>
   </div>
 }
