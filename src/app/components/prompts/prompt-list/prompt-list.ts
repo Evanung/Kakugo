@@ -52,11 +52,9 @@ export class PromptList implements OnInit {
 
           this.initialValue = prompts;
           this.prompts.set(prompts);
-          this.isLoading = false;
         }
       });
   }
-
   clear(table: Table) {
     table.clear();
     this.searchValue.set('');
