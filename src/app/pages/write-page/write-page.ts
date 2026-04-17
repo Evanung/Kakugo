@@ -15,10 +15,11 @@ import { MessageService } from 'primeng/api';
 import { PostSubmission } from '../../services/submissions/post-submission';
 import { SupabaseService } from '../../services/supabase-service';
 import { Dictionary } from '../../components/write/dictionary/dictionary';
+import { Grammar } from '../../components/write/grammar/grammar';
 
 @Component({
   selector: 'app-write-page',
-  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList, FormsModule, CommonModule, SelectButton, Button, ToastModule, Dictionary],
+  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList, FormsModule, CommonModule, SelectButton, Button, ToastModule, Dictionary, Grammar],
   providers: [MessageService],
   templateUrl: './write-page.html',
   styleUrl: './write-page.css',

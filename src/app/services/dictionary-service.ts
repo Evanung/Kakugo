@@ -37,10 +37,11 @@ export interface GlossResult {
 }
 
 export interface KanjiResult {
-  form: string;
-  entry: Entry & {
-    senses: (Sense & { glosses: Gloss[] })[];
-  };
+  entry_id: string;
+  entry_common: boolean;
+  kanji: { form: string; common: boolean }[] | null;
+  readings: { reading: string; common: boolean }[] | null;
+  senses: SenseResult[] | null;
 }
 
 @Injectable({
@@ -66,21 +67,10 @@ export class DictionaryService {
 
   async searchByJapanese(query: string): Promise<KanjiResult[]> {
     const { data, error } = await this.supabase
-      .from('kanji_forms')
-      .select(`
-        form,
-        entry:entries (
-          id, common,
-          readings(reading, common),
-          senses(pos, field, glosses(gloss))
-        )
-      `)
-      .ilike('form', `${query}%`)
-      .order('common', { ascending: false })
-      .limit(20);
+      .rpc('search_japanese', { query });
 
     if (error) throw error;
-    return (data ?? []) as unknown as KanjiResult[];
+    return (data ?? []) as KanjiResult[];
   }
 
   async search(query: string): Promise<{

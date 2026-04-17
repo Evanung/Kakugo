@@ -1,0 +1,16 @@
+<div class="flex gap-5 mb-5">
+  <p-iconfield>
+    <p-inputicon>
+      <i class="pi pi-search"></i>
+    </p-inputicon>
+    <input
+      pInputText
+      type="text"
+      [value]="word()"
+      (input)="word.set($any($event.target).value)"
+      placeholder="Try 'to be good at'"
+      (keyup.enter)="onSearch()"
+    />
+  </p-iconfield>
+  <p-button (click)="onSearch()">Search</p-button>
+</div>
