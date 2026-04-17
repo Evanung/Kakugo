@@ -12,12 +12,14 @@ export const routes: Routes = [
   },
   {
     path: 'write/:id',
+    data: { hideFooter: true },
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/write-page/write-page')
       .then(m => m.WritePage),
   },
   {
     path: 'write',
+    data: { hideFooter: true },
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/write-page/write-page')
       .then(m => m.WritePage),
@@ -42,13 +44,13 @@ export const routes: Routes = [
   },
   {
     path: 'login-page',
-    data: { hideLayout: true },
+    data: { hideFooter: true, hideNav: true },
     component: Login
   }
   ,
   {
     path: 'signup',
-    data: { hideLayout: true },
+    data: { hideFooter: true, hideNav: true },
     loadComponent: () => import('./pages/user-pages/sign-up/sign-up')
       .then(m => m.SignUp),
   }

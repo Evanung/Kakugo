@@ -64,10 +64,10 @@ export class SignUp {
       text: 'Commonly used grammar and words hand picked by us to make sure you are using the right tools for the job'
     },
     {
-      title: 'Feedback from Japanese Natives',
+      title: 'Feedback from Native Speakers',
       image: 'https://fqjltiegiezfetthbags.supabase.co/storage/v1/render/image/public/block.images/blocks/feature/tab-1.jpg',
       darkImage: 'https://fqjltiegiezfetthbags.supabase.co/storage/v1/render/image/public/block.images/blocks/feature/tab-1-dark.jpg',
-      text: 'Through our helpful team, we can help your progress skyrocket. Get various levels of written passages from Japanese natives.'
+      text: 'Through our helpful team, we can help your progress skyrocket. Get various levels of written passages from natives speakers.'
     }
   ];
 }

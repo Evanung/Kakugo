@@ -2,7 +2,7 @@ import {Component, output } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { EditorModule } from 'primeng/editor';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-
+import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-text-box',
   imports: [

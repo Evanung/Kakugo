@@ -11,10 +11,8 @@
 }
 
 
-/* Active/toggled on state - Quill adds .ql-active automatically */
 ::ng-deep .toolbar-btn.ql-active {
   color: oklch(62.7% 0.265 303.9) !important;
-
 }
 
 ::ng-deep .toolbar-btn:hover .ql-stroke{
@@ -25,4 +23,7 @@
   stroke: oklch(62.7% 0.265 303.9)!important;
 }
 
-
+::ng-deep .ql-editor {
+  font-size: 1rem;
+  line-height: 1.6;
+}

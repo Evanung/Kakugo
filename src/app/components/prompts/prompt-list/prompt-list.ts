@@ -22,7 +22,7 @@ export class PromptList implements OnInit {
   @ViewChild('dt1') dt1!: Table;
   searchValue = signal('');
   isSorted: boolean | null = null;
-  isLoading: boolean = true;
+  isLoading = signal(true);
   selectedPrompt!: Prompt;
   initialValue: Prompt[] = [];
   private router = inject(Router);
@@ -35,25 +35,29 @@ export class PromptList implements OnInit {
 
   async ngOnInit() {
     const { data: { user } } = await this.supabaseService.client.auth.getUser();
+    try {
+      this.promptService.getPrompts(user!.id)
+        .subscribe({
+          next: ({data, error}) => {
+            if (error) {
+              console.error(error);
+              return;
+            }
 
-    this.promptService.getPrompts(user!.id)
-      .pipe(finalize(() => this.isLoading = false))
-      .subscribe({
-        next: ({ data, error }) => {
-          if (error) {
-            console.error(error);
-            return;
+            const prompts = (data ?? []).map(p => ({
+              ...p,
+              status: p.prompt_status?.length > 0
+            }));
+
+            this.initialValue = prompts;
+            this.prompts.set(prompts);
           }
-
-          const prompts = (data ?? []).map(p => ({
-            ...p,
-            status: p.prompt_status?.length > 0
-          }));
-
-          this.initialValue = prompts;
-          this.prompts.set(prompts);
-        }
-      });
+        });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.isLoading.set(false);
+    }
   }
   clear(table: Table) {
     table.clear();

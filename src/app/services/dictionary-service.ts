@@ -20,6 +20,11 @@ export interface Entry {
   senses?: (Sense & { glosses: Gloss[] })[];
 }
 
+export interface SenseResult {
+  pos: string[];
+  glosses: string[];
+}
+
 export interface GlossResult {
   gloss: string;
   entry_id: string;
@@ -28,6 +33,7 @@ export interface GlossResult {
   field: string[];
   kanji: { form: string; common: boolean }[] | null;
   readings: { reading: string; common: boolean }[] | null;
+  senses: SenseResult[] | null;
 }
 
 export interface KanjiResult {

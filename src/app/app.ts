@@ -15,7 +15,8 @@ export class App {
   protected readonly title = signal('KakugoWeb');
 
   showLayout = false;
-
+  hideFooter = false;
+  hideNav = false;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.router.events
       .pipe(
@@ -23,11 +24,13 @@ export class App {
         map(() => {
           let route = this.activatedRoute.firstChild;
           while (route?.firstChild) route = route.firstChild;
-          return route?.snapshot.data['hideLayout'] ?? false;
+          return route?.snapshot.data ?? {};
         })
       )
-      .subscribe(hideLayout => {
-        this.showLayout = !hideLayout;
+      .subscribe(data => {
+        this.showLayout = data['hideLayout'] ?? true;
+        this.hideFooter = data['hideFooter'] ?? false;
+        this.hideNav = data['hideNav'] ?? false;
       });
   }
 }

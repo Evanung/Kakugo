@@ -6,7 +6,7 @@ import {SupabaseService} from '../../../services/supabase-service';
 import {Button} from 'primeng/button';
 import {IconField} from 'primeng/iconfield';
 import {InputIcon} from 'primeng/inputicon';
-
+import { SkeletonModule } from 'primeng/skeleton';
 @Component({
   selector: 'app-dictionary',
   imports: [
@@ -15,6 +15,7 @@ import {InputIcon} from 'primeng/inputicon';
     Button,
     IconField,
     InputIcon,
+    SkeletonModule,
   ],
   templateUrl: './dictionary.html',
   styleUrl: './dictionary.css',
