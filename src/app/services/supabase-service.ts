@@ -11,9 +11,17 @@ export class SupabaseService {
   constructor() {
     this.client = createClient(
       environment.supabaseUrl,
-      environment.supabaseKey
+      environment.supabaseKey,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      }
     );
   }
+
   signIn(email: string, password: string) {
     return this.client.auth.signInWithPassword({ email, password });
   }
