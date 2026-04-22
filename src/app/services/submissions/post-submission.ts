@@ -32,6 +32,7 @@ export class PostSubmission {
   constructor(private supabaseClient: SupabaseService) {
       this.supabase = supabaseClient.client;
   }
+
   getPostsFromPromptID = (promptId: number) => {
     return from(
       this.supabase

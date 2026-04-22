@@ -8,7 +8,6 @@ import { IconField } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
-import { finalize} from 'rxjs';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../../services/supabase-service';
 
@@ -36,29 +35,29 @@ export class PromptList implements OnInit {
   async ngOnInit() {
     const { data: { user } } = await this.supabaseService.client.auth.getUser();
     this.isLoading.set(true);
-    try {
-      this.promptService.getPrompts(user!.id)
-        .subscribe({
-          next: ({data, error}) => {
-            if (error) {
-              console.error(error);
-              return;
-            }
 
-            const prompts = (data ?? []).map(p => ({
-              ...p,
-              status: p.prompt_status?.length > 0
-            }));
-
-            this.initialValue = prompts;
-            this.prompts.set(prompts);
+    this.promptService.getPrompts(user!.id)
+      .subscribe({
+        next: ({ data, error }) => {
+          if (error) {
+            console.error(error);
+            return;
           }
-        });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      this.isLoading.set(false);
-    }
+
+          const prompts = (data ?? []).map(p => ({
+            ...p,
+            status: p.prompt_status?.length > 0
+          }));
+
+          this.initialValue = prompts;
+          this.prompts.set(prompts);
+          this.isLoading.set(false); // move here so it only stops after data arrives
+        },
+        error: (err) => {
+          console.error(err);
+          this.isLoading.set(false); // also handle error case
+        }
+      });
   }
   clear(table: Table) {
     table.clear();

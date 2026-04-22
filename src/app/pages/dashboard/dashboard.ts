@@ -5,7 +5,6 @@ import { WeeklyPromptDashboard } from '../../components/prompts/weekly-prompt-da
 import { RouterLink } from '@angular/router';
 import { PromptStats } from '../../components/prompts/prompt-stats/prompt-stats';
 import { DatePickerModule } from 'primeng/datepicker';
-
 @Component({
   selector: 'app-dashboard',
   imports: [Feedlist, FormsModule, WeeklyPromptDashboard, RouterLink, PromptStats, DatePickerModule],
@@ -15,4 +14,5 @@ import { DatePickerModule } from 'primeng/datepicker';
 })
 export class Dashboard {
   date: Date[] | undefined;
+
 }

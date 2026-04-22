@@ -1,12 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SupabaseService } from './supabase-service';
+import { from, shareReplay, map, Observable } from 'rxjs';
+import { User } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private supabase: SupabaseService, private router: Router) {}
+  private supabase = inject(SupabaseService);
+  private router = inject(Router);
+
+  user$: Observable<User | null> = from(this.supabase.getSession()).pipe(
+    map(({ data }) => data.session?.user ?? null),
+    shareReplay(1)
+  );
 
   async login(email: string, password: string) {
     const { data, error } = await this.supabase.signIn(email, password);
@@ -29,5 +37,4 @@ export class AuthService {
     const { data } = await this.supabase.getSession();
     return !!data.session;
   }
-
 }

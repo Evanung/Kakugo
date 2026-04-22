@@ -4,7 +4,7 @@ import { TextBox} from '../../components/write/text-box/text-box';
 import { TabsModule } from 'primeng/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { PromptInfo } from '../../components/write/prompt-info/prompt-info';
-import { Prompt, PromptService} from '../../services/prompt-service';
+import { PromptService, Prompt } from '../../services/prompt-service';
 import { SubmissionList} from '../../components/write/submission-list/submission-list';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
