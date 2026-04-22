@@ -8,6 +8,7 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthService} from '../../../services/auth-service';
 import {Router, RouterLink} from '@angular/router';
+
 @Component({
   selector: 'app-login',
   imports: [CommonModule, FormsModule, ButtonModule, CarouselModule, CheckboxModule, DividerModule, InputTextModule, RouterLink],

@@ -1,11 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
-
+@import 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap';
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
 @import 'primeicons/primeicons.css';
 
 @theme {
-  --font-sans--font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  --font-sans: 'Nunito', sans-serif;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -30,8 +29,6 @@
   }
 }
 
-* {
-  font-family: "Interif", sans-serif;
-}
+* { font-family: "Nunito", sans-serif; }
 
 

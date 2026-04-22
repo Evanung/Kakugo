@@ -5,7 +5,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 interface MenuItem {
   label: string;
-  icon: string;
   route: string;
 }
 
@@ -20,11 +19,11 @@ export class Header {
   activeItem = signal<number>(0);
 
   menuItems = signal<MenuItem[]>([
-    { label: 'Dashboard', icon: 'pi-th-large', route: '/' },
-    { label: 'Write', icon: 'pi-pencil', route: '/write'},
-    { label: 'Prompts', icon: 'pi-list', route: '/prompts' },
-    { label: 'Discussion', icon: 'pi-comments', route: '/discussion' },
-    { label: 'Learn', icon: 'pi-clone', route: '/learn' }
+    { label: 'Dashboard', route: '/' },
+    { label: 'Write', route: '/write'},
+    { label: 'Prompts', route: '/prompts' },
+    { label: 'Discussion', route: '/discussion' },
+    { label: 'Learn', route: '/learn' }
   ]);
 
   setActiveItem = (index: number): void => {

@@ -3,10 +3,15 @@
 
 .nav-link {
   @apply flex p-3 rounded-lg cursor-pointer transition-colors
+    items-center
   duration-150 border
+  h-15
   w-full
-  h-auto
   font-bold
   text-xl
   dark:hover:border-surface-700;
+}
+
+::ng-deep .p-motion {
+  width: 100%;
 }

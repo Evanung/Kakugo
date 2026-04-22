@@ -5,7 +5,7 @@
   @apply flex p-3 rounded-lg cursor-pointer transition-colors
   duration-150 border
   w-full
-  h-auto
+  h-full
   text-lg
   dark:hover:border-violet-500;
 }
