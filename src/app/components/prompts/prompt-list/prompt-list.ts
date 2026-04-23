@@ -10,59 +10,35 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../../services/supabase-service';
-
+import { from, switchMap, tap} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
 @Component({
   selector: 'app-prompt-list',
-  imports: [TableModule, TagModule, ButtonModule, IconField, InputIconModule, InputTextModule, SkeletonModule],
+  imports: [TableModule, TagModule, ButtonModule, IconField, InputIconModule, InputTextModule, SkeletonModule, AsyncPipe],
   templateUrl: './prompt-list.html',
   styleUrl: './prompt-list.css',
 })
-export class PromptList implements OnInit {
+
+export class PromptList {
+  private promptService = inject(PromptService);
+  private supabaseService = inject(SupabaseService);
+  private router = inject(Router);
+
   @ViewChild('dt1') dt1!: Table;
   searchValue = signal('');
   isSorted: boolean | null = null;
-  isLoading = signal(false);
   selectedPrompt!: Prompt;
-  initialValue: Prompt[] = [];
-  private router = inject(Router);
-  prompts = signal<Prompt[]>([]);
+  skeletonRows = Array(5).fill({});
+  cachedPrompts: Prompt[] = []; // keep a local copy for sort reset
 
-  constructor(
-    private promptService: PromptService,
-    private supabaseService: SupabaseService
-  ) {}
+  prompts$ = from(this.supabaseService.client.auth.getUser()).pipe(
+    switchMap(({ data: { user } }) => this.promptService.getPrompts(user!.id)),
+    tap(prompts => this.cachedPrompts = prompts) // store local copy when data arrives
+  );
 
-  async ngOnInit() {
-    const { data: { user } } = await this.supabaseService.client.auth.getUser();
-    this.isLoading.set(true);
-
-    this.promptService.getPrompts(user!.id)
-      .subscribe({
-        next: ({ data, error }) => {
-          if (error) {
-            console.error(error);
-            return;
-          }
-
-          const prompts = (data ?? []).map(p => ({
-            ...p,
-            status: p.prompt_status?.length > 0
-          }));
-
-          this.initialValue = prompts;
-          this.prompts.set(prompts);
-          this.isLoading.set(false); // move here so it only stops after data arrives
-        },
-        error: (err) => {
-          console.error(err);
-          this.isLoading.set(false); // also handle error case
-        }
-      });
-  }
   clear(table: Table) {
     table.clear();
     this.searchValue.set('');
-    this.prompts.set([...this.initialValue]);
     this.isSorted = null;
   }
 
@@ -75,7 +51,7 @@ export class PromptList implements OnInit {
       this.sortTableData(event);
     } else {
       this.isSorted = null;
-      this.prompts.set([...this.initialValue]);
+      event.data!.splice(0, event.data!.length, ...this.cachedPrompts); // reset to original order
       this.dt1.reset();
     }
   }

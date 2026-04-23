@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SupabaseService } from '../supabase-service';
 import { from } from 'rxjs';
+import { PromptService } from '../prompt-service';
 
 export interface Post {
   id: number;
@@ -29,8 +30,11 @@ export interface CreatePost {
 export class PostSubmission {
   private supabase;
 
-  constructor(private supabaseClient: SupabaseService) {
-      this.supabase = supabaseClient.client;
+  constructor(
+    private supabaseClient: SupabaseService,
+    private promptService: PromptService
+  ) {
+    this.supabase = supabaseClient.client;
   }
 
   getPostsFromPromptID = (promptId: number) => {
@@ -38,18 +42,22 @@ export class PostSubmission {
       this.supabase
         .from('post_submission')
         .select(`
-        *,
-        profiles(display_name)
-      `)
+          *,
+          profiles(display_name)
+        `)
         .eq('prompt_id', promptId)
     );
   }
 
-  createPost = (post: CreatePost) => {
-    return from(
-      this.supabase
-        .from('post_submission')
-        .insert(post)
-    );
+  createPost = async (post: CreatePost) => {
+    const { error } = await this.supabase
+      .from('post_submission')
+      .insert(post);
+
+    if (!error) {
+      this.promptService.resetPrompts();
+    }
+
+    return { error }; // return error so the caller can handle it
   }
 }

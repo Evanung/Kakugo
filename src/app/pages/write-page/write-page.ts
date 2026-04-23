@@ -84,38 +84,38 @@ export class WritePage {
     }
 
     const { data: { user } } = await this.supabaseService.client.auth.getUser();
-    this.postSubmissionService.createPost({
-      prompt_id: this.prompt()!.id,
-      title: '',
-      description: this.currentText(),
-      user_id: user!.id,
-      is_public: this.isVisible
-    }).subscribe({
-      next: ({ error }) => {
-        if (error) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Submission Failed',
-            detail: error.message ?? 'Something went wrong. Please try again.'
-          });
-        } else {
-          this.currentText.set('');
-          this.activeTab.set('1');
-          this.refreshSubmissions.update(v => v + 1);
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Post submitted successfully!'
-          });
-        }
-      },
-      error: (err) => {
+
+    try {
+      const { error } = await this.postSubmissionService.createPost({
+        prompt_id: this.prompt()!.id,
+        title: '',
+        description: this.currentText(),
+        user_id: user!.id,
+        is_public: this.isVisible
+      });
+
+      if (error) {
         this.messageService.add({
           severity: 'error',
-          summary: 'Network Error',
-          detail: err.message ?? 'An unexpected error occurred.'
+          summary: 'Submission Failed',
+          detail: error.message ?? 'Something went wrong. Please try again.'
+        });
+      } else {
+        this.currentText.set('');
+        this.activeTab.set('1');
+        this.refreshSubmissions.update(v => v + 1);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Post submitted successfully!'
         });
       }
-    });
+    } catch (err: any) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Network Error',
+        detail: err.message ?? 'An unexpected error occurred.'
+      });
+    }
   }
 }

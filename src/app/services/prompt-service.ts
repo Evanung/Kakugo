@@ -1,5 +1,5 @@
 import { Injectable,signal } from '@angular/core';
-import { from, Observable, shareReplay } from 'rxjs';
+import {from, ObjectUnsubscribedError, Observable, shareReplay} from 'rxjs';
 import { SupabaseService } from './supabase-service';
 import {map} from 'rxjs/operators';
 
@@ -48,24 +48,32 @@ export class PromptService {
   private supabase;
   private weeklyPrompt$: Observable<WeeklyPrompt> | null = null;
   private userStats$: Observable<UserStats> | null = null;
-
-  weeklyPrompt = signal<WeeklyPrompt | null>(null);
+  private prompts$: Observable<any> | null = null;
 
   constructor(private supabaseClient: SupabaseService) {
     this.supabase = supabaseClient.client;
   }
 
   getPrompts(userId: string) {
-    return from(
-      this.supabase
-        .from('prompt')
-        .select(`
-        *,
-        prompt_status!left(completed_at)
-      `)
-        .eq('prompt_status.user_id', userId)
-        .order('id', { ascending: true })
-    );
+    if (!this.prompts$) {
+      this.prompts$ = from(
+        this.supabase
+          .from('prompt')
+          .select(`
+          *,
+          prompt_status!left(completed_at)
+        `)
+          .eq('prompt_status.user_id', userId)
+          .order('id', { ascending: true })
+      ).pipe(
+        map(result => (result.data ?? []).map((p: any) => ({
+          ...p,
+          status: p.prompt_status?.length > 0  // make sure this line is here
+        }))),
+        shareReplay(1)
+      );
+    }
+    return this.prompts$;
   }
 
   getPromptById(id: string | null) {
@@ -99,6 +107,9 @@ export class PromptService {
     return this.weeklyPrompt$;
   }
 
+  resetPrompts() {
+    this.prompts$ = null;
+  }
 
   getUserStats(userId: string) {
     if (!this.userStats$) {
