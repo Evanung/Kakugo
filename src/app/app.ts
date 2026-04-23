@@ -12,7 +12,7 @@ import { Footer } from './layout/footer/footer';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('KakugoWeb');
+  protected readonly title = signal('Kakugo');
 
   showLayout = false;
   hideFooter = false;

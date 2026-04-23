@@ -1,11 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { SplitterModule } from 'primeng/splitter';
-import { TextBox} from '../../components/write/text-box/text-box';
+import { TextBox } from '../../components/write/text-box/text-box';
 import { TabsModule } from 'primeng/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { PromptInfo } from '../../components/write/prompt-info/prompt-info';
 import { PromptService, Prompt } from '../../services/prompt-service';
-import { SubmissionList} from '../../components/write/submission-list/submission-list';
+import { SubmissionList } from '../../components/write/submission-list/submission-list';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SelectButton } from 'primeng/selectbutton';
@@ -25,10 +25,8 @@ import { Grammar } from '../../components/write/grammar/grammar';
   styleUrl: './write-page.css',
 })
 export class WritePage {
-  // Injections of services
   private route = inject(ActivatedRoute);
   private promptService = inject(PromptService);
-  // Angular toast component
   private messageService = inject(MessageService);
 
   constructor(
@@ -36,31 +34,24 @@ export class WritePage {
     private supabaseService: SupabaseService
   ) {}
 
-  // Default tab on prompt tools is prompt info - is updated when changed
-  activeTab = signal('0')
-
+  activeTab = signal('0');
   promptId = this.route.snapshot.paramMap.get('id');
   prompt = signal<Prompt | null>(null);
-
-  // Current String of TextBox Child
   currentText = signal('');
-  // Refreshes submission on submit
   refreshSubmissions = signal(0);
+  isSavingDraft = signal(false);
+  hasDraft = signal(false);
 
-  // Post Visibility Option / Is Public on default
   visibilityOptions = [
     { label: 'Public', value: true },
     { label: 'Private', value: false }
   ];
   isVisible: boolean = true;
 
-
-  // Updates currentText from child component TextBox to make sure that the current text is up to date for post submissions
   onTextChange(text: string) {
     this.currentText.set(text);
   }
 
-  // Initializes prompt then sends that data to child
   ngOnInit() {
     const id = this.promptId ?? '0';
 
@@ -72,7 +63,51 @@ export class WritePage {
     });
   }
 
-  // Submits text from child component text
+  async saveDraft() {
+    if (!this.currentText()) {
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Info',
+        detail: 'Nothing to save yet.'
+      });
+      return;
+    }
+
+    this.isSavingDraft.set(true);
+    const { data: { user } } = await this.supabaseService.client.auth.getUser();
+
+    try {
+      const { error } = await this.postSubmissionService.saveDraft({
+        prompt_id: this.prompt()!.id,
+        description: this.currentText(),
+        user_id: user!.id
+      });
+
+      if (error) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Save Failed',
+          detail: error.message ?? 'Could not save draft.'
+        });
+      } else {
+        this.hasDraft.set(true);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Draft Saved',
+          detail: 'Your draft has been saved.'
+        });
+      }
+    } catch (err: any) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Network Error',
+        detail: err.message ?? 'An unexpected error occurred.'
+      });
+    } finally {
+      this.isSavingDraft.set(false);
+    }
+  }
+
   async submit() {
     if (!this.currentText()) {
       this.messageService.add({
@@ -102,6 +137,7 @@ export class WritePage {
         });
       } else {
         this.currentText.set('');
+        this.hasDraft.set(false);
         this.activeTab.set('1');
         this.refreshSubmissions.update(v => v + 1);
         this.messageService.add({

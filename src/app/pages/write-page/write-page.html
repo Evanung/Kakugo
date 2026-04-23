@@ -42,6 +42,7 @@
   </p-splitter>
 
   <div class="flex gap-2 justify-center mb-5">
+    <p-button severity="info" icon="pi pi-cloud-upload" label="Save Draft" (onClick)="saveDraft()"></p-button>
     <p-select-button [options]="visibilityOptions" [(ngModel)]="isVisible" optionLabel="label" optionValue="value"></p-select-button>
     <p-button label="Submit Post" (onClick)="submit()"></p-button>
   </div>

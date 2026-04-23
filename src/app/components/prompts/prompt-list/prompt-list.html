@@ -27,8 +27,10 @@
 
   <ng-template #body let-prompt>
     <tr class="rounded-sm" [pSelectableRow]="prompt">
-      @if (prompt.status === true) {
+      @if (prompt.status === 1) {
         <td><i class="pi pi-check" style="color: green; font-size: 1.5rem"></i></td>
+      } @else if (prompt.status === 0) {
+        <td><i class="pi pi-file-edit" style="color: orange; font-size: 1.5rem"></i></td>
       } @else {
         <td></td>
       }

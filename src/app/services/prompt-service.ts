@@ -1,11 +1,12 @@
-import { Injectable,signal } from '@angular/core';
-import {from, ObjectUnsubscribedError, Observable, shareReplay} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { from, Observable, shareReplay } from 'rxjs';
 import { SupabaseService } from './supabase-service';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 export interface Prompt {
   id: number;
-  status?: boolean;
+  status?: number;
+  draft_content?: string;
   createdAt?: Date;
   responses?: number;
   difficulty?: number;
@@ -25,9 +26,9 @@ export interface WeeklyPrompt {
 }
 
 export interface DifficultyBreakdown {
-  easy: string;
-  medium: string;
-  hard: string;
+  easy: number;
+  medium: number;
+  hard: number;
 }
 
 export interface UserStats {
@@ -35,12 +36,6 @@ export interface UserStats {
   byDifficulty: DifficultyBreakdown;
 }
 
-export interface PromptStatus {
-  completed_at: string;
-  prompt: {
-    difficulty: string;
-  };
-}
 @Injectable({
   providedIn: 'root',
 })
@@ -60,16 +55,20 @@ export class PromptService {
         this.supabase
           .from('prompt')
           .select(`
-          *,
-          prompt_status!left(completed_at)
-        `)
-          .eq('prompt_status.user_id', userId)
+            *,
+            post_submission!left(status, description)
+          `)
+          .eq('post_submission.user_id', userId)
           .order('id', { ascending: true })
       ).pipe(
-        map(result => (result.data ?? []).map((p: any) => ({
-          ...p,
-          status: p.prompt_status?.length > 0  // make sure this line is here
-        }))),
+        map(result => (result.data ?? []).map((p: any) => {
+          const submission = p.post_submission?.[0];
+          return {
+            ...p,
+            status: submission?.status ?? null,
+            draft_content: submission?.status === 0 ? submission.description : null
+          };
+        })),
         shareReplay(1)
       );
     }
@@ -79,11 +78,11 @@ export class PromptService {
   getPromptById(id: string | null) {
     return from(
       this.supabase
-      .from('prompt')
+        .from('prompt')
         .select('*')
         .eq('id', id)
         .single()
-    )
+    );
   }
 
   getWeeklyPrompt(): Observable<WeeklyPrompt> {
@@ -100,40 +99,44 @@ export class PromptService {
           .single()
       ).pipe(
         map(result => result.data as WeeklyPrompt),
-        shareReplay(1)  // caches the last emitted value
+        shareReplay(1)
       );
     }
 
     return this.weeklyPrompt$;
   }
 
-  resetPrompts() {
-    this.prompts$ = null;
-  }
-
   getUserStats(userId: string) {
     if (!this.userStats$) {
       this.userStats$ = from(
         this.supabase
-          .from('prompt_status')
-          .select(`completed_at, prompt(difficulty)`)
+          .from('post_submission')
+          .select(`user_id, status, prompt(difficulty)`)
           .eq('user_id', userId)
+          .eq('status', 1)
       ).pipe(
         map(result => {
-          const data = result.data as unknown as PromptStatus[];
+          const data = result.data as any[];
           return {
             totalCompleted: data.length,
             byDifficulty: {
-              easy: data.filter(d => d.prompt.difficulty === '1').length,
-              medium: data.filter(d => d.prompt.difficulty === '2').length,
-              hard: data.filter(d => d.prompt.difficulty === '3').length,
+              easy: data.filter(d => d.prompt?.difficulty === '1').length,
+              medium: data.filter(d => d.prompt?.difficulty === '2').length,
+              hard: data.filter(d => d.prompt?.difficulty === '3').length,
             }
-          } as unknown as UserStats;
+          } as UserStats;
         }),
         shareReplay(1)
       );
     }
     return this.userStats$;
   }
-}
 
+  resetPrompts() {
+    this.prompts$ = null;
+  }
+
+  resetStats() {
+    this.userStats$ = null;
+  }
+}

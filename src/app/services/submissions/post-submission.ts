@@ -14,6 +14,7 @@ export interface Post {
     display_name: string;
   };
   is_public: boolean;
+  status: number;
 }
 
 export interface CreatePost {
@@ -22,6 +23,12 @@ export interface CreatePost {
   user_id: string;
   title: string;
   is_public: boolean;
+}
+
+export interface SaveDraft {
+  prompt_id?: number;
+  description: string;
+  user_id: string;
 }
 
 @Injectable({
@@ -46,18 +53,82 @@ export class PostSubmission {
           profiles(display_name)
         `)
         .eq('prompt_id', promptId)
+        .eq('status', 1)
     );
   }
 
   createPost = async (post: CreatePost) => {
-    const { error } = await this.supabase
+    // Check if a draft exists
+    const { data: existing } = await this.supabase
       .from('post_submission')
-      .insert(post);
+      .select('id')
+      .eq('user_id', post.user_id)
+      .eq('prompt_id', post.prompt_id!)
+      .eq('status', 0)
+      .single();
+
+    if (existing) {
+      // Promote draft to submitted
+      const { error } = await this.supabase
+        .from('post_submission')
+        .update({ ...post, status: 1 })
+        .eq('id', existing.id);
+
+      if (!error) {
+        this.promptService.resetPrompts();
+        this.promptService.resetStats();
+      }
+
+      return { error };
+    } else {
+      // No draft, fresh insert
+      const { error } = await this.supabase
+        .from('post_submission')
+        .insert({ ...post, status: 1 });
+
+      if (!error) {
+        this.promptService.resetPrompts();
+        this.promptService.resetStats();
+      }
+
+      return { error };
+    }
+  }
+
+  saveDraft = async (draft: SaveDraft) => {
+    const { data: existing } = await this.supabase
+      .from('post_submission')
+      .select('id')
+      .eq('user_id', draft.user_id)
+      .eq('prompt_id', draft.prompt_id)
+      .eq('status', 0)
+      .single();
+
+    const { error } = existing
+      ? await this.supabase
+        .from('post_submission')
+        .update({ description: draft.description })
+        .eq('id', existing.id)
+      : await this.supabase
+        .from('post_submission')
+        .insert({ ...draft, status: 0 });
 
     if (!error) {
       this.promptService.resetPrompts();
     }
 
-    return { error }; // return error so the caller can handle it
+    return { error };
+  }
+
+  getDraft = async (userId: string, promptId: number) => {
+    const { data, error } = await this.supabase
+      .from('post_submission')
+      .select('description, status')
+      .eq('user_id', userId)
+      .eq('prompt_id', promptId)
+      .eq('status', 0)
+      .single();
+
+    return { data, error };
   }
 }
