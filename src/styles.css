@@ -31,4 +31,18 @@
 
 * { font-family: "Nunito", sans-serif; }
 
+.diff-added {
+  background-color: #d4edda;
+  color: #155724;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.diff-removed {
+  background-color: #f8d7da;
+  color: #721c24;
+  text-decoration: line-through;
+  border-radius: 3px;
+  padding: 0 2px;
+}
 
