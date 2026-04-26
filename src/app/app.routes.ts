@@ -12,14 +12,14 @@ export const routes: Routes = [
   },
   {
     path: 'write/:id',
-    data: { hideFooter: true },
+    data: { hideFooter: true, hideNav: true },
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/write-page/write-page')
       .then(m => m.WritePage),
   },
   {
     path: 'write',
-    data: { hideFooter: true },
+    data: { hideFooter: true, hideNav: true },
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/write-page/write-page')
       .then(m => m.WritePage),

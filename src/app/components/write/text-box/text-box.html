@@ -1,48 +1,16 @@
-
 <div class="flex w-full h-full lg:flex-col">
-  <p-splitter [style]="{ height: '300px' }" class="gap-2" [panelSizes]="[60, 40]" layout="vertical">
-
-    <ng-template #panel>
-      <p-editor class="h-full" [(ngModel)]="text" (ngModelChange)="onTextChange.emit($event)">
-        <ng-template #header>
-          <span class="flex ql-formats h-10 content-center w-full">
-            <span class="ql-formats">
-              <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
-              <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
-              <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
-            </span>
+    <p-editor class="h-full" placeholder="Start typing here" [(ngModel)]="text" (ngModelChange)="onTextChange.emit($event)">
+      <ng-template #header>
+        <span class="flex ql-formats h-10 content-center w-full">
+          <span class="ql-formats">
+            <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
+            <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
+            <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
           </span>
-        </ng-template>
+        </span>
+      </ng-template>
       </p-editor>
-    </ng-template>
-
-    <ng-template #panel>
-      <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full overflow-auto">
-
-      <p-button
-          type="button"
-          (click)="checkWriting()"
-          [disabled]="checking()"
-          class="text-sm rounded">
-          {{ checking() ? 'Checking...' : 'Grammar Check' }}
-        </p-button>
-        <!-- Result -->
-        @if (diffHtml()) {
-          <div class="p-4 rounded">
-            <h3 class="text-base font-medium mb-2">Suggested improvements (Translations are sometimes inconsistent. Please double check) :</h3>
-            <p class="text-base leading-relaxed" [innerHTML]="diffHtml()"></p>
-          </div>
-        }
-      </div>
-    </ng-template>
-  </p-splitter>
-
-  <div>
-
-  </div>
-
-
-  @if (error()) {
-    <p>{{ error() }}</p>
-  }
 </div>
+
+
+

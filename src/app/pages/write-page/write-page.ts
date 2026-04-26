@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { SplitterModule } from 'primeng/splitter';
 import { TextBox } from '../../components/write/text-box/text-box';
 import { TabsModule } from 'primeng/tabs';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import { PromptInfo } from '../../components/write/prompt-info/prompt-info';
 import { PromptService, Prompt } from '../../services/prompt-service';
 import { SubmissionList } from '../../components/write/submission-list/submission-list';
@@ -16,10 +16,11 @@ import { PostSubmission } from '../../services/submissions/post-submission';
 import { SupabaseService } from '../../services/supabase-service';
 import { Dictionary } from '../../components/write/dictionary/dictionary';
 import { Grammar } from '../../components/write/grammar/grammar';
+import { SentenceAnalyze } from '../../components/write/sentence-analyze/sentence-analyze';
 
 @Component({
   selector: 'app-write-page',
-  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList, FormsModule, CommonModule, SelectButton, Button, ToastModule, Dictionary, Grammar],
+  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList, FormsModule, CommonModule, SelectButton, Button, ToastModule, Dictionary, Grammar, SentenceAnalyze, RouterLink],
   providers: [MessageService],
   templateUrl: './write-page.html',
   styleUrl: './write-page.css',
@@ -35,6 +36,7 @@ export class WritePage {
   ) {}
 
   activeTab = signal('0');
+  activeTab_grammar = signal('0');
   promptId = this.route.snapshot.paramMap.get('id');
   prompt = signal<Prompt | null>(null);
   currentText = signal('');

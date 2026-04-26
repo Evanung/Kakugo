@@ -1,0 +1,37 @@
+<div class="rounded-lg dark:bg-surface-900  h-full overflow-auto">
+  <div class="flex items-center">
+    <p-button
+      type="button"
+      (click)="checkWriting()"
+      [disabled]="checking()"
+      class="text-sm rounded mb-2">
+      {{ checking() ? 'Analyzing...' : 'Analyze' }}
+    </p-button>
+  </div>
+
+
+  <!-- Result -->
+  <div class="grid grid-cols-[50%_49%] gap-2 h-50">
+    <textarea rows="5" cols="30" pTextarea [(ngModel)]="text" placeholder="Enter text here to check for spelling and grammar errors" fluid></textarea>
+    <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+      @if (diffHtml()) {
+        <div class="rounded">
+          <p class="text-base leading-relaxed" [innerHTML]="diffHtml()"></p>
+        </div>~
+      }
+      @else{
+        <p class="text-surface-500 dark:text-surface-400">
+          Translations are suggestions. Please double check every translation.
+          The translator is tuned for written language, so spoken words/grammar may be changed.
+          Ex. から to ので
+        </p>
+
+      }
+    </div>
+  </div>
+
+
+</div>
+@if (error()) {
+  <p>{{ error() }}</p>
+}

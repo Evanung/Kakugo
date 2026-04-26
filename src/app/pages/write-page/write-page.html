@@ -1,13 +1,17 @@
-<div class="flex flex-col h-[87vh] w-screen px-4 mx-auto mb-10">
-<p-toast />
+
+<div class="flex flex-col h-[100vh] w-screen pt-5 px-4 mx-auto">
+  <p-toast />
   <p-splitter
     [panelSizes]="[40, 60]"
     class="flex flex-shrink flex-1 min-w-0 min-h-0 gap-2 mb-3 overflow-hidden">
 
     <ng-template #panel>
-      <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full overflow-auto">
+      <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
         <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
+
           <p-tablist>
+            <p-button class="ml-2 mt-2" icon="pi pi-home" title="Dashboard" [routerLink]="['/']" [rounded]="true" [text]="true" [raised]="true" severity="help" />
+            <p-button class="ml-2 mt-2" icon="pi pi-list" title="Prompts page" [routerLink]="['/prompts']" [rounded]="true" [text]="true" [raised]="true" severity="help" />
             <p-tab value="0">Prompt</p-tab>
             <p-tab value="1">Submissions</p-tab>
             <p-tab value="2">Dictionary</p-tab>
@@ -37,11 +41,32 @@
 
 
     <ng-template #panel>
-      <app-text-box (onTextChange)="onTextChange($event)"></app-text-box>
+      <p-splitter [panelSizes]="[55, 45]" layout="vertical" class="flex flex-shrink flex-1 min-w-0 min-h-0 gap-2 overflow-hidden">
+        <ng-template #panel>
+          <app-text-box (onTextChange)="onTextChange($event)"></app-text-box>
+        </ng-template>
+        <ng-template #panel>
+          <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
+            <p-tabs lazy [value]="activeTab_grammar()" (valueChange)="activeTab_grammar.set($event?.toString() ?? '0')">
+              <p-tablist>
+                <p-tab value="0">Translation</p-tab>
+                <p-tab value="1">Analyze Sentence</p-tab>
+              </p-tablist>
+              <p-tabpanels class="h-full">
+                <p-tabpanel value="0">
+                </p-tabpanel>
+                <p-tabpanel value="1">
+                  <app-sentence-analyze></app-sentence-analyze>
+                </p-tabpanel>
+              </p-tabpanels>
+            </p-tabs>
+          </div>
+        </ng-template>
+      </p-splitter>
     </ng-template>
   </p-splitter>
 
-  <div class="flex gap-2 justify-center mb-5">
+  <div class="flex gap-2 justify-center mb-5 ">
     <p-button severity="info" icon="pi pi-cloud-upload" label="Save Draft" (onClick)="saveDraft()"></p-button>
     <p-select-button [options]="visibilityOptions" [(ngModel)]="isVisible" optionLabel="label" optionValue="value"></p-select-button>
     <p-button label="Submit Post" (onClick)="submit()"></p-button>
