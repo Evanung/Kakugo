@@ -1,7 +1,6 @@
-import {Component, OnInit, signal, inject} from '@angular/core';
-import {PromptService, WeeklyPrompt} from '../../../services/prompt-service';
+import {Component, inject} from '@angular/core';
+import {PromptService} from '../../../services/prompt-service';
 import {RouterLink} from '@angular/router';
-import {takeUntil, Subject} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 
 @Component({

@@ -11,8 +11,8 @@
 
 
   <!-- Result -->
-  <div class="grid grid-cols-[50%_49%] gap-2 h-50">
-    <textarea rows="5" cols="30" pTextarea [(ngModel)]="text" placeholder="Enter text here to check for spelling and grammar errors" fluid></textarea>
+  <div class="grid grid-cols-[50%_49%] h-50">
+    <textarea rows="5" cols="30" pTextarea [maxlength]="500" [(ngModel)]="text" placeholder="Enter Japanese text here to check for spelling and grammar errors" fluid></textarea>
     <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
       @if (diffHtml()) {
         <div class="rounded">
@@ -28,8 +28,10 @@
 
       }
     </div>
+    <span>
+      {{ text().length }}/500
+    </span>
   </div>
-
 
 </div>
 @if (error()) {

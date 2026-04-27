@@ -1,9 +1,6 @@
 import {Component, inject, output, signal} from '@angular/core';
 import {Button} from "primeng/button";
-import {PostSubmission} from '../../../services/submissions/post-submission';
-import {SupabaseService} from '../../../services/supabase-service';
 import {WriteService} from '../../../services/writing/write-service';
-import {ActivatedRoute} from '@angular/router';
 import {DiffService} from '../../../services/writing/diff-service';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -18,28 +15,20 @@ import {Textarea} from 'primeng/textarea';
   styleUrl: './sentence-analyze.css',
 })
 export class SentenceAnalyze {
-  private postSubmissionService = inject(PostSubmission);
-  private supabaseService = inject(SupabaseService);
   private writeService = inject(WriteService);
-  private route = inject(ActivatedRoute);
   private diffService = inject(DiffService);
   private sanitizer = inject(DomSanitizer)
 
   diffHtml = signal<SafeHtml | null>(null)
   text = signal('');
-  title: string = 'Title Test';
-  improvedText = signal<string | null>(null);
   checking = signal(false);
   error = signal<string | null>(null);
-
-  onTextChange = output<string>();
 
   async checkWriting() {
     if (!this.text().trim()) return
 
     this.checking.set(true)
     this.error.set(null)
-    this.diffHtml.set(null)
 
     try {
       const result = await this.writeService.improveText(this.text())

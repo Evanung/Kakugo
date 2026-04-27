@@ -22,7 +22,6 @@ export class WriteService {
     }
 
     const plainText = this.stripHtml(text)
-    console.log('Sending text:', plainText) // check what's being sent
 
     const response = await fetch(
       `${environment.supabaseUrl}/functions/v1/improve-text`,
@@ -35,12 +34,7 @@ export class WriteService {
         body: JSON.stringify({ text: plainText })
       }
     )
-
-    console.log('Response status:', response.status) // check status
-
     const data = await response.json()
-    console.log('Response data:', data) // check what came back
-
     if (!response.ok) {
       throw new Error(`Failed: ${response.status}`)
     }
@@ -49,5 +43,37 @@ export class WriteService {
       improved: data.improvements[0].text,
       detectedLanguage: data.improvements[0].detected_source_language
     }
+  }
+
+  async translate(text: string, sourceLanguage: string, targetLanguage: string): Promise<string> {
+    const { data: { session } } = await this.supabaseService.client.auth.getSession()
+
+    if (!session) {
+      throw new Error('No session found')
+    }
+
+    const response = await fetch(
+      `${environment.supabaseUrl}/functions/v1/translate`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`
+        },
+        body: JSON.stringify({
+          text,
+          source_lang: sourceLanguage,
+          target_lang: targetLanguage
+        })
+      }
+    )
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(`Failed: ${response.status}`)
+    }
+
+    return data.translated
   }
 }

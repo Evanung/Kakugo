@@ -17,10 +17,11 @@ import { SupabaseService } from '../../services/supabase-service';
 import { Dictionary } from '../../components/write/dictionary/dictionary';
 import { Grammar } from '../../components/write/grammar/grammar';
 import { SentenceAnalyze } from '../../components/write/sentence-analyze/sentence-analyze';
+import { Translate } from '../../components/write/translate/translate';
 
 @Component({
   selector: 'app-write-page',
-  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList, FormsModule, CommonModule, SelectButton, Button, ToastModule, Dictionary, Grammar, SentenceAnalyze, RouterLink],
+  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList, FormsModule, CommonModule, SelectButton, Button, ToastModule, Dictionary, Grammar, SentenceAnalyze, RouterLink, Translate],
   providers: [MessageService],
   templateUrl: './write-page.html',
   styleUrl: './write-page.css',

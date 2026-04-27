@@ -1,1 +1,57 @@
-<p>translate works!</p>
+<div class="rounded-lg dark:bg-surface-900  h-full overflow-auto">
+
+  <div class="grid grid-cols-3 items-center mb-2">
+    <!-- Left: Translate button -->
+    <div class="flex justify-start">
+      <p-button
+        type="button"
+        (onClick)="translateText()"
+        [disabled]="checking()"
+        class="text-sm rounded">
+        {{ checking() ? 'Translating...' : 'Translate' }}
+      </p-button>
+    </div>
+
+    <!-- Center: Language switcher -->
+    <div class="flex gap-3 items-center justify-center">
+      <p>{{ sourceLanguage() }}</p>
+      <p-button
+        icon="pi pi-arrow-right-arrow-left"
+        (onClick)="switchLanguage()"
+        [text]="true"
+        [raised]="true"
+        severity="help" />
+      <p>{{ targetLanguage() }}</p>
+    </div>
+
+    <div></div>
+  </div>
+
+
+  <!-- Result -->
+  <div class="grid grid-cols-[50%_50%] h-50">
+    <textarea rows="5" cols="30" pTextarea [maxlength]="500" [(ngModel)]="text" placeholder="Enter text for translations" fluid></textarea>
+    <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+      @if (translation()) {
+        <div class="rounded">
+          <p class="text-base leading-relaxed">{{ translation() }}</p>
+        </div>
+      } @else {
+        <p class="text-surface-500 dark:text-surface-400">
+          Translations are suggestions. Please double check every translation.
+          The translator is tuned for written language, so spoken words/grammar may be changed.
+          Ex. から to ので
+        </p>
+      }
+
+    </div>
+    <span>
+      {{ text().length }}/500
+    </span>
+  </div>
+
+
+</div>
+@if (error()) {
+  <p>{{ error() }}</p>
+}
