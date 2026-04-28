@@ -8,7 +8,7 @@ export interface Prompt {
   status?: number;
   draft_content?: string;
   createdAt?: Date;
-  responses?: number;
+  response_count?: number;
   difficulty?: number;
   category?: string[];
   prompt_title?: string;
@@ -17,12 +17,18 @@ export interface Prompt {
 }
 
 export interface WeeklyPrompt {
-  id?: string;
-  prompt_id?: string;
-  week_start_date?: string;
-  description?: string;
-  created_at?: string;
-  prompt?: Prompt;
+  id: number;
+  week_start_date: string;
+  description: string;
+  prompt_id: number;
+  prompt_response_count: {
+    id: number;
+    prompt_title: string;
+    response_count: number;
+    category: string[];
+    difficulty: string;
+    questions: string[];
+  };
 }
 
 export interface DifficultyBreakdown {
@@ -53,7 +59,7 @@ export class PromptService {
     if (!this.prompts$) {
       this.prompts$ = from(
         this.supabase
-          .from('prompt')
+          .from('prompt_response_count')
           .select(`
             *,
             post_submission!left(status, description)
@@ -78,7 +84,7 @@ export class PromptService {
   getPromptById(id: string | null) {
     return from(
       this.supabase
-        .from('prompt')
+        .from('prompt_response_count')
         .select('*')
         .eq('id', id)
         .single()
@@ -92,7 +98,7 @@ export class PromptService {
       this.weeklyPrompt$ = from(
         this.supabase
           .from('weekly_prompt')
-          .select(`*, prompt(*)`)
+          .select(`*, prompt_response_count(*)`)
           .lte('week_start_date', today)
           .order('week_start_date', { ascending: false })
           .limit(1)

@@ -33,7 +33,10 @@ export class PromptList {
 
   prompts$ = from(this.supabaseService.client.auth.getUser()).pipe(
     switchMap(({ data: { user } }) => this.promptService.getPrompts(user!.id)),
-    tap(prompts => this.cachedPrompts = prompts) // store local copy when data arrives
+    tap(prompts => {
+      console.log('prompts data:', prompts?.[0]); // 👈
+      this.cachedPrompts = prompts;
+    })
   );
 
   clear(table: Table) {
