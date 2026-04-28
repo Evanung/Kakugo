@@ -1,11 +1,19 @@
 <div class="rounded-lg dark:bg-surface-900  h-full overflow-auto">
-  <div class="flex items-center">
+  <div class="flex items-center gap-3 mb-2">
     <p-button
       type="button"
       (click)="checkWriting()"
       [disabled]="checking()"
-      class="text-sm rounded mb-2">
+      class="text-sm rounded">
       {{ checking() ? 'Analyzing...' : 'Analyze' }}
+    </p-button>
+
+    <p-button
+      type="button"
+      (onClick)="clearText()"
+      severity="danger"
+      class="text-sm rounded">
+      Clear
     </p-button>
   </div>
 

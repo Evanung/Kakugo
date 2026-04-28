@@ -34,7 +34,9 @@ export class Translate {
     this.sourceLanguage.set(this.targetLanguage());
     this.targetLanguage.set(temp);
   }
-
+  clearText(){
+    this.text.set('');
+  }
   async translateText() {
     if (!this.text().trim()) return
 

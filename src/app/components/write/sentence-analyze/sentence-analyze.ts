@@ -43,6 +43,10 @@ export class SentenceAnalyze {
     }
   }
 
+  clearText(){
+    this.text.set('');
+  }
+
   private stripHtml(html: string): string {
     const tmp = document.createElement('div')
     tmp.innerHTML = html

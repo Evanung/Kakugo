@@ -2,13 +2,21 @@
 
   <div class="grid grid-cols-3 items-center mb-2">
     <!-- Left: Translate button -->
-    <div class="flex justify-start">
+    <div class="flex justify-start gap-3">
       <p-button
         type="button"
         (onClick)="translateText()"
         [disabled]="checking()"
         class="text-sm rounded">
         {{ checking() ? 'Translating...' : 'Translate' }}
+      </p-button>
+
+      <p-button
+        type="button"
+        (onClick)="clearText()"
+        severity="danger"
+        class="text-sm rounded">
+        Clear
       </p-button>
     </div>
 
