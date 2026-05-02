@@ -2,7 +2,7 @@
          [globalFilterFields]="['prompt_title']"
          (sortFunction)="customSort($event)" [customSort]="true"
          selectionMode="single" [(selection)]="selectedPrompt" (onRowSelect)="onRowSelect($event)"
-         class="flex g h-screen">
+         class="flex g min-h-screen">
 
   <ng-template #caption>
     <div class="flex justify-between">
