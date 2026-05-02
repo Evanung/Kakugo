@@ -23,19 +23,20 @@ export class PromptList {
   private promptService = inject(PromptService);
   private supabaseService = inject(SupabaseService);
   private router = inject(Router);
+  originalOrder: Prompt[] = [];
 
   @ViewChild('dt1') dt1!: Table;
   searchValue = signal('');
   isSorted: boolean | null = null;
   selectedPrompt!: Prompt;
-  skeletonRows = Array(5).fill({});
+  skeletonRows = Array(5).fill({ loading: true });
   cachedPrompts: Prompt[] = []; // keep a local copy for sort reset
 
   prompts$ = from(this.supabaseService.client.auth.getUser()).pipe(
     switchMap(({ data: { user } }) => this.promptService.getPrompts(user!.id)),
     tap(prompts => {
-      console.log('prompts data:', prompts?.[0]); // 👈
       this.cachedPrompts = prompts;
+      this.originalOrder = [...prompts];
     })
   );
 
@@ -43,6 +44,15 @@ export class PromptList {
     table.clear();
     this.searchValue.set('');
     this.isSorted = null;
+    if (this.dt1?.value) {
+      this.dt1.value.splice(0, this.dt1.value.length, ...this.originalOrder);
+    }
+  }
+
+  onSearch(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.dt1.filterGlobal(value, 'contains');
+    this.searchValue.set(value);
   }
 
   customSort(event: SortEvent) {
@@ -54,7 +64,7 @@ export class PromptList {
       this.sortTableData(event);
     } else {
       this.isSorted = null;
-      event.data!.splice(0, event.data!.length, ...this.cachedPrompts); // reset to original order
+      event.data!.splice(0, event.data!.length, ...this.originalOrder);
       this.dt1.reset();
     }
   }

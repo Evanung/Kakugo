@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, SecurityContext } from '@angular/core';
 import { SplitterModule } from 'primeng/splitter';
 import { TextBox } from '../../components/write/text-box/text-box';
 import { TabsModule } from 'primeng/tabs';
@@ -18,10 +18,12 @@ import { Dictionary } from '../../components/write/dictionary/dictionary';
 import { Grammar } from '../../components/write/grammar/grammar';
 import { SentenceAnalyze } from '../../components/write/sentence-analyze/sentence-analyze';
 import { Translate } from '../../components/write/translate/translate';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-write-page',
-  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList, FormsModule, CommonModule, SelectButton, Button, ToastModule, Dictionary, Grammar, SentenceAnalyze, RouterLink, Translate],
+  imports: [SplitterModule, TextBox, TabsModule, PromptInfo, SubmissionList, FormsModule, CommonModule,
+    SelectButton, Button, ToastModule, Dictionary, Grammar, SentenceAnalyze, RouterLink, Translate],
   providers: [MessageService],
   templateUrl: './write-page.html',
   styleUrl: './write-page.css',
@@ -30,6 +32,7 @@ export class WritePage {
   private route = inject(ActivatedRoute);
   private promptService = inject(PromptService);
   private messageService = inject(MessageService);
+  private sanitizer = inject(DomSanitizer);
 
   constructor(
     private postSubmissionService: PostSubmission,
@@ -38,6 +41,7 @@ export class WritePage {
 
   activeTab = signal('0');
   activeTab_grammar = signal('0');
+
   promptId = this.route.snapshot.paramMap.get('id');
   prompt = signal<Prompt | null>(null);
   currentText = signal('');
@@ -55,6 +59,10 @@ export class WritePage {
     this.currentText.set(text);
   }
 
+  private getSanitizedText(): string {
+    return this.sanitizer.sanitize(SecurityContext.HTML, this.currentText()) ?? '';
+  }
+
   ngOnInit() {
     const id = this.promptId ?? '0';
 
@@ -65,6 +73,7 @@ export class WritePage {
       }
     });
   }
+
 
   async saveDraft() {
     if (!this.currentText()) {
@@ -82,7 +91,7 @@ export class WritePage {
     try {
       const { error } = await this.postSubmissionService.saveDraft({
         prompt_id: this.prompt()!.id,
-        description: this.currentText(),
+        description: this.getSanitizedText(),
         user_id: user!.id
       });
 
@@ -127,7 +136,7 @@ export class WritePage {
       const { error } = await this.postSubmissionService.createPost({
         prompt_id: this.prompt()!.id,
         title: '',
-        description: this.currentText(),
+        description: this.getSanitizedText(),
         user_id: user!.id,
         is_public: this.isVisible
       });

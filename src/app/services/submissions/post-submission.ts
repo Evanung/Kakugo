@@ -9,7 +9,7 @@ export interface Post {
   createdAt?: Date;
   title: string;
   description: string;
-  userID: number;
+  user_id: string;
   profiles: {
     display_name: string;
   };
@@ -95,6 +95,44 @@ export class PostSubmission {
     }
   }
 
+  toggleVisibility = async (post: Post) => {
+    const { error } = await this.supabase
+      .from('post_submission')
+      .update({ is_public: !post.is_public })
+      .eq('id', post.id);
+
+    if (!error) {
+      this.promptService.resetPrompts();
+      this.promptService.resetStats();
+    }
+    return { error };
+  }
+
+  deletePost =  async (id: number)=>{
+    const { error } = await this.supabase
+      .from('post_submission')
+      .delete()
+      .eq('id', id);
+
+    if (!error) {
+      this.promptService.resetPrompts();
+      this.promptService.resetStats();
+    }
+
+    return { error };
+  }
+
+  editPost =  async (post: Post, description: string) => {
+    const { error } = await this.supabase
+      .from('post_submission')
+      .update({description: description})
+      .eq('id', post.id);
+    if (!error) {
+      this.promptService.resetPrompts();
+      this.promptService.resetStats();
+    }
+    return { error };
+  }
   saveDraft = async (draft: SaveDraft) => {
     const { data: existing } = await this.supabase
       .from('post_submission')
@@ -120,11 +158,11 @@ export class PostSubmission {
     return { error };
   }
 
-  getDraft = async (userId: string, promptId: number) => {
+  getDraft = async (user_id: string, promptId: number) => {
     const { data, error } = await this.supabase
       .from('post_submission')
       .select('description, status')
-      .eq('user_id', userId)
+      .eq('user_id', user_id)
       .eq('prompt_id', promptId)
       .eq('status', 0)
       .single();
