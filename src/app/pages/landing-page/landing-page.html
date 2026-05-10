@@ -6,10 +6,10 @@
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M6.84219 2.87829C5.69766 3.67858 4.6627 4.62478 3.76426 5.68992C7.4357 5.34906 12.1001 5.90564 17.5155 8.61335C23.2984 11.5047 27.955 11.6025 31.1958 10.9773C30.9017 10.087 30.5315 9.23135 30.093 8.41791C26.3832 8.80919 21.6272 8.29127 16.0845 5.51998C12.5648 3.76014 9.46221 3.03521 6.84219 2.87829ZM27.9259 5.33332C24.9962 2.06 20.7387 0 16 0C14.6084 0 13.2581 0.177686 11.9709 0.511584C13.7143 0.987269 15.5663 1.68319 17.5155 2.65781C21.5736 4.68682 25.0771 5.34013 27.9259 5.33332ZM31.8887 14.1025C27.9735 14.8756 22.567 14.7168 16.0845 11.4755C10.024 8.44527 5.20035 8.48343 1.94712 9.20639C1.7792 9.24367 1.61523 9.28287 1.45522 9.32367C1.0293 10.25 0.689308 11.2241 0.445362 12.2356C0.705909 12.166 0.975145 12.0998 1.25293 12.0381C5.19966 11.161 10.7761 11.1991 17.5155 14.5689C23.5761 17.5991 28.3997 17.561 31.6529 16.838C31.7644 16.8133 31.8742 16.7877 31.9822 16.7613C31.9941 16.509 32 16.2552 32 16C32 15.358 31.9622 14.7248 31.8887 14.1025ZM31.4598 20.1378C27.5826 20.8157 22.3336 20.5555 16.0845 17.431C10.024 14.4008 5.20035 14.439 1.94712 15.1619C1.225 15.3223 0.575392 15.5178 0.002344 15.7241C0.000781601 15.8158 0 15.9078 0 16C0 24.8366 7.16344 32 16 32C23.4057 32 29.6362 26.9687 31.4598 20.1378Z"
-          class="fill-surface-900 dark:fill-surface-0"
+          class="fill-white"
         />
       </svg>
-      <span class="text-xl font-medium text-surface-900 dark:text-surface-0">Kakugo</span>
+      <span class="text-xl font-medium text-white">Kakugo</span>
     </div>
 
     <a
@@ -115,7 +115,7 @@
     <p class="text-2xl text-gray-400 mb-8 leading-normal">Our tool is built to enhance your writing experience, so you can focus just on writing</p>
     <p-button type="button" [routerLink]="['/signup']" label="Get Started" [outlined]="true"></p-button>
     <div class="flex flex-col mt-5 gap-5">
-      <div class="rounded-lg dark:bg-surface-900 h-full w-full overflow-auto border border-gray-300 dark:border-surface-700">
+      <div class="rounded-lg bg-white dark:bg-surface-900 h-full w-full overflow-auto border border-gray-300 dark:border-surface-700">
         <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
           <p-tablist>
             <p-tab value="0">Prompt</p-tab>
@@ -125,7 +125,7 @@
           </p-tablist>
           <p-tabpanels class="h-full">
             <p-tabpanel value="0">
-              <div class="flex lg:flex-col gap-3 flex-wrap overflow-auto">
+              <div class="flex lg:flex-col gap-3 flex-wrap overflow-auto ">
                 <div class="text-xl font-bold">Why did you start learning Japanese?</div>
                 <div class="flex w-15 px-10 justify-center rounded-xl border border-lime-600"><td class="text-lime-600">Easy</td></div>
                 @for (description of promptDescription; track $index) {
@@ -234,7 +234,7 @@
           </p-editor>
         </div>
       </div>
-      <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
+      <div class="rounded-lg bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
         <p-tabs lazy [value]="activeTab_grammar()" (valueChange)="activeTab_grammar.set($event?.toString() ?? '0')">
           <p-tablist>
             <p-tab value="0">Translation</p-tab>
@@ -314,7 +314,7 @@
         class="flex shrink flex-1 min-w-0 min-h-0 gap-2 mb-3 overflow-hidden">
 
         <ng-template #panel>
-          <div class="rounded-lg dark:bg-surface-900 h-full w-full overflow-auto border border-gray-300 dark:border-surface-700">
+          <div class="rounded-lg bg-white dark:bg-surface-900 h-full w-full overflow-auto border border-gray-300 dark:border-surface-700">
             <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
               <p-tablist>
                 <p-tab value="0">Prompt</p-tab>
@@ -439,7 +439,7 @@
               </div>
             </ng-template>
             <ng-template #panel>
-              <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
+              <div class="rounded-lg bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
                 <p-tabs lazy [value]="activeTab_grammar()" (valueChange)="activeTab_grammar.set($event?.toString() ?? '0')">
                   <p-tablist>
                     <p-tab value="0">Translation</p-tab>
@@ -512,32 +512,32 @@
     </div>
   </div>
 
-  <div class="bg-surface-900 px-6 py-20 md:px-12 lg:px-20 gap-16 flex overflow-hidden flex-col xl:flex-row">
+  <div class="bg-white dark:bg-surface-900 px-6 py-20 md:px-12 lg:px-20 gap-16 flex overflow-hidden flex-col xl:flex-row">
     <div class="flex-1">
-      <h3 class="text-5xl font-bold text-surface-0 leading-tight">Why Write?</h3>
+      <h3 class="text-5xl font-bold text-surface-900 dark:white sleading-tight">Why Write?</h3>
       <p class="text-surface-500 text-xl leading-normal mt-4 mb-8">
         Writing is one of the key pillars towards fluency.
       </p>
       <div class="h-px w-full bg-surface-800 mb-8"></div>
       <div class="flex flex-col gap-6">
         <div class="flex items-start gap-4">
-          <span><i class="pi pi-desktop text-xl! leading-none! text-surface-0"></i></span>
+          <span><i class="pi pi-chart-scatter text-xl! leading-none! text-surface-900 dark:text-surface-0"></i></span>
           <div>
-            <h5 class="text-surface-0 text-xl font-medium mb-2 leading-tight">Writing Exposes Knowledge Gaps</h5>
+            <h5 class="text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 leading-tight">Writing Exposes Knowledge Gaps</h5>
             <p class="text-surface-500 leading-normal">You might recognize a word when you read it, but freeze when it comes time to use it. That is a knowledge gap. Practicing language output is as important as input.</p>
           </div>
         </div>
         <div class="flex items-start gap-4">
-          <span><i class="pi pi-thumbs-up text-xl! leading-none! text-surface-0"></i></span>
+          <span><i class="pi pi-wrench text-xl! leading-none! text-surface-900 dark:text-surface-0"></i></span>
           <div>
-            <h5 class="text-surface-0 text-xl font-medium mb-2 leading-tight">Reinforce what you learn through use</h5>
+            <h5 class="text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 leading-tight">Reinforce what you learn through use</h5>
             <p class="text-surface-500 leading-normal">Flashcards build familiarity. Writing builds fluency. What you write forms connections to grammar and vocab for better recall and use.</p>
           </div>
         </div>
         <div class="flex items-start gap-4">
-          <span><i class="pi pi-lock text-xl! leading-none! text-surface-0"></i></span>
+          <span><i class="pi pi-comments text-xl! leading-none! text-surface-900 dark:text-surface-0"></i></span>
           <div>
-            <h5 class="text-surface-0 text-xl font-medium mb-2 leading-tight">Writing prepares you for real life situations</h5>
+            <h5 class="text-surface-900 dark:text-surface-0 text-xl font-medium mb-2 leading-tight">Writing prepares you for real life situations</h5>
             <p class="text-surface-500 leading-normal">As you write in a variety of topics, you learn how to navigate those conversations since you practiced</p>
           </div>
         </div>
