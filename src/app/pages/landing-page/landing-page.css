@@ -1,0 +1,33 @@
+::ng-deep .p-tab.p-tab-active {
+  color: oklch(62.7% 0.265 303.9) !important;
+}
+
+/* The active tab underline indicator */
+::ng-deep .p-tablist-active-bar {
+  background-color: oklch(62.7% 0.265 303.9) !important;
+}
+
+:root {
+  --p-tabs-active-bar-background: #6366f1;    /* static color */
+  --p-tabs-active-bar-color: #6366f1;          /* try this too */
+}
+
+
+::ng-deep .p-splitter {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+::ng-deep .p-splitter-panel {
+  background-color: transparent !important;
+  border: none !important;
+  overflow: hidden;
+
+}
+
+::ng-deep .p-tabs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}

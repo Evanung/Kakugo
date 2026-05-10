@@ -1,0 +1,827 @@
+<div class="resize-container-landing1 bg-surface-0 dark:bg-surface-950 min-h-screen">
+  <div class="bg-indigo-950 py-4 px-12 border-b border-surface-200 dark:border-surface-800 flex items-center justify-between relative lg:static">
+    <div class="flex items-center gap-4 py-2">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M6.84219 2.87829C5.69766 3.67858 4.6627 4.62478 3.76426 5.68992C7.4357 5.34906 12.1001 5.90564 17.5155 8.61335C23.2984 11.5047 27.955 11.6025 31.1958 10.9773C30.9017 10.087 30.5315 9.23135 30.093 8.41791C26.3832 8.80919 21.6272 8.29127 16.0845 5.51998C12.5648 3.76014 9.46221 3.03521 6.84219 2.87829ZM27.9259 5.33332C24.9962 2.06 20.7387 0 16 0C14.6084 0 13.2581 0.177686 11.9709 0.511584C13.7143 0.987269 15.5663 1.68319 17.5155 2.65781C21.5736 4.68682 25.0771 5.34013 27.9259 5.33332ZM31.8887 14.1025C27.9735 14.8756 22.567 14.7168 16.0845 11.4755C10.024 8.44527 5.20035 8.48343 1.94712 9.20639C1.7792 9.24367 1.61523 9.28287 1.45522 9.32367C1.0293 10.25 0.689308 11.2241 0.445362 12.2356C0.705909 12.166 0.975145 12.0998 1.25293 12.0381C5.19966 11.161 10.7761 11.1991 17.5155 14.5689C23.5761 17.5991 28.3997 17.561 31.6529 16.838C31.7644 16.8133 31.8742 16.7877 31.9822 16.7613C31.9941 16.509 32 16.2552 32 16C32 15.358 31.9622 14.7248 31.8887 14.1025ZM31.4598 20.1378C27.5826 20.8157 22.3336 20.5555 16.0845 17.431C10.024 14.4008 5.20035 14.439 1.94712 15.1619C1.225 15.3223 0.575392 15.5178 0.002344 15.7241C0.000781601 15.8158 0 15.9078 0 16C0 24.8366 7.16344 32 16 32C23.4057 32 29.6362 26.9687 31.4598 20.1378Z"
+          class="fill-surface-900 dark:fill-surface-0"
+        />
+      </svg>
+      <span class="text-xl font-medium text-surface-900 dark:text-surface-0">Kakugo</span>
+    </div>
+
+    <a
+      pStyleClass="@next"
+      enterFromClass="hidden"
+      leaveToClass="hidden"
+      [hideOnOutsideClick]="true"
+      [hideOnResize]="true"
+      resizeSelector=".resize-container-landing1"
+      class="cursor-pointer block lg:hidden text-surface-700 dark:text-surface-100 mt-1"
+    >
+      <i class="pi pi-bars text-2xl!"></i>
+    </a>
+    <div class="items-center grow justify-between hidden lg:flex absolute bg-indigo-950 lg:static w-full left-0 top-full px-12 lg:px-0 z-50 shadow lg:shadow-none">
+      <ul class="list-none p-0 py-4 lg:py-0 m-0 flex grow lg:items-center lg:justify-center text-surface-900 dark:text-surface-0 select-none flex-col lg:flex-row cursor-pointer">
+        <li class="relative">
+          <a
+            pStyleClass="@next"
+            enterFromClass="hidden"
+            enterActiveClass="animate-scalein"
+            leaveToClass="hidden"
+            leaveActiveClass="animate-fadeout"
+            [hideOnOutsideClick]="true"
+            class="flex px-0 lg:px-8 py-2 items-center hover:text-primary font-medium transition-colors duration-150"
+          >
+            <span>Products</span>
+            <i class="pi pi-angle-down ml-auto lg:ml-4"></i>
+          </a>
+          <ul class="list-none p-1 m-0 rounded-border shadow-0 lg:shadow lg:absolute top-20 bg-surface-0 dark:bg-surface-900 hidden origin-top w-full lg:w-60">
+            <li>
+              <a class="flex px-4 py-2 rounded items-center hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors duration-150 gap-2">
+                <i class="pi pi-th-large"></i>
+                <span>Features</span>
+              </a>
+            </li>
+            <li>
+              <a class="flex px-4 py-2 rounded items-center hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors duration-150 gap-2">
+                <i class="pi pi-microchip"></i>
+                <span>Solutions</span>
+              </a>
+            </li>
+            <li>
+              <a class="flex px-4 py-2 rounded items-center hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors duration-150 gap-2">
+                <i class="pi pi-users"></i>
+                <span>Customers</span>
+              </a>
+            </li>
+            <li class="relative">
+              <a
+                pStyleClass="@next"
+                enterFromClass="hidden"
+                enterActiveClass="animate-scalein"
+                leaveToClass="hidden"
+                leaveActiveClass="animate-fadeout"
+                [hideOnOutsideClick]="true"
+                class="flex px-4 py-2 rounded items-center hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors duration-150 gap-2"
+              >
+                <i class="pi pi-lightbulb"></i>
+                <span>Support</span>
+                <i class="pi pi-angle-down ml-auto lg:-rotate-90"></i>
+              </a>
+              <ul
+                class="list-none p-1 lg:pl-1 pl-4 rounded-border shadow-0 lg:shadow lg:absolute bg-surface-0 dark:bg-surface-900 hidden origin-top w-full lg:w-60 cursor-pointer left-full ml-2 top-0"
+              >
+                <li>
+                  <a class="flex px-4 py-2 rounded items-center hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors duration-150 gap-2">
+                    <i class="pi pi-user"></i>
+                    <span>Help Center</span>
+                  </a>
+                </li>
+                <li class="relative">
+                  <a class="flex px-4 py-2 rounded items-center hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors duration-150 gap-2">
+                    <i class="pi pi-question-circle"></i>
+                    <span>Faq</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="flex px-0 lg:px-8 py-2 hover:text-primary font-medium transition-colors duration-150">
+            <span>Resources</span>
+          </a>
+        </li>
+        <li>
+          <a (click)="scrollToSection(price)"  class="flex px-0 lg:px-8 py-2 hover:text-primary font-medium transition-colors duration-150">
+            <span>Pricing</span>
+          </a>
+        </li>
+      </ul>
+      <div class="flex border-t lg:border-t-0 border-surface py-4 lg:py-0 mt-4 lg:mt-0 gap-4">
+        <p-button [routerLink]="['/login-page']" label="Login" [text]="true"></p-button>
+        <p-button [routerLink]="['/signup']" label="Register"></p-button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Mobile layout: hidden on lg+ -->
+  <div class="lg:hidden p-12 lg:p-20 pb-0! bg-linear-to-t from-indigo-600/10 from-10% to-transparent flex-col items-center overflow-hidden ">
+  <div class="text-4xl lg:text-5xl text-surface-900 dark:text-surface-0 font-bold mb-1 leading-tight">The Japanese Writing Tool to Boost Your Learning</div>
+    <p class="text-2xl text-gray-400 mb-8 leading-normal">Our tool is built to enhance your writing experience, so you can focus just on writing</p>
+    <p-button type="button" [routerLink]="['/signup']" label="Get Started" [outlined]="true"></p-button>
+    <div class="flex flex-col mt-5 gap-5">
+      <div class="rounded-lg dark:bg-surface-900 h-full w-full overflow-auto border border-gray-300 dark:border-surface-700">
+        <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
+          <p-tablist>
+            <p-tab value="0">Prompt</p-tab>
+            <p-tab value="1">Submissions</p-tab>
+            <p-tab value="2">Dictionary</p-tab>
+            <p-tab value="3">Grammar</p-tab>
+          </p-tablist>
+          <p-tabpanels class="h-full">
+            <p-tabpanel value="0">
+              <div class="flex lg:flex-col gap-3 flex-wrap overflow-auto">
+                <div class="text-xl font-bold">Why did you start learning Japanese?</div>
+                <div class="flex w-15 px-10 justify-center rounded-xl border border-lime-600"><td class="text-lime-600">Easy</td></div>
+                @for (description of promptDescription; track $index) {
+                  <div class="mb-2"> {{ description }} </div>
+                }
+                <div>Possible questions:</div>
+                <ul class="list-disc">
+                  @for (question of promptQuestions; track $index) {
+                    <li class="ml-5"> {{ question }} </li>
+                  }
+                </ul>
+              </div>
+            </p-tabpanel>
+            <p-tabpanel value="1">
+              @for (post of posts; track post.display_name; let index = $index) {
+                <div class="flex gap-4 py-4 flex-col md:flex-row border-b border-gray-300 dark:border-surface-700">
+                  <p-avatar image="https://wrwtjkxcjubxlpadntkw.supabase.co/storage/v1/object/sign/profile_pictures/ArtifisyLOGO%20-%20Copy.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kNjcxY2IwMC01M2FhLTRjN2ItODZkNy01ZWE0NTNiYmIwZmEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9maWxlX3BpY3R1cmVzL0FydGlmaXN5TE9HTyAtIENvcHkucG5nIiwiaWF0IjoxNzc2NDc1NDg2LCJleHAiOjE4MDgwMTE0ODZ9.t5ytzu_jn12leYwVuSb3U1S-lrfgAnN1mR-JejB9COI" shape="circle" size="large" class="w-10 h-10 rounded-lg"></p-avatar>
+                  <div class="flex-1 flex flex-col gap-3">
+                    <div class="text-surface-900 dark:text-surface-0 font-medium leading-tight">
+                      {{ post.display_name }}
+                    </div>
+                    <div class="text-surface-900 dark:text-surface-200 leading-normal">
+                      {{ post.description }}
+                    </div>
+                  </div>
+                </div>
+              }
+            </p-tabpanel>
+            <p-tabpanel value="2">
+              <div class="flex gap-5 mb-5">
+                <p-iconfield>
+                  <p-inputicon>
+                    <i class="pi pi-search"></i>
+                  </p-inputicon>
+                  <input
+                    pInputText
+                    type="text"
+                    value="覚悟"
+                    placeholder="Search keyword"
+                  />
+                </p-iconfield>
+                <p-button>Search</p-button>
+              </div>
+              @for (result of results; track $index) {
+                <div class="grid grid-cols-5 gap-4 border-b border-gray-300 dark:border-surface-700 py-5">
+                  <div class="col-span-1">
+                    <div class="text-2xl">{{ result.kanji?.[0]?.form }}</div>
+                    <div class="text-sm text-gray-500">{{ result.readings?.[0]?.reading }}</div>
+                  </div>
+                  <div class="col-span-3 flex flex-col gap-2">
+                    @for (sense of result.senses; track $index) {
+                      <div class="flex gap-2">
+                        <span class="text-gray-400 text-sm min-w-4">{{ $index + 1 }}.</span>
+                        <div>
+                          <span>{{ sense.glosses.join('; ') }}</span>
+                          <span class="text-gray-500 text-sm ml-1">({{ sense.pos.join(', ') }})</span>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+            </p-tabpanel>
+            <p-tabpanel value="3">
+              <div class="flex gap-5 mb-5">
+                <p-iconfield>
+                  <p-inputicon>
+                    <i class="pi pi-search"></i>
+                  </p-inputicon>
+                  <input
+                    pInputText
+                    type="text"
+                    placeholder="Search keyword"
+                    value="to be good at"
+                  />
+                </p-iconfield>
+                <p-button>Search</p-button>
+              </div>
+              <div class="grid grid-cols-4 gap-4 border-b dark:border-surface-700 py-5">
+                <div class="col-span-1">
+                  <div class="text-2xl">のが上手</div>
+                  <div class="text-sm text-gray-500">no ga jouzu</div>
+                  <div class="text-xs text-gray-400 mt-1">N5</div>
+                </div>
+
+                <div class="col-span-3 flex items-center">
+                  to be good at
+                </div>
+              </div>
+            </p-tabpanel>
+          </p-tabpanels>
+        </p-tabs>
+      </div>
+      <div class="h-64">
+        <div class="flex w-full h-full lg:flex-col">
+          <p-editor class="w-full h-full" placeholder="Start typing here">
+            <ng-template #header>
+                      <span class="flex ql-formats h-10 content-center w-full">
+                        <span class="ql-formats">
+                          <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
+                          <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
+                          <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
+                        </span>
+                      </span>
+            </ng-template>
+          </p-editor>
+        </div>
+      </div>
+      <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
+        <p-tabs lazy [value]="activeTab_grammar()" (valueChange)="activeTab_grammar.set($event?.toString() ?? '0')">
+          <p-tablist>
+            <p-tab value="0">Translation</p-tab>
+            <p-tab value="1">Analyze Sentence</p-tab>
+          </p-tablist>
+          <p-tabpanels class="h-full">
+            <p-tabpanel value="0">
+              <div class="flex gap-3 mb-2 items-center justify-center">
+                <p>EN</p>
+                <p-button
+                  icon="pi pi-arrow-right-arrow-left"
+                  [text]="true"
+                  [raised]="true"
+                  severity="help" />
+                <p>JA</p>
+              </div>
+
+              <!-- Result -->
+              <div class="grid grid-cols-[50%_50%] h-30">
+                <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+                  I study Japanese because it's fun!
+                </div>
+                <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+                  日本語を勉強するのは楽しいからです！
+                </div>
+              </div>
+            </p-tabpanel>
+            <p-tabpanel value="1">
+              <div class="grid grid-cols-3 items-center mb-2">
+                <div class="flex justify-start gap-3">
+                  <p-button
+                    type="button"
+                    class="text-sm rounded">
+                    Translate
+                  </p-button>
+
+                  <p-button
+                    type="button"
+                    severity="danger"
+                    class="text-sm rounded">
+                    Clear
+                  </p-button>
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div class="grid grid-cols-[50%_50%] h-30">
+                <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+                  日本語が勉強するのは楽しからです！
+                </div>
+                <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+                  <div>
+                    <span>日本語</span>
+                    <span class="diff-removed">が</span>
+                    <span class="diff-added">を</span>
+                    <span>勉強するのは楽し</span>
+                    <span class="diff-added">い</span>
+                    <span>からです！</span>
+                  </div>
+                </div>
+              </div>
+            </p-tabpanel>
+          </p-tabpanels>
+        </p-tabs>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden lg:flex p-12 lg:p-20 pb-0! bg-linear-to-t from-indigo-600/10 from-10% to-transparent flex-col items-center overflow-hidden ">
+    <div class="text-4xl lg:text-5xl text-surface-900 dark:text-surface-0 font-bold mb-1 leading-tight">The Japanese Writing Tool to Boost Your Learning</div>
+    <p class="text-2xl text-gray-400 mb-8 leading-normal">Our tool is built to enhance your writing experience, so you can focus just on writing</p>
+    <p-button type="button" label="Get Started" [routerLink]="['/signup']" [outlined]="true"></p-button>
+
+    <div class="flex flex-col h-175 w-full pt-5 px-4">
+      <p-splitter
+        [panelSizes]="[40, 60]"
+        class="flex shrink flex-1 min-w-0 min-h-0 gap-2 mb-3 overflow-hidden">
+
+        <ng-template #panel>
+          <div class="rounded-lg dark:bg-surface-900 h-full w-full overflow-auto border border-gray-300 dark:border-surface-700">
+            <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
+              <p-tablist>
+                <p-tab value="0">Prompt</p-tab>
+                <p-tab value="1">Submissions</p-tab>
+                <p-tab value="2">Dictionary</p-tab>
+                <p-tab value="3">Grammar</p-tab>
+              </p-tablist>
+              <p-tabpanels class="h-full">
+                <p-tabpanel value="0">
+                  <div class="flex lg:flex-col gap-3 flex-wrap overflow-auto">
+                    <div class="text-xl font-bold">Why did you start learning Japanese?</div>
+                    <div class="flex w-15 px-10 justify-center rounded-xl border border-lime-600"><td class="text-lime-600">Easy</td></div>
+                    @for (description of promptDescription; track $index) {
+                      <div class="mb-2"> {{ description }} </div>
+                    }
+                    <div>Possible questions:</div>
+                    <ul class="list-disc">
+                      @for (question of promptQuestions; track $index) {
+                        <li class="ml-5"> {{ question }} </li>
+                      }
+                    </ul>
+                  </div>
+                </p-tabpanel>
+                <p-tabpanel value="1">
+                  @for (post of posts; track post.display_name; let index = $index) {
+                    <div class="flex gap-4 py-4 flex-col md:flex-row border-b border-gray-300 dark:border-surface-700">
+                      <p-avatar image="https://wrwtjkxcjubxlpadntkw.supabase.co/storage/v1/object/sign/profile_pictures/ArtifisyLOGO%20-%20Copy.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kNjcxY2IwMC01M2FhLTRjN2ItODZkNy01ZWE0NTNiYmIwZmEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9maWxlX3BpY3R1cmVzL0FydGlmaXN5TE9HTyAtIENvcHkucG5nIiwiaWF0IjoxNzc2NDc1NDg2LCJleHAiOjE4MDgwMTE0ODZ9.t5ytzu_jn12leYwVuSb3U1S-lrfgAnN1mR-JejB9COI" shape="circle" size="large" class="w-10 h-10 rounded-lg"></p-avatar>
+                      <div class="flex-1 flex flex-col gap-3">
+                        <div class="text-surface-900 dark:text-surface-0 font-medium leading-tight">
+                          {{ post.display_name }}
+                        </div>
+                        <div class="text-surface-900 dark:text-surface-200 leading-normal">
+                          {{ post.description }}
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </p-tabpanel>
+                <p-tabpanel value="2">
+                  <div class="flex gap-5 mb-5">
+                    <p-iconfield>
+                      <p-inputicon>
+                        <i class="pi pi-search"></i>
+                      </p-inputicon>
+                      <input
+                        pInputText
+                        type="text"
+                        value="覚悟"
+                        placeholder="Search keyword"
+                      />
+                    </p-iconfield>
+                    <p-button>Search</p-button>
+                  </div>
+                  @for (result of results; track $index) {
+                    <div class="grid grid-cols-5 gap-4 border-b border-gray-300 dark:border-surface-700 py-5">
+                      <div class="col-span-1">
+                        <div class="text-2xl">{{ result.kanji?.[0]?.form }}</div>
+                        <div class="text-sm text-gray-500">{{ result.readings?.[0]?.reading }}</div>
+                      </div>
+                      <div class="col-span-3 flex flex-col gap-2">
+                        @for (sense of result.senses; track $index) {
+                          <div class="flex gap-2">
+                            <span class="text-gray-400 text-sm min-w-4">{{ $index + 1 }}.</span>
+                            <div>
+                              <span>{{ sense.glosses.join('; ') }}</span>
+                              <span class="text-gray-500 text-sm ml-1">({{ sense.pos.join(', ') }})</span>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                </p-tabpanel>
+                <p-tabpanel value="3">
+                  <div class="flex gap-5 mb-5">
+                    <p-iconfield>
+                      <p-inputicon>
+                        <i class="pi pi-search"></i>
+                      </p-inputicon>
+                      <input
+                        pInputText
+                        type="text"
+                        placeholder="Search keyword"
+                        value="to be good at"
+                      />
+                    </p-iconfield>
+                    <p-button>Search</p-button>
+                  </div>
+                  <div class="grid grid-cols-4 gap-4 border-b dark:border-surface-700 py-5">
+                    <div class="col-span-1">
+                      <div class="text-2xl">のが上手</div>
+                      <div class="text-sm text-gray-500">no ga jouzu</div>
+                      <div class="text-xs text-gray-400 mt-1">N5</div>
+                    </div>
+
+                    <div class="col-span-3 flex items-center">
+                      to be good at
+                    </div>
+                  </div>
+                </p-tabpanel>
+              </p-tabpanels>
+            </p-tabs>
+          </div>
+        </ng-template>
+
+
+        <ng-template #panel>
+          <p-splitter [panelSizes]="[55, 45]" layout="vertical" class="flex shrink flex-1 min-w-0 min-h-0 gap-2 overflow-hidden">
+            <ng-template #panel>
+              <div class="flex w-full h-full lg:flex-col">
+                <p-editor class="h-full" placeholder="Start typing here">
+                  <ng-template #header>
+                    <span class="flex ql-formats h-10 content-center w-full">
+                      <span class="ql-formats">
+                        <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
+                        <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
+                        <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
+                      </span>
+                    </span>
+                  </ng-template>
+                </p-editor>
+              </div>
+            </ng-template>
+            <ng-template #panel>
+              <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
+                <p-tabs lazy [value]="activeTab_grammar()" (valueChange)="activeTab_grammar.set($event?.toString() ?? '0')">
+                  <p-tablist>
+                    <p-tab value="0">Translation</p-tab>
+                    <p-tab value="1">Analyze Sentence</p-tab>
+                  </p-tablist>
+                  <p-tabpanels class="h-full">
+                    <p-tabpanel value="0">
+                        <div class="flex gap-3 mb-2 items-center justify-center">
+                          <p>EN</p>
+                          <p-button
+                            icon="pi pi-arrow-right-arrow-left"
+                            [text]="true"
+                            [raised]="true"
+                            severity="help" />
+                          <p>JA</p>
+                        </div>
+
+                        <!-- Result -->
+                        <div class="grid grid-cols-[50%_50%] h-30">
+                          <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+                            I study Japanese because it's fun!
+                          </div>
+                          <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+                            日本語を勉強するのは楽しいからです！
+                          </div>
+                        </div>
+                    </p-tabpanel>
+                    <p-tabpanel value="1">
+                      <div class="grid grid-cols-3 items-center mb-2">
+                        <div class="flex justify-start gap-3">
+                          <p-button
+                            type="button"
+                            class="text-sm rounded">
+                            Translate
+                          </p-button>
+
+                          <p-button
+                            type="button"
+                            severity="danger"
+                            class="text-sm rounded">
+                            Clear
+                          </p-button>
+                        </div>
+                      </div>
+
+                      <!-- Result -->
+                      <div class="grid grid-cols-[50%_50%] h-30">
+                        <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+                          日本語が勉強するのは楽しからです！
+                        </div>
+                        <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
+                          <div>
+                            <span>日本語</span>
+                            <span class="diff-removed">が</span>
+                            <span class="diff-added">を</span>
+                            <span>勉強するのは楽し</span>
+                            <span class="diff-added">い</span>
+                            <span>からです！</span>
+                          </div>
+                        </div>
+                      </div>
+                    </p-tabpanel>
+                  </p-tabpanels>
+                </p-tabs>
+              </div>
+            </ng-template>
+          </p-splitter>
+        </ng-template>
+      </p-splitter>
+    </div>
+  </div>
+
+  <div class="bg-surface-900 px-6 py-20 md:px-12 lg:px-20 gap-16 flex overflow-hidden flex-col xl:flex-row">
+    <div class="flex-1">
+      <h3 class="text-5xl font-bold text-surface-0 leading-tight">Why Write?</h3>
+      <p class="text-surface-500 text-xl leading-normal mt-4 mb-8">
+        Writing is one of the key pillars towards fluency.
+      </p>
+      <div class="h-px w-full bg-surface-800 mb-8"></div>
+      <div class="flex flex-col gap-6">
+        <div class="flex items-start gap-4">
+          <span><i class="pi pi-desktop text-xl! leading-none! text-surface-0"></i></span>
+          <div>
+            <h5 class="text-surface-0 text-xl font-medium mb-2 leading-tight">Writing Exposes Knowledge Gaps</h5>
+            <p class="text-surface-500 leading-normal">You might recognize a word when you read it, but freeze when it comes time to use it. That is a knowledge gap. Practicing language output is as important as input.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span><i class="pi pi-thumbs-up text-xl! leading-none! text-surface-0"></i></span>
+          <div>
+            <h5 class="text-surface-0 text-xl font-medium mb-2 leading-tight">Reinforce what you learn through use</h5>
+            <p class="text-surface-500 leading-normal">Flashcards build familiarity. Writing builds fluency. What you write forms connections to grammar and vocab for better recall and use.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span><i class="pi pi-lock text-xl! leading-none! text-surface-0"></i></span>
+          <div>
+            <h5 class="text-surface-0 text-xl font-medium mb-2 leading-tight">Writing prepares you for real life situations</h5>
+            <p class="text-surface-500 leading-normal">As you write in a variety of topics, you learn how to navigate those conversations since you practiced</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="xl:flex-1 relative xl:h-auto min-h-80 xl:min-h-full w-full xl:w-auto">
+      <img
+        class="absolute top-0 left-0 w-[calc(100%+5rem)] xl:w-200 max-w-none h-auto border border-surface-800 rounded-2xl"
+        src="https://wrwtjkxcjubxlpadntkw.supabase.co/storage/v1/object/public/website_images/Landing6.png"
+        alt="Block 15 Image"
+      />
+    </div>
+  </div>
+
+
+  <div class="bg-surface-0 dark:bg-surface-900 py-20 px-6 md:px-12 lg:px-20 flex flex-col gap-8 justify-center items-center relative">
+    <div class="flex flex-col items-center gap-4">
+      <h3 class="text-5xl leading-tight font-bold text-surface-900 dark:text-surface-0 text-center">
+        <span>How it works</span>
+      </h3>
+      <div class="text-surface-500 dark:text-surface-400 leading-tight">See what makes our app the superior writing experience. Every feature is improving day by day to make writing easy</div>
+    </div>
+
+    <div class="mx-auto">
+      <div class="xl:hidden flex flex-col gap-12">
+        @for (item of timelineItems; track item.id; let index = $index) {
+          <div class="grid grid-cols-1 sm:grid-cols-[42px_1fr] gap-4">
+            <div class="hidden sm:flex flex-col items-center">
+              <div class="w-12 h-12 rounded-2xl border border-surface-200 dark:border-surface-700 flex items-center justify-center px-1 py-2 bg-white dark:bg-surface-800">
+                <span class="text-surface-900 dark:text-surface-0 font-medium text-xl leading-tight">{{ item.id }}</span>
+              </div>
+              <div class="w-px bg-surface-200 dark:bg-surface-700 flex-1"></div>
+            </div>
+            <div class="flex w-full flex-col gap-4">
+              <div class="w-full h-52 bg-surface-50 dark:bg-surface-800 rounded-[10px] overflow-hidden flex justify-center items-start shadow-inner relative">
+                <img [src]="item.image" class="absolute bottom-0 left-1/2 translate-x-[-50%]" />
+              </div>
+              <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                  <h4 class="text-surface-900 dark:text-surface-0 text-lg font-medium leading-tight">{{ item.title }}</h4>
+                  <p class="text-surface-600 dark:text-surface-400 leading-normal">{{ item.description }}</p>
+                </div>
+                <div class="h-px bg-surface-200 dark:bg-surface-700 w-full"></div>
+                <div class="flex flex-col gap-2">
+                  @for (detail of item.details; track detail.title; let detailIndex = $index) {
+                    <p class="leading-normal text-surface-900 dark:text-surface-0">
+                      <span class="font-medium">{{ detail.title }}</span>
+                      <span class="text-surface-600 dark:text-surface-400">{{ detail.text }}</span>
+                    </p>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="hidden xl:flex flex-col gap-12">
+        @for (item of timelineItems; track item.id; let index = $index) {
+          <div class="flex gap-12" [ngClass]="{ 'flex-row-reverse': index % 2 === 0 }">
+            <div class="w-127">
+              <div class="h-52 bg-surface-50 dark:bg-surface-800 rounded-[10px] overflow-hidden flex justify-center items-start shadow-inner relative">
+                <img [src]="item.image" class="absolute bottom-0 left-1/2 translate-x-[-50%]"/>
+              </div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-12 h-12 rounded-2xl border border-surface-200 dark:border-surface-700 flex items-center justify-center px-1 py-2 bg-white dark:bg-surface-800">
+                <span class="text-surface-900 dark:text-surface-0 font-medium text-xl leading-tight">{{ item.id }}</span>
+              </div>
+              <div class="w-px bg-surface-200 dark:bg-surface-700 h-50"></div>
+            </div>
+            <div class="w-127" [ngClass]="{ 'text-right': index % 2 === 0 }">
+              <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                  <h4 class="text-surface-900 dark:text-surface-0 text-lg font-medium leading-tight">{{ item.title }}</h4>
+                  <p class="text-surface-600 dark:text-surface-400 leading-normal">{{ item.description }}</p>
+                </div>
+                <div class="h-px bg-surface-200 dark:bg-surface-700 w-full"></div>
+                <div class="flex flex-col gap-2">
+                  @for (detail of item.details; track detail.title; let detailIndex = $index) {
+                    <p class="leading-normal text-surface-900 dark:text-surface-0">
+                      <span class="font-medium">{{ detail.title }}</span>
+                      <span class="text-surface-600 dark:text-surface-400">{{ detail.text }}</span>
+                    </p>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-surface-0 px-6 py-20 md:px-12 lg:px-20 dark:bg-surface-950">
+    <div class="flex flex-col items-center gap-4 mb-16">
+      <h3 class="text-5xl leading-tight font-bold text-surface-900 dark:text-surface-0 text-center">
+        <span>Prompts</span>
+      </h3>
+      <p class="text-lg leading-normal text-surface-600 dark:text-surface-400 text-center max-w-[61.43rem]">
+        Check out example prompts from our library and see how they can help you!
+      </p>
+    </div>
+    <div class="flex flex-col gap-16">
+      <div class="flex flex-col md:flex-row gap-16">
+        <div class="flex flex-col justify-between flex-1 items-center md:items-end">
+          <div class="w-full md:max-w-md rounded-xl flex flex-col items-center md:items-end gap-8 p-4 pl-0">
+            <div class="flex items-center justify-center">
+              <i class="pi pi-book text-2xl! text-purple-500"></i>
+            </div>
+            <div class="p-8 bg-surface-0 dark:bg-surface-800 shadow-sm rounded-2xl flex flex-col gap-4">
+              <h5 class="text-lg leading-tight font-semibold text-surface-900 dark:text-surface-0 text-center md:text-right">Why did you start learning Japanese?</h5>
+              <p class="text-base leading-normal text-surface-500 dark:text-surface-400 text-center md:text-right">
+                Practice story telling structure by giving context, building to a point, and wrapping it up. Express your hopes and dreams in particular subjects.
+              </p>
+            </div>
+          </div>
+          <div class="w-full md:max-w-md rounded-xl flex flex-col items-center md:items-end gap-8 p-4 pl-0">
+            <div class="flex items-center justify-center">
+              <i class="pi pi-envelope text-2xl! text-purple-500"></i>
+            </div>
+            <div class="p-8 bg-surface-0 dark:bg-surface-800 shadow-sm rounded-2xl flex flex-col gap-4">
+              <h5 class="text-lg leading-tight font-semibold text-surface-900 dark:text-surface-0 text-center md:text-right">Write an email apologizing to your boss for a mistake</h5>
+              <p class="text-base leading-normal text-surface-500 dark:text-surface-400 text-center md:text-right">
+                Learn how to structure an email in Japanese. Gain confidence in writing Japanese keigo. If working in Japan is a plan for you, this is a skill worth practicing
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-between flex-1 items-center md:items-start">
+          <div class="w-full md:max-w-md rounded-xl flex flex-col items-center md:items-start gap-8 p-4 pl-0">
+            <div class="flex items-center justify-center">
+              <i class="pi pi-globe text-2xl! text-purple-500"></i>
+            </div>
+            <div class="p-8 bg-surface-0 dark:bg-surface-800 shadow-sm rounded-2xl flex flex-col gap-4">
+              <h5 class="text-lg leading-tight font-semibold text-surface-900 dark:text-surface-0 text-center md:text-left">Talk about a culture shock you have experienced before</h5>
+              <p class="text-base leading-normal text-surface-500 dark:text-surface-400 text-center md:text-left">
+                Learn to express past experiences you have had while also learning about other's experiences as well. Be able to express how you felt and compare cultures
+              </p>
+            </div>
+          </div>
+          <div class="w-full md:max-w-md rounded-xl flex flex-col items-center md:items-start gap-8 p-4 pl-0">
+            <div class="flex items-center justify-center">
+              <i class="pi pi-palette text-2xl! text-purple-500"></i>
+            </div>
+            <div class="p-8 bg-surface-0 dark:bg-surface-800 shadow-sm rounded-2xl flex flex-col gap-4">
+              <h5 class="text-lg leading-tight font-semibold text-surface-900 dark:text-surface-0 text-center md:text-left">Your house is on fire, what are the three things (besides necessities) that you grab?</h5>
+              <p class="text-base leading-normal text-surface-500 dark:text-surface-400 text-center md:text-left">
+                Learn to speculate about random topics and defend your choices. Reinforce conditional and hypothetical grammar. Vocabulary about everyday objects that are important to you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="bg-surface-0 dark:bg-surface-950 px-6 md:px-12 lg:px-20 py-20 text-center">
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col items-center gap-4">
+        <h3 class="text-5xl leading-tight font-bold text-surface-900 dark:text-surface-0 text-center">
+          <span>Features</span>
+        </h3>
+        <div class="text-surface-500 dark:text-surface-400 leading-tight">See what makes our app the superior writing experience. Every feature is improving day by day to make writing easy</div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="w-full rounded-md p-4">
+            <span class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-800 shadow mx-auto">
+                <i class="pi pi-list text-2xl! lg:text-3xl! text-purple-500"></i>
+            </span>
+          <div class="flex flex-col gap-1">
+            <div class="text-surface-900 dark:text-surface-0 text-xl font-medium leading-tight">Carefully Chosen Prompts</div>
+            <p class="text-surface-500 dark:text-surface-400 leading-normal">Ever felt comfortable talking in one topic, then lost for words on another? Fluency means being comfortable to speak in a range of topics. We help close that gap with carefully chosen prompts.
+            </p>
+          </div>
+        </div>
+        <div class="w-full rounded-md p-4">
+          <span class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-800 shadow mx-auto">
+              <i class="pi pi-lock text-2xl! lg:text-3xl! text-purple-500"></i>
+          </span>
+          <div class="flex flex-col gap-1">
+            <div class="text-surface-900 dark:text-surface-0 text-xl font-medium leading-tight">Translator and Text Analyzation</div>
+            <p class="text-surface-500 dark:text-surface-400 leading-normal">Built in translator and text analyzation for fast feedback.</p>
+          </div>
+        </div>
+        <div class="w-full rounded-md p-4">
+          <span class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-800 shadow mx-auto">
+              <i class="pi pi-face-smile text-2xl! lg:text-3xl! text-purple-500"></i>
+          </span>
+          <div class="flex flex-col gap-1">
+            <div class="text-surface-900 dark:text-surface-0 text-xl font-medium leading-tight">Submissions from Native Speakers</div>
+            <p class="text-surface-500 dark:text-surface-400 leading-normal">Each prompt contains answers from Japanese Native Speakers. Learn culture, natural writing, and topics from examples.</p>
+          </div>
+        </div>
+        <div class="w-full rounded-md p-4">
+            <span class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-800 shadow mx-auto">
+                <i class="pi pi-search text-2xl! lg:text-3xl! text-purple-500"></i>
+            </span>
+          <div class="flex flex-col gap-1">
+            <div class="text-surface-900 dark:text-surface-0 text-xl font-medium leading-tight">Grammar and Word Look up</div>
+            <p class="text-surface-500 dark:text-surface-400 leading-normal">Forgot how to use a grammar? Try our built-in grammar and dictionary for on the fly explanations making sure you can focus on writing</p>
+          </div>
+        </div>
+        <div class="w-full rounded-md p-4">
+              <span class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-800 shadow mx-auto">
+                  <i class="pi pi-heart-fill text-2xl! lg:text-3xl! text-purple-500"></i>
+              </span>
+          <div class="flex flex-col gap-1">
+            <div class="text-surface-900 dark:text-surface-0 text-xl font-medium leading-tight">Community Support</div>
+            <p class="text-surface-500 dark:text-surface-400 leading-normal">Supportive community where we can learn from each other. The more you write, the more you help others</p>
+          </div>
+        </div>
+        <div class="w-full rounded-md p-4">
+              <span class="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-800 shadow mx-auto">
+                  <i class="pi pi-chart-bar text-2xl! lg:text-3xl! text-purple-500"></i>
+              </span>
+          <div class="flex flex-col gap-1">
+            <div class="text-surface-900 dark:text-surface-0 text-xl font-medium leading-tight">Stat Tracking</div>
+            <p class="text-surface-500 dark:text-surface-400 leading-normal">Track your progress such as completed prompts, streaks, and more</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div #price class="bg-surface-50 dark:bg-surface-950 p-6 md:p-12 lg:p-20">
+    <div class="flex flex-col items-center gap-4 mb-16">
+      <h3 class="text-5xl leading-tight font-bold text-surface-900 dark:text-surface-0 text-center">
+        <span>Pricing</span>
+      </h3>
+    </div>
+    <div class="flex flex-col lg:flex-row gap-8 mt-10">
+      <div class="flex-1 bg-primary text-primary-contrast rounded-2xl p-4 px-5">
+        <div class="text-xl font-medium leading-tight mb-7">14 Day Trial</div>
+        <div class="text-4xl font-semibold leading-tight mb-7">Free</div>
+        <button type="button" [routerLink]="['/signup']" class="w-full rounded-md bg-surface-0 dark:bg-surface-900 text-primary hover:bg-surface-100 dark:hover:bg-surface-700 font-medium p-2 cursor-pointer">Create Account</button>
+        <p class="text-sm leading-normal mt-4 text-primary-contrast/80">See whether our tool fits your needs</p>
+      </div>
+      <div class="flex-1 bg-surface-0 dark:bg-surface-900 rounded-2xl border border-surface-200 dark:border-surface-700 p-4 px-5">
+        <div class="text-xl font-medium leading-tight text-surface-900 dark:text-surface-0 mb-7">Monthly</div>
+        <div class="flex items-center gap-2 mb-7">
+          <span class="text-4xl font-semibold text-surface-900 dark:text-surface-0 leading-tight">$6.99</span>
+          <span class="text-surface-600 dark:text-surface-400 leading-tight">per month</span>
+        </div>
+        <button pButton [routerLink]="['/signup']" iconPos="right" class="w-full">
+          <span pButtonLabel>Proceed Monthly</span>
+          <i pButtonIcon class="pi pi-arrow-right"></i>
+        </button>
+        <p class="text-sm leading-normal mt-4 text-surface-600 dark:text-surface-400">Complete access to the website</p>
+      </div>
+      <div class="flex-1 bg-surface-0 dark:bg-surface-900 rounded-2xl border border-surface-200 dark:border-surface-700 p-4 px-5">
+        <div class="flex justify-between items-center mb-7">
+          <div class="text-xl font-medium leading-tight text-surface-900 dark:text-surface-0">Yearly</div>
+          <span class="bg-primary-100 dark:bg-primary-400/30 text-primary-700 dark:text-primary-100 font-semibold text-sm px-2 py-1 rounded-md">Save 20%</span>
+        </div>
+        <div class="flex items-center gap-2 mb-7">
+          <span class="text-4xl font-semibold text-surface-900 dark:text-surface-0 leading-tight">$69.99</span>
+          <span class="text-surface-600 dark:text-surface-400 leading-tight">per year</span>
+        </div>
+        <button pButton iconPos="right" [routerLink]="['/signup']" class="w-full">
+          <span pButtonLabel>Proceed Yearly</span>
+          <i pButtonIcon class="pi pi-arrow-right"></i>
+        </button>
+        <p class="text-sm leading-normal mt-4 text-surface-600 dark:text-surface-400">2 months free on us when you pay annually</p>
+      </div>
+    </div>
+  </div>
+
+    <div class="bg-surface-0 dark:bg-surface-950 px-6 py-20 mx-20 md:px-12 lg:px-20 rounded-xl">
+    <div class="flex flex-col lg:flex-row items-center justify-between">
+      <div class="text-center lg:text-left lg:pr-20">
+        <div class="text-primary font-medium mb-4 text-lg leading-normal">TAKE THE NEXT STEP</div>
+        <div class="text-surface-900 dark:text-surface-0 font-bold text-5xl mb-8 leading-tight">Get Started Today</div>
+        <span class="inline-flex items-center bg-primary-50 dark:bg-primary-500/20 px-3 py-2 mr-2 mb-2 lg:mb-0 border border-primary-200 dark:border-primary-700 rounded-full">
+                <i class="pi pi-check text-base! leading-none! text-primary mr-2"></i>
+                <span class="text-surface-700 dark:text-surface-200 font-medium text-base leading-normal">14 Day Free Trial</span>
+            </span>
+      </div>
+      <div class="mt-8 lg:mt-0 flex flex-wrap lg:flex-nowrap gap-4">
+        <button pButton [routerLink]="['/signup']" [rounded]="true" class="px-3! py-2! text-base! font-medium! bg-primary! border-primary! hover:bg-primary-600! hover:border-primary-600!">
+          <span pButtonLabel>Get Started</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

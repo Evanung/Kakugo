@@ -30,7 +30,7 @@ export class Login {
 
     try {
       await this.authService.login(this.email(), this.password());
-      this.router.navigate(['/']); // redirect after login
+      this.router.navigate(['/dashboard']);
     } catch (err: any) {
       this.errorMessage.set(err.message);
     } finally {

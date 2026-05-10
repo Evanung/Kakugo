@@ -1,6 +1,5 @@
 
 <div class="flex flex-col h-[100vh] w-screen pt-5 px-4 mx-auto">
-  <p-toast />
   <p-splitter
     [panelSizes]="[40, 60]"
     class="flex flex-shrink flex-1 min-w-0 min-h-0 gap-2 mb-3 overflow-hidden">
@@ -10,7 +9,7 @@
         <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
 
           <p-tablist>
-            <p-button class="ml-2 mt-2" icon="pi pi-home" title="Dashboard" [routerLink]="['/']" [rounded]="true" [text]="true" [raised]="true" severity="help" />
+            <p-button class="ml-2 mt-2" icon="pi pi-home" title="Dashboard" [routerLink]="['/dashboard']" [rounded]="true" [text]="true" [raised]="true" severity="help" />
             <p-button class="ml-2 mt-2" icon="pi pi-list" title="Prompts page" [routerLink]="['/prompts']" [rounded]="true" [text]="true" [raised]="true" severity="help" />
             <p-tab value="0">Prompt</p-tab>
             <p-tab value="1">Submissions</p-tab>

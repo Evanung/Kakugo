@@ -19,7 +19,7 @@ export class Header {
   activeItem = signal<number>(0);
 
   menuItems = signal<MenuItem[]>([
-    { label: 'Dashboard', route: '/' },
+    { label: 'Dashboard', route: '/dashboard' },
     { label: 'Write', route: '/write'},
     { label: 'Prompts', route: '/prompts' },
     { label: 'Discussion', route: '/discussion' },
