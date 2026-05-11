@@ -102,8 +102,8 @@
         </li>
       </ul>
       <div class="flex border-t lg:border-t-0 border-surface py-4 lg:py-0 mt-4 lg:mt-0 gap-4">
-        <p-button [routerLink]="['/login-page']" label="Login" [text]="true"></p-button>
-        <p-button [routerLink]="['/signup']" label="Register"></p-button>
+        <p-button [routerLink]="['/auth/login']" label="Login" [text]="true"></p-button>
+        <p-button [routerLink]="['/auth/sign-up']" label="Register"></p-button>
       </div>
     </div>
   </div>
@@ -113,7 +113,7 @@
   <div class="lg:hidden p-12 lg:p-20 pb-0! bg-linear-to-t from-indigo-600/10 from-10% to-transparent flex-col items-center overflow-hidden ">
   <div class="text-4xl lg:text-5xl text-surface-900 dark:text-surface-0 font-bold mb-1 leading-tight">The Japanese Writing Tool to Boost Your Learning</div>
     <p class="text-2xl text-gray-400 mb-8 leading-normal">Our tool is built to enhance your writing experience, so you can focus just on writing</p>
-    <p-button type="button" [routerLink]="['/signup']" label="Get Started" [outlined]="true"></p-button>
+    <p-button type="button" [routerLink]="['/auth/sign-up']" label="Get Started" [outlined]="true"></p-button>
     <div class="flex flex-col mt-5 gap-5">
       <div class="rounded-lg dark:bg-surface-900 h-full w-full overflow-auto border border-gray-300 dark:border-surface-700">
         <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
@@ -306,7 +306,7 @@
   <div class="hidden lg:flex p-12 lg:p-20 pb-0! bg-linear-to-t from-indigo-600/10 from-10% to-transparent flex-col items-center overflow-hidden ">
     <div class="text-4xl lg:text-5xl text-surface-900 dark:text-surface-0 font-bold mb-1 leading-tight">The Japanese Writing Tool to Boost Your Learning</div>
     <p class="text-2xl text-gray-400 mb-8 leading-normal">Our tool is built to enhance your writing experience, so you can focus just on writing</p>
-    <p-button type="button" label="Get Started" [routerLink]="['/signup']" [outlined]="true"></p-button>
+    <p-button type="button" label="Get Started" [routerLink]="['/auth/sign-up']" [outlined]="true"></p-button>
 
     <div class="flex flex-col h-175 w-full pt-5 px-4">
       <p-splitter
@@ -774,7 +774,7 @@
       <div class="flex-1 bg-primary text-primary-contrast rounded-2xl p-4 px-5">
         <div class="text-xl font-medium leading-tight mb-7">14 Day Trial</div>
         <div class="text-4xl font-semibold leading-tight mb-7">Free</div>
-        <button type="button" [routerLink]="['/signup']" class="w-full rounded-md bg-surface-0 dark:bg-surface-900 text-primary hover:bg-surface-100 dark:hover:bg-surface-700 font-medium p-2 cursor-pointer">Create Account</button>
+        <button type="button" [routerLink]="['/auth/sign-up']" class="w-full rounded-md bg-surface-0 dark:bg-surface-900 text-primary hover:bg-surface-100 dark:hover:bg-surface-700 font-medium p-2 cursor-pointer">Create Account</button>
         <p class="text-sm leading-normal mt-4 text-primary-contrast/80">See whether our tool fits your needs</p>
       </div>
       <div class="flex-1 bg-surface-0 dark:bg-surface-900 rounded-2xl border border-surface-200 dark:border-surface-700 p-4 px-5">
@@ -783,7 +783,7 @@
           <span class="text-4xl font-semibold text-surface-900 dark:text-surface-0 leading-tight">$6.99</span>
           <span class="text-surface-600 dark:text-surface-400 leading-tight">per month</span>
         </div>
-        <button pButton [routerLink]="['/signup']" iconPos="right" class="w-full">
+        <button pButton [routerLink]="['/auth/sign-up']" iconPos="right" class="w-full">
           <span pButtonLabel>Proceed Monthly</span>
           <i pButtonIcon class="pi pi-arrow-right"></i>
         </button>
@@ -798,7 +798,7 @@
           <span class="text-4xl font-semibold text-surface-900 dark:text-surface-0 leading-tight">$69.99</span>
           <span class="text-surface-600 dark:text-surface-400 leading-tight">per year</span>
         </div>
-        <button pButton iconPos="right" [routerLink]="['/signup']" class="w-full">
+        <button pButton iconPos="right" [routerLink]="['/auth/sign-up']" class="w-full">
           <span pButtonLabel>Proceed Yearly</span>
           <i pButtonIcon class="pi pi-arrow-right"></i>
         </button>
@@ -818,7 +818,7 @@
             </span>
       </div>
       <div class="mt-8 lg:mt-0 flex flex-wrap lg:flex-nowrap gap-4">
-        <button pButton [routerLink]="['/signup']" [rounded]="true" class="px-3! py-2! text-base! font-medium! bg-primary! border-primary! hover:bg-primary-600! hover:border-primary-600!">
+        <button pButton [routerLink]="['/auth/sign-up']" [rounded]="true" class="px-3! py-2! text-base! font-medium! bg-primary! border-primary! hover:bg-primary-600! hover:border-primary-600!">
           <span pButtonLabel>Get Started</span>
         </button>
       </div>

@@ -16,7 +16,7 @@ import {Textarea} from "primeng/textarea";
         InputText,
         Textarea
     ],
-  templateUrl: './profile.html',
-  styleUrl: './profile.css',
+  templateUrl: './account.html',
+  styleUrl: './account.css',
 })
-export class Profile {}
+export class Account {}

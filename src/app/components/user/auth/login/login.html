@@ -1,0 +1,44 @@
+<div class="md:p-16 p-8 bg-surface-0 dark:bg-surface-900 rounded-2xl shadow-sm flex flex-col gap-12 h-full">
+  <div class="flex flex-col gap-4">
+    <div class="text-2xl font-semibold text-surface-900 dark:text-surface-0">Login</div>
+    <div>
+      <span class="text-surface-600 dark:text-surface-300">Don't have an account? </span>
+      <a class="text-purple-500 text-primary font-medium cursor-pointer" [routerLink]="['/auth/sign-up']" >Sign up</a>
+    </div>
+  </div>
+  <div class="flex flex-col gap-8">
+
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-2">
+        <label for="email4" class="text-surface-900 dark:text-surface-0 font-medium">Email Address</label>
+        <input pInputText id="email4" type="email"
+               placeholder="Email"
+               [ngModel]="email()"
+               (ngModelChange)="email.set($event)" class="w-full rounded-md shadow-sm" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="password4" class="text-surface-900 dark:text-surface-0 font-medium">Password</label>
+        <input pInputText id="password4" type="password"
+               placeholder="Password"
+               [ngModel]="password()"
+               (ngModelChange)="password.set($event)" class="w-full rounded-md shadow-sm" />
+      </div>
+      <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row items-start sm:items-center md:items-start lg:items-center justify-between w-full gap-2">
+        <div class="flex items-center gap-2">
+          <p-checkbox id="rememberme2" [(ngModel)]="checked2" [binary]="true"></p-checkbox>
+          <label for="rememberme2" class="text-surface-900 dark:text-surface-0">Remember me</label>
+        </div>
+        <a [routerLink]="['/auth/forgot-password']" class="text-surface-500 dark:text-surface-400 font-medium cursor-pointer hover:text-surface-600 dark:hover:text-surface-300">Forgot your password?</a>
+      </div>
+      <button pButton (click)="onLogin()"
+              [disabled]="loading()"
+              class="">
+        <span pButtonLabel>Sign In</span>
+      </button>
+      @if (errorMessage()) {
+        <p class="text-red-500 text-sm">{{ errorMessage() }}</p>
+      }
+    </div>
+  </div>
+</div>
+

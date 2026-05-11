@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild, OnInit, inject } from '@angular/core';
+import { Component, signal, ViewChild, inject } from '@angular/core';
 import { PromptService, Prompt } from '../../../services/prompt-service';
 import { TableModule, Table } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -9,9 +9,10 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Router } from '@angular/router';
-import { SupabaseService } from '../../../services/supabase-service';
-import { from, switchMap, tap} from 'rxjs';
+import { switchMap, tap} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
+import {filter} from 'rxjs/operators';
+import {AuthService} from '../../../services/auth-service';
 @Component({
   selector: 'app-prompt-list',
   imports: [TableModule, TagModule, ButtonModule, IconField, InputIconModule, InputTextModule, SkeletonModule, AsyncPipe],
@@ -21,7 +22,7 @@ import {AsyncPipe} from '@angular/common';
 
 export class PromptList {
   private promptService = inject(PromptService);
-  private supabaseService = inject(SupabaseService);
+  private authService = inject(AuthService);
   private router = inject(Router);
   originalOrder: Prompt[] = [];
 
@@ -32,8 +33,9 @@ export class PromptList {
   skeletonRows = Array(5).fill({ loading: true });
   cachedPrompts: Prompt[] = []; // keep a local copy for sort reset
 
-  prompts$ = from(this.supabaseService.client.auth.getUser()).pipe(
-    switchMap(({ data: { user } }) => this.promptService.getPrompts(user!.id)),
+  prompts$ = this.authService.currentUser$.pipe(
+    filter(user => user !== null),
+    switchMap(user => this.promptService.getPrompts(user!.id)),
     tap(prompts => {
       this.cachedPrompts = prompts;
       this.originalOrder = [...prompts];

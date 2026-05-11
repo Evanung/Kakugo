@@ -24,25 +24,14 @@ export class SettingsPage {
 
   items: any[] = [
     {
-      label: 'Profile',
-      icon: 'pi pi-user'
-    },
-    {
       label: 'Account',
       icon: 'pi pi-cog'
-    },
-    {
-      label: 'Appearance',
-      icon: 'pi pi-palette'
     },
     {
       label: 'Billing',
       icon: 'pi pi-sun'
     },
-    {
-      label: 'Notifications',
-      icon: 'pi pi-bell'
-    }
+
   ];
 
   selectedNav: string = 'Dashboard';

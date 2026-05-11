@@ -55,6 +55,15 @@ export class SupabaseService {
     });
   }
 
+  resetPassword(email: string) {
+    return this.client.auth.resetPasswordForEmail(email, {
+      redirectTo: 'https://kakugo.app/auth/reset-password'
+    });
+  }
+
+  updatePassword(newPassword: string) {
+    return this.client.auth.updateUser({ password: newPassword });
+  }
   getSession() {
     return this.client.auth.getSession();
   }

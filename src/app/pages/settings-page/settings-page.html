@@ -10,37 +10,18 @@
         <div class="col-span-12 lg:col-span-2">
           <ul class="list-none m-0 p-0 hidden lg:flex flex-col justify-start">
             <li class="border-l-2 border-primary -ml-0.5">
-              <a [routerLink]="['/profile']" class="flex items-center cursor-pointer py-3 px-4 text-primary font-medium">
-                <i class="pi pi-user mr-2 text-base! leading-normal!"></i>
-                <span>Profile</span>
-              </a>
-            </li>
-            <li class="border-l-2 border-surface-200 dark:border-surface-700 -ml-0.5 hover:border-primary hover:text-primary transition-colors">
-              <a  class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
+              <a routerLink="account" class="flex items-center cursor-pointer py-3 px-4 text-primary font-medium">
                 <i class="pi pi-cog mr-2 text-base! leading-normal!"></i>
                 <span>Account</span>
               </a>
             </li>
             <li class="border-l-2 border-surface-200 dark:border-surface-700 -ml-0.5 hover:border-primary hover:text-primary transition-colors">
-              <a class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
-                <i class="pi pi-palette mr-2 text-base! leading-normal!"></i>
-                <span>Appearance</span>
-              </a>
-            </li>
-            <li class="border-l-2 border-surface-200 dark:border-surface-700 -ml-0.5 hover:border-primary hover:text-primary transition-colors">
-              <a class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
+              <a routerLink="billing" class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
                 <i class="pi pi-credit-card mr-2 text-base! leading-normal!"></i>
                 <span>Billing</span>
               </a>
             </li>
-            <li class="border-l-2 border-surface-200 dark:border-surface-700 -ml-0.5 hover:border-primary hover:text-primary transition-colors">
-              <a class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
-                <i class="pi pi-bell mr-2 text-base! leading-normal!"></i>
-                <span>Notifications</span>
-              </a>
-            </li>
           </ul>
-
           <div class="lg:hidden">
             <div class="border-b border-surface-200 dark:border-surface-700 overflow-x-auto">
               <ul class="list-none m-0 p-0 flex flex-row justify-start whitespace-nowrap">
