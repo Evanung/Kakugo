@@ -4,6 +4,7 @@ import { PromptService } from '../../../services/prompt-service';
 import { SupabaseService } from '../../../services/supabase-service';
 import { from, switchMap } from 'rxjs';
 import { UserStats } from '../../../services/prompt-service';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-prompt-stats',
@@ -15,9 +16,8 @@ export class PromptStats {
   private promptService = inject(PromptService);
   private supabaseService = inject(SupabaseService);
 
-  userStats$ = from(this.supabaseService.client.auth.getUser()).pipe(
-    switchMap(({ data: { user } }) =>
-      this.promptService.getUserStats(user!.id)
-    )
+  userStats$ = this.supabaseService.currentUser$.pipe(
+    filter(user => user !== null),
+    switchMap(user => this.promptService.getUserStats(user!.id))
   );
 }

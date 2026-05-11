@@ -3,6 +3,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { AuthGuard } from './services/auth-guard';
 import {Login} from './pages/user-pages/login/login';
 import {LandingPage} from './pages/landing-page/landing-page';
+import {Profile} from './components/user/settings/profile/profile';
 
 export const routes: Routes = [
   {
@@ -44,6 +45,23 @@ export const routes: Routes = [
     .then(m => m.LearnPage),
   },
   {
+    path: 'settings',
+    canActivate: [AuthGuard],
+    loadComponent: () => import('./pages/settings-page/settings-page')
+      .then(m => m.SettingsPage),
+    children: [
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
+      { path: 'profile', loadComponent: () => import('./components/user/settings/profile/profile').then(m => m.Profile)}
+    ]
+  },
+  {
+    path: 'dashboard',
+    canActivate: [AuthGuard],
+    pathMatch: 'full',
+    component: Dashboard
+  },
+
+  {
     path: 'login-page',
     data: { hideFooter: true, hideNav: true },
     component: Login
@@ -56,10 +74,5 @@ export const routes: Routes = [
       .then(m => m.SignUp),
   },
 
-  {
-    path: 'dashboard',
-    canActivate: [AuthGuard],
-    pathMatch: 'full',
-    component: Dashboard
-  },
+
 ];

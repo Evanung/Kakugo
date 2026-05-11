@@ -1,0 +1,79 @@
+<div class="resize-container-2 my-10 flex flex-col bg-surface-50 dark:bg-surface-900">
+  <div class="flex flex-col flex-auto bg-surface-950">
+    <div class="rounded-t-3xl bg-surface-0 dark:bg-surface-900 flex-auto py-6 lg:py-8 px-8 lg:px-20">
+      <div class="flex flex-col w-full pb-8 gap-2">
+        <h2 class="mt-0 text-surface-900 dark:text-surface-0 font-medium text-2xl leading-tight">Settings</h2>
+        <p class="mt-0 text-surface-500 dark:text-surface-300 leading-tight">Manage your settings</p>
+      </div>
+      <p-divider></p-divider>
+      <div class="grid grid-cols-12 gap-4 py-6 lg:py-8">
+        <div class="col-span-12 lg:col-span-2">
+          <ul class="list-none m-0 p-0 hidden lg:flex flex-col justify-start">
+            <li class="border-l-2 border-primary -ml-0.5">
+              <a [routerLink]="['/profile']" class="flex items-center cursor-pointer py-3 px-4 text-primary font-medium">
+                <i class="pi pi-user mr-2 text-base! leading-normal!"></i>
+                <span>Profile</span>
+              </a>
+            </li>
+            <li class="border-l-2 border-surface-200 dark:border-surface-700 -ml-0.5 hover:border-primary hover:text-primary transition-colors">
+              <a  class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
+                <i class="pi pi-cog mr-2 text-base! leading-normal!"></i>
+                <span>Account</span>
+              </a>
+            </li>
+            <li class="border-l-2 border-surface-200 dark:border-surface-700 -ml-0.5 hover:border-primary hover:text-primary transition-colors">
+              <a class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
+                <i class="pi pi-palette mr-2 text-base! leading-normal!"></i>
+                <span>Appearance</span>
+              </a>
+            </li>
+            <li class="border-l-2 border-surface-200 dark:border-surface-700 -ml-0.5 hover:border-primary hover:text-primary transition-colors">
+              <a class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
+                <i class="pi pi-credit-card mr-2 text-base! leading-normal!"></i>
+                <span>Billing</span>
+              </a>
+            </li>
+            <li class="border-l-2 border-surface-200 dark:border-surface-700 -ml-0.5 hover:border-primary hover:text-primary transition-colors">
+              <a class="flex items-center cursor-pointer py-3 px-4 text-surface-700 dark:text-surface-200 font-medium">
+                <i class="pi pi-bell mr-2 text-base! leading-normal!"></i>
+                <span>Notifications</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="lg:hidden">
+            <div class="border-b border-surface-200 dark:border-surface-700 overflow-x-auto">
+              <ul class="list-none m-0 p-0 flex flex-row justify-start whitespace-nowrap">
+                @for (item of items; track item.label; let i = $index) {
+                  <li
+                    class="relative py-3 px-4 transition-colors"
+                    [ngClass]="{
+                                                    'text-primary': i === 0,
+                                                    'text-surface-700 dark:text-surface-200 hover:text-primary hover:bottom-line-primary': i !== 0
+                                                }"
+                  >
+                    <a class="flex items-center cursor-pointer font-medium">
+                      <i [ngClass]="[item.icon, 'mr-2', 'text-base!', 'leading-normal!']"></i>
+                      <span>{{ item.label }}</span>
+                    </a>
+                    <div
+                      class="absolute bottom-0 left-0 right-0 h-0.5 transition-colors"
+                      [ngClass]="{
+                                                        'bg-primary': i === 0,
+                                                        'bg-surface-200 dark:bg-surface-700': i !== 0
+                                                    }"
+                    ></div>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-10 xl:col-span-10 bg-surface-0 dark:bg-surface-900 p-8 rounded-2xl flex-auto">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

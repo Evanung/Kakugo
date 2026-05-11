@@ -42,11 +42,7 @@
     <div class="flex items-center justify-between gap-4 px-8 lg:px-0 py-4 lg:py-0 border-t lg:border-t-0 border-white dark:border-surface-700">
       <div class="flex items-center gap-4">
         <a
-          class="flex items-center justify-center p-2 bg-white dark:bg-surface-800 rounded-lg border border-white dark:border-surface-700 hover:bg-white dark:hover:bg-surface-700 cursor-pointer"
-        >
-          <i class="pi pi-bell text-base! leading-none! text-surface-800 dark:text-white"></i>
-        </a>
-        <a
+          [routerLink]="['/settings']"
           class="flex items-center justify-center p-2 bg-white dark:bg-surface-800 rounded-lg border border-white dark:border-surface-700 hover:bg-white dark:hover:bg-surface-700 cursor-pointer"
         >
           <i class="pi pi-cog text-base! leading-none! text-surface-800 dark:text-white"></i>
@@ -55,7 +51,8 @@
       <div class="flex items-center">
         <div class="h-6 w-px bg-white dark:bg-surface-700 hidden lg:block"></div>
         <div class="flex items-center gap-3 ml-4 cursor-pointer">
-          <div class="text-white dark:text-surface-100 font-medium"> Sign in </div>
+          <p-avatar image="https://wrwtjkxcjubxlpadntkw.supabase.co/storage/v1/object/sign/profile_pictures/ArtifisyLOGO%20-%20Copy.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kNjcxY2IwMC01M2FhLTRjN2ItODZkNy01ZWE0NTNiYmIwZmEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9maWxlX3BpY3R1cmVzL0FydGlmaXN5TE9HTyAtIENvcHkucG5nIiwiaWF0IjoxNzc2NDc1NDg2LCJleHAiOjE4MDgwMTE0ODZ9.t5ytzu_jn12leYwVuSb3U1S-lrfgAnN1mR-JejB9COI" shape="circle" size="normal" class="rounded-lg"></p-avatar>
+          <span>{{ (currentUser$ | async)?.user_metadata?.['display_name'] }}</span>
         </div>
       </div>
     </div>

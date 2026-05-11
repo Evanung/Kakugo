@@ -11,7 +11,6 @@ import { Toast } from 'primeng/toast';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {Textarea} from 'primeng/textarea';
 import {FormsModule} from '@angular/forms';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize-html.pipe';
 import { EditorModule } from 'primeng/editor';
@@ -114,7 +113,7 @@ export class SubmissionList {
       this.posts = this.posts.map(p =>
         p.id === post.id ? { ...p, is_public: !post.is_public } : p
       );
-      this.messageService.add({ severity: 'info', summary: 'Post Settings', detail: 'Post visibility changed' });
+      this.messageService.add({ severity: 'info', summary: 'Post SettingsPage', detail: 'Post visibility changed' });
     }
   }
 

@@ -1,0 +1,55 @@
+<div class="flex flex-col gap-8">
+  <div class="text-surface-900 dark:text-surface-0 font-semibold text-lg leading-tight">Profile</div>
+
+  <div class="flex gap-12 flex-col-reverse md:flex-row">
+    <div class="flex-auto flex flex-col gap-6">
+      <div class="flex flex-col gap-2">
+        <label for="name" class="text-surface-900 dark:text-surface-0">Name</label>
+        <input id="name" type="text" pInputText class="w-full" />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="bio" class="text-surface-900 dark:text-surface-0">Bio</label>
+        <textarea id="bio" pInputTextarea type="text" rows="5" [autoResize]="true" class="w-full"></textarea>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="website" class="text-surface-900 dark:text-surface-0">URL</label>
+        <p-inputgroup>
+          <p-inputgroup-addon>www</p-inputgroup-addon>
+          <input id="website" type="text" pInputText class="w-full" />
+        </p-inputgroup>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="company" class="text-surface-900 dark:text-surface-0">Company</label>
+        <input id="company" type="text" pInputText class="w-full" />
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label class="text-surface-900 dark:text-surface-0">Avatar</label>
+      <div class="flex flex-col lg:items-center gap-4">
+        <img src="https://fqjltiegiezfetthbags.supabase.co/storage/v1/object/public/block.images/blocks/formlayout/form-avatar.jpg" class="h-24 w-24 rounded-lg" />
+
+        <p-fileupload
+          mode="basic"
+          name="avatar"
+          url="./upload.php"
+          accept="image/*"
+          [customUpload]="true"
+          [auto]="true"
+          styleClass=" flex! justify-start! lg:justify-center!"
+          [chooseButtonProps]="{ severity: 'secondary', outlined: true }"
+          [maxFileSize]="1000000"
+          chooseLabel="Upload"
+          chooseIcon="pi pi-upload"
+        ></p-fileupload>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p-button label="Update Profile"></p-button>
+  </div>
+</div>
