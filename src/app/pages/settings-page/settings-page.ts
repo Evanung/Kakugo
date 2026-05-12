@@ -1,13 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {Divider} from 'primeng/divider';
 import {NgClass} from '@angular/common';
-import {Textarea} from 'primeng/textarea';
-import {InputGroup} from 'primeng/inputgroup';
-import {InputText} from 'primeng/inputtext';
-import {FileUpload} from 'primeng/fileupload';
-import {Button} from 'primeng/button';
-import {InputGroupAddon} from 'primeng/inputgroupaddon';
 import {RouterLink, RouterOutlet} from '@angular/router';
+import {AuthService} from '../../services/auth-service';
+import {AccountService} from '../../services/user/account-service';
+import {FileUploadHandlerEvent} from 'primeng/fileupload';
 
 @Component({
   selector: 'app-settings',
@@ -24,7 +21,7 @@ export class SettingsPage {
 
   items: any[] = [
     {
-      label: 'Account',
+      label: 'AccountService',
       icon: 'pi pi-cog'
     },
     {

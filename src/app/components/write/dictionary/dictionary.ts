@@ -1,6 +1,6 @@
 import { Component, signal} from '@angular/core';
 import { InputText } from "primeng/inputtext";
-import {DictionaryService, GlossResult, KanjiResult} from '../../../services/dictionary-service';
+import {DictionaryService, GlossResult, KanjiResult} from '../../../services/dictionaries/dictionary-service';
 import {FormsModule} from '@angular/forms';
 import {SupabaseService} from '../../../services/supabase-service';
 import {Button} from 'primeng/button';

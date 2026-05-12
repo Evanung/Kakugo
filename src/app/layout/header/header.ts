@@ -4,6 +4,10 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {SupabaseService} from '../../services/supabase-service';
 import {Avatar} from 'primeng/avatar';
+import {AccountService} from '../../services/user/account-service';
+import {AuthService} from '../../services/auth-service';
+import {take} from 'rxjs';
+import {filter} from 'rxjs/operators';
 
 interface MenuItem {
   label: string;
@@ -18,8 +22,16 @@ interface MenuItem {
   standalone: true
 })
 export class Header {
-  private supabaseService = inject(SupabaseService);
-  currentUser$ = this.supabaseService.currentUser$;
+  protected accountService = inject(AccountService);
+  private authService = inject(AuthService);
+  profile$ = this.accountService.profile$;
+
+  avatarUrl = signal<string>('');
+  private _loadProfile = this.authService.currentUser$.pipe(
+    filter(user => user !== null),
+    take(1)
+  ).subscribe(user => this.accountService.loadProfile(user!.id));
+
 
   activeItem = signal<number>(0);
 

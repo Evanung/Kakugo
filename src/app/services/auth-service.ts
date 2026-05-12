@@ -10,6 +10,11 @@ export class AuthService {
   private router = inject(Router);
   currentUser$ = this.supabase.currentUser$;
 
+  async getCurrentUserId(): Promise<string | null> {
+    const { data } = await this.supabase.getSession();
+    return data.session?.user.id ?? null;
+  }
+
   async login(email: string, password: string) {
     const { data, error } = await this.supabase.signIn(email, password);
     if (error) throw new Error(error.message);

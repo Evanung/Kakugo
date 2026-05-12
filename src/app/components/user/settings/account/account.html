@@ -30,21 +30,28 @@
     <div class="flex flex-col gap-2">
       <label class="text-surface-900 dark:text-surface-0">Avatar</label>
       <div class="flex flex-col lg:items-center gap-4">
-        <img src="https://fqjltiegiezfetthbags.supabase.co/storage/v1/object/public/block.images/blocks/formlayout/form-avatar.jpg" class="h-24 w-24 rounded-lg" />
 
+        <p-avatar
+          [image]="avatarUrl()"
+          shape="circle"
+          size="xlarge"
+          class="rounded-lg">
+        </p-avatar>
         <p-fileupload
           mode="basic"
           name="avatar"
-          url="./upload.php"
           accept="image/*"
           [customUpload]="true"
           [auto]="true"
-          styleClass=" flex! justify-start! lg:justify-center!"
+          [disabled]="uploading()"
+          (uploadHandler)="onAvatarUpload($event)"
+          styleClass="flex! justify-start! lg:justify-center!"
           [chooseButtonProps]="{ severity: 'secondary', outlined: true }"
           [maxFileSize]="1000000"
-          chooseLabel="Upload"
+          [chooseLabel]="uploading() ? 'Uploading...' : 'Upload'"
           chooseIcon="pi pi-upload"
         ></p-fileupload>
+
       </div>
     </div>
   </div>

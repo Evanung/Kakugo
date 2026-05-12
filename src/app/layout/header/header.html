@@ -50,10 +50,17 @@
       </div>
       <div class="flex items-center">
         <div class="h-6 w-px bg-white dark:bg-surface-700 hidden lg:block"></div>
-        <div class="flex items-center gap-3 ml-4 cursor-pointer">
-          <p-avatar image="https://wrwtjkxcjubxlpadntkw.supabase.co/storage/v1/object/sign/profile_pictures/ArtifisyLOGO%20-%20Copy.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kNjcxY2IwMC01M2FhLTRjN2ItODZkNy01ZWE0NTNiYmIwZmEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcm9maWxlX3BpY3R1cmVzL0FydGlmaXN5TE9HTyAtIENvcHkucG5nIiwiaWF0IjoxNzc2NDc1NDg2LCJleHAiOjE4MDgwMTE0ODZ9.t5ytzu_jn12leYwVuSb3U1S-lrfgAnN1mR-JejB9COI" shape="circle" size="normal" class="rounded-lg"></p-avatar>
-          <span>{{ (currentUser$ | async)?.user_metadata?.['display_name'] }}</span>
-        </div>
+        @if (profile$ | async; as profile) {
+          <div class="flex items-center gap-3 ml-4 cursor-pointer">
+            <p-avatar
+              [image]="accountService.getAvatarUrl(profile.avatar_url)"
+              shape="circle"
+              size="normal"
+              class="rounded-lg">
+            </p-avatar>
+            <span class="text-white">{{ profile.display_name }}</span>
+          </div>
+        }
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SupabaseClient, createClient} from '@supabase/supabase-js';
-import {environment} from '../../environment/environment';
+import {environment} from '../../../environment/environment';
 
 export interface GrammarResult {
   id: number;

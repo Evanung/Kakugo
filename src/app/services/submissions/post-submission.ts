@@ -12,6 +12,7 @@ export interface Post {
   user_id: string;
   profiles: {
     display_name: string;
+    avatar_url: string | null;
   };
   is_public: boolean;
   status: number;
@@ -50,7 +51,7 @@ export class PostSubmission {
         .from('post_submission')
         .select(`
           *,
-          profiles(display_name)
+          profiles(display_name, avatar_url)
         `)
         .eq('prompt_id', promptId)
         .eq('status', 1)

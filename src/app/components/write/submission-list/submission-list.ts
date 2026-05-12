@@ -4,17 +4,19 @@ import { Post, PostSubmission } from '../../../services/submissions/post-submiss
 import { Prompt } from '../../../services/prompt-service';
 import { CommonModule } from '@angular/common';
 import { MenuItem } from 'primeng/api';
-import {SupabaseService} from '../../../services/supabase-service';
 import {Button, ButtonDirective, ButtonIcon} from 'primeng/button';
 import {Menu} from 'primeng/menu';
 import { Toast } from 'primeng/toast';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {FormsModule} from '@angular/forms';
 import { SanitizeHtmlPipe } from '../../../pipes/sanitize-html.pipe';
 import { EditorModule } from 'primeng/editor';
 import { DomSanitizer } from '@angular/platform-browser';
+import {AuthService} from '../../../services/auth-service';
+import {map} from 'rxjs/operators';
+import {AccountService} from '../../../services/user/account-service';
 
 @Component({
   selector: 'app-submission-list',
@@ -30,29 +32,24 @@ export class SubmissionList {
   private confirmationService = inject(ConfirmationService);
   private messageService = inject(MessageService);
   private sanitizer = inject(DomSanitizer);
-
+  private postSubmissionService = inject(PostSubmission);
+  private authService = inject(AuthService);
+  private accountService = inject(AccountService);
+  private refreshEffect = effect(() => {
+    const _ = this.refresh();
+    this.loadPosts();
+  });
 
   prompt = input.required<Prompt>();
   refresh = input<number>(0);
   selectedPost = signal<Post | null>(null);
-  currentUserId = signal<string | null>(null);
+  currentUserId = toSignal(
+    this.authService.currentUser$.pipe(map(user => user?.id ?? null))
+  );
 
   editDescription = '';
   isEditing = signal<boolean>(false);
   posts: Post[] = [];
-
-  constructor(
-    private postSubmissionService: PostSubmission,
-    private supabaseService: SupabaseService,
-  ) {
-    this.supabaseService.currentUser$
-      .pipe(takeUntilDestroyed())
-      .subscribe(user => this.currentUserId.set(user?.id ?? null));
-    effect(() => {
-      const _ = this.refresh();
-      this.loadPosts();
-    });
-  }
 
   menuItems = computed<MenuItem[]>(() => {
     const post = this.selectedPost();
@@ -64,6 +61,10 @@ export class SubmissionList {
       { label: 'Delete', icon: 'pi pi-trash', linkClass: '!text-red-500 dark:!text-red-400', command: () => this.deletePostConfirmation() }
     ];
   });
+
+  getPostAvatarUrl(post: Post): string {
+    return this.accountService.getAvatarUrl(post.profiles.avatar_url ?? null);
+  }
 
   startEdit(post: Post) {
     this.selectedPost.set(post);

@@ -3,7 +3,7 @@ import {Button} from "primeng/button";
 import {IconField} from "primeng/iconfield";
 import {InputIcon} from "primeng/inputicon";
 import {InputText} from "primeng/inputtext";
-import { GrammarService, GrammarResult } from '../../../services/grammar-service';
+import { GrammarService, GrammarResult } from '../../../services/dictionaries/grammar-service';
 import {Skeleton} from 'primeng/skeleton';
 
 @Component({

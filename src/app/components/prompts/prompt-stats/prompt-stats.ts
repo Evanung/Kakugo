@@ -2,8 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { PromptService } from '../../../services/prompt-service';
 import { SupabaseService } from '../../../services/supabase-service';
-import { from, switchMap } from 'rxjs';
-import { UserStats } from '../../../services/prompt-service';
+import { switchMap } from 'rxjs';
 import {filter} from 'rxjs/operators';
 
 @Component({
