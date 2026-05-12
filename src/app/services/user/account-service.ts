@@ -46,7 +46,6 @@ export class AccountService {
       .update({ avatar_url: filePath })
       .eq('id', userId);
 
-    // Update the local profile subject so everything reactively updates
     const current = this.profileSubject.value;
     if (current) this.profileSubject.next({ ...current, avatar_url: filePath });
   }
