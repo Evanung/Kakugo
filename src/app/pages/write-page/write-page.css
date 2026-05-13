@@ -3,6 +3,12 @@
   height: 100%;
   width: 100%;
 }
+
+::ng-deep .p-tablist{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 ::ng-deep .p-tab.p-tab-active {
   color: oklch(62.7% 0.265 303.9) !important;
 }

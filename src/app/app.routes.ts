@@ -46,6 +46,12 @@ export const routes: Routes = [
     .then(m => m.LearnPage),
   },
   {
+    path: 'privacy-policy',
+    data: { hideNav: true },
+    loadComponent: () => import('./pages/legal/privacy-policy-page/privacy-policy-page')
+      .then(m => m.PrivacyPolicyPage),
+  },
+  {
     path: 'settings',
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/settings-page/settings-page')

@@ -1,29 +1,43 @@
+<p-toast></p-toast>
 <div class="flex flex-col gap-8">
   <div class="text-surface-900 dark:text-surface-0 font-semibold text-lg leading-tight">Account</div>
 
   <div class="flex gap-12 flex-col-reverse md:flex-row">
     <div class="flex-auto flex flex-col gap-6">
-      <div class="flex flex-col gap-2">
-        <label for="name" class="text-surface-900 dark:text-surface-0">Name</label>
+      <div class="border border-surface-300 dark:border-surface-700 rounded-xl p-3 flex flex-col gap-3">
+        <label for="name" class="text-surface-900 dark:text-surface-0"><b>Change Username</b></label>
+        <p>You are allowed to change your name every 30 days</p>
+        <p>Your current username is: <b>{{ displayName() }}</b> </p>
+        <p>New Username</p>
+        <input [ngModel]="newUsername()"
+               (ngModelChange)="newUsername.set($event)"
+               type="text" pInputText class="w-full" />
+        <p-button (onClick)="updateUsername()" label="Change Username"></p-button>
+      </div>
+
+      <div class="border border-surface-300 dark:border-surface-700 rounded-xl p-3 flex flex-col gap-3">
+        <label for="name" class="text-surface-900 dark:text-surface-0"><b>Reset Password</b></label>
+        <p>New Password</p>
+        <input [ngModel]="newPassword()"
+               (ngModelChange)="newPassword.set($event)"
+               type="password" pInputText class="w-full" />
+        <p>Current Password</p>
+        <input [ngModel]="currentPassword()"
+               (ngModelChange)="currentPassword.set($event)"
+               type="password" pInputText class="w-full" />
+        <p-button (onClick)="resetPassword()" label="Reset Password"></p-button>
+      </div>
+
+      <p-divider align="center">
+        <b class="text-red-500">Danger Zone</b>
+      </p-divider>
+
+      <div class="border border-red-500 bg-red-200 dark:bg-red-950 rounded-xl p-3 flex flex-col gap-3">
+        <label for="name" class="text-surface-900 dark:text-surface-0"><b>Delete Account</b></label>
+        <p>Deleting your account is not reversible. Once you delete your account all records of your account will be deleted.</p>
+        <p>Current Password</p>
         <input id="name" type="text" pInputText class="w-full" />
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <label for="bio" class="text-surface-900 dark:text-surface-0">Bio</label>
-        <textarea id="bio" pInputTextarea type="text" rows="5" [autoResize]="true" class="w-full"></textarea>
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <label for="website" class="text-surface-900 dark:text-surface-0">URL</label>
-        <p-inputgroup>
-          <p-inputgroup-addon>www</p-inputgroup-addon>
-          <input id="website" type="text" pInputText class="w-full" />
-        </p-inputgroup>
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <label for="company" class="text-surface-900 dark:text-surface-0">Company</label>
-        <input id="company" type="text" pInputText class="w-full" />
+        <p-button severity="danger" label="Delete Account"></p-button>
       </div>
     </div>
 
@@ -47,16 +61,12 @@
           (uploadHandler)="onAvatarUpload($event)"
           styleClass="flex! justify-start! lg:justify-center!"
           [chooseButtonProps]="{ severity: 'secondary', outlined: true }"
-          [maxFileSize]="1000000"
+          [maxFileSize]="2048"
           [chooseLabel]="uploading() ? 'Uploading...' : 'Upload'"
           chooseIcon="pi pi-upload"
         ></p-fileupload>
-
+        <p>Max file size: 2MB</p>
       </div>
     </div>
-  </div>
-
-  <div>
-    <p-button label="Update Account"></p-button>
   </div>
 </div>

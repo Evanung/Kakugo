@@ -1,40 +1,85 @@
 import {Component, inject, signal} from '@angular/core';
 import {Button} from "primeng/button";
 import {FileUpload, FileUploadHandlerEvent} from "primeng/fileupload";
-import {InputGroup} from "primeng/inputgroup";
-import {InputGroupAddon} from "primeng/inputgroupaddon";
 import {InputText} from "primeng/inputtext";
-import {Textarea} from "primeng/textarea";
 import {AuthService} from '../../../../services/auth-service';
 import {AccountService} from '../../../../services/user/account-service';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Avatar} from 'primeng/avatar';
+import {Divider} from 'primeng/divider';
+import {Toast} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
+import {SupabaseService} from '../../../../services/supabase-service';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
   imports: [
     Button,
     FileUpload,
-    InputGroup,
-    InputGroupAddon,
     InputText,
-    Textarea,
-    Avatar
+    Avatar,
+    Divider,
+    Toast,
+    FormsModule
   ],
   templateUrl: './account.html',
   styleUrl: './account.css',
+  providers: [MessageService]
 })
 export class Account {
   private authService = inject(AuthService);
   private accountService = inject(AccountService);
+  private messageService = inject(MessageService);
+  private supabaseService = inject(SupabaseService);
 
   avatarUrl = signal<string>('');
+  displayName = signal<string>('');
   uploading = signal<boolean>(false);
+
+  newUsername = signal<string>('');
+
+  currentPassword = signal<string>('');
+  newPassword = signal<string>('');
+  resetting = signal<boolean>(false);
 
   constructor() {
     this.accountService.profile$.pipe(takeUntilDestroyed()).subscribe(profile => {
       this.avatarUrl.set(this.accountService.getAvatarUrl(profile?.avatar_url ?? null));
+      this.displayName.set(profile?.display_name ?? '');
     });
+  }
+
+  async resetPassword() {
+    if (!this.newPassword || !this.currentPassword) {
+      this.messageService.add({ severity: 'info', summary: 'Password Reset', detail: 'Please enter your both passwords' });
+      return;
+    }
+    if (this.newPassword().length < 8) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Password must be at least 8 characters' });
+      return;
+    }
+    this.resetting.set(true);
+
+    try {
+      const email = this.authService.currentUser$.value?.email;
+      if (!email) {
+        return;
+      }
+
+      const { error: signInError } = await this.supabaseService.signIn(email, this.currentPassword());
+      if (signInError) {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: 'Password is incorrect'});
+      }
+      await this.authService.updatePassword(this.newPassword());
+      this.messageService.add({severity: 'success', summary: 'Success', detail: 'Password Updated'});
+      this.currentPassword.set('');
+      this.newPassword.set('');
+    } catch (error) {
+      this.messageService.add({severity: 'error', summary: 'Error', detail: 'Could not update password'});
+    } finally {
+      this.resetting.set(false);
+    }
   }
 
   async onAvatarUpload(event: FileUploadHandlerEvent) {
@@ -49,6 +94,31 @@ export class Account {
       await this.accountService.uploadAvatar(file, userId);
     } finally {
       this.uploading.set(false);
+    }
+  }
+
+  async updateUsername() {
+    if (!this.newUsername()) {
+      this.messageService.add({ severity: 'error', summary: 'Username', detail: 'Please enter a new username' });
+      return;
+    }
+    const name = this.newUsername().trim();
+    if (!name) return;
+
+    const userId = this.authService.currentUser$.value?.id;
+    if (!userId) return;
+
+    this.resetting.set(true);
+
+    try {
+      await this.accountService.updateUsername(userId, name);  // ← use trimmed name
+      this.displayName.set(name);
+      this.newUsername.set('');
+      this.messageService.add({ severity: 'success', summary: 'Username updated', detail: 'You can update it again in 30 days' });
+    } catch (e: any) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: e.message });
+    } finally {
+      this.resetting.set(false);
     }
   }
 }

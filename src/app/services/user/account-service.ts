@@ -50,6 +50,17 @@ export class AccountService {
     if (current) this.profileSubject.next({ ...current, avatar_url: filePath });
   }
 
+  async updateUsername(userId: string, name: string): Promise<void> {
+    const { error } = await this.supabase.client.rpc('update_username', {
+      new_name: name
+    });
+
+    if (error) throw new Error(error.message);
+
+    const current = this.profileSubject.value;
+    if (current) this.profileSubject.next({ ...current, display_name: name });
+  }
+
   getAvatarUrl(path: string | null, displayName?: string): string {
     if (!path) {
       const name = encodeURIComponent(displayName ?? 'User');
