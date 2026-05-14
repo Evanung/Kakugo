@@ -1,3 +1,5 @@
+<p-menu #profileMenu [model]="profileItems()" [popup]="true" />
+
 <div class="bg-indigo-950 py-4 px-8 flex items-center justify-between border-b border-white dark:border-surface-800 relative lg:static gap-8">
   <div class="flex items-center gap-4">
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,9 +29,9 @@
     <div class="flex-1 flex items-center gap-4 px-8 lg:px-4 py-4 lg:py-0 flex-col lg:flex-row">
       @for (item of menuItems(); track item.label; let i = $index) {
         <a
-          [routerLink]="item.route"
+          [routerLink]="item.routerLink"
           routerLinkActive="dark:bg-surface-800 border-white dark:border-surface-700"
-          [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+          [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
           class="flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-colors
            duration-150 border w-full lg:w-auto border-transparent
            hover:dark:hover:bg-surface-800
@@ -48,18 +50,17 @@
           <i class="pi pi-cog text-base! leading-none! text-surface-800 dark:text-white"></i>
         </a>
       </div>
-      <div class="flex items-center">
-        <div class="h-6 w-px bg-white dark:bg-surface-700 hidden lg:block"></div>
+      <div class="flex items-center" (click)="profileMenu.toggle($event)">
         @if (profile$ | async; as profile) {
-          <div class="flex items-center gap-3 ml-4 cursor-pointer">
-            <p-avatar
-              [image]="accountService.getAvatarUrl(profile.avatar_url)"
-              shape="circle"
-              size="normal"
-              class="rounded-lg">
-            </p-avatar>
-            <span class="text-white">{{ profile.display_name }}</span>
-          </div>
+            <div class="flex items-center gap-3 ml-4 cursor-pointer">
+              <p-avatar
+                [image]="accountService.getAvatarUrl(profile.avatar_url)"
+                shape="circle"
+                size="normal"
+                class="rounded-lg">
+              </p-avatar>
+              <span class="text-white">{{ profile.display_name }}</span>
+            </div>
         }
       </div>
     </div>

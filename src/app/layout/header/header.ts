@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {Component, inject, signal} from '@angular/core';
+import {Component, computed, inject, signal} from '@angular/core';
 import { StyleClassModule } from 'primeng/styleclass';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {SupabaseService} from '../../services/supabase-service';
@@ -8,15 +8,12 @@ import {AccountService} from '../../services/user/account-service';
 import {AuthService} from '../../services/auth-service';
 import {take} from 'rxjs';
 import {filter} from 'rxjs/operators';
-
-interface MenuItem {
-  label: string;
-  route: string;
-}
+import { MenuItem } from 'primeng/api';
+import {Menu} from 'primeng/menu';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, StyleClassModule, RouterLinkActive, RouterLink, Avatar],
+  imports: [CommonModule, StyleClassModule, RouterLinkActive, RouterLink, Avatar, Menu],
   templateUrl: './header.html',
   styleUrl: './header.css',
   standalone: true
@@ -26,7 +23,6 @@ export class Header {
   private authService = inject(AuthService);
   profile$ = this.accountService.profile$;
 
-  avatarUrl = signal<string>('');
   private _loadProfile = this.authService.currentUser$.pipe(
     filter(user => user !== null),
     take(1)
@@ -36,14 +32,20 @@ export class Header {
   activeItem = signal<number>(0);
 
   menuItems = signal<MenuItem[]>([
-    { label: 'Dashboard', route: '/dashboard' },
-    { label: 'Write', route: '/write'},
-    { label: 'Prompts', route: '/prompts' },
-    { label: 'Discussion', route: '/discussion' },
-    { label: 'Learn', route: '/learn' }
+    { label: 'Dashboard', routerLink: '/dashboard' },
+    { label: 'Write', routerLink: '/write'},
+    { label: 'Prompts', routerLink: '/prompts' },
+    { label: 'Discussion', routerLink: '/discussion' },
+    { label: 'Learn', routerLink: '/learn' }
   ]);
 
-  setActiveItem = (index: number): void => {
-    this.activeItem.set(index);
-  };
+  profileItems = computed<MenuItem[]>(() => [
+    { label: 'Profile (Coming Soon)', icon: 'pi pi-user'},
+    { separator: true },
+    { label: 'Logout', icon: 'pi pi-sign-out', linkClass: '!text-red-500 dark:!text-red-400', command: () => this.logout() }
+  ]);
+
+  async logout() {
+    await this.authService.logout();
+  }
 }

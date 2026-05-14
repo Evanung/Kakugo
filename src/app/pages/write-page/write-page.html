@@ -7,7 +7,6 @@
     <ng-template #panel>
       <div class="rounded-lg dark:bg-surface-900 border border-surface-200 dark:border-surface-600 h-full w-full overflow-auto">
         <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
-
           <p-tablist>
             <p-button class="ml-2 mt-2" icon="pi pi-home" title="Dashboard" [routerLink]="['/dashboard']" [rounded]="true" [text]="true" [raised]="true" severity="help" />
             <p-button class="ml-2 mt-2" icon="pi pi-list" title="Prompts page" [routerLink]="['/prompts']" [rounded]="true" [text]="true" [raised]="true" severity="help" />
