@@ -21,12 +21,14 @@ export class SettingsPage {
 
   items: any[] = [
     {
-      label: 'AccountService',
-      icon: 'pi pi-cog'
+      label: 'Account',
+      icon: 'pi pi-cog',
+      router: 'account'
     },
     {
       label: 'Billing',
-      icon: 'pi pi-sun'
+      icon: 'pi pi-sun',
+      router: 'billing'
     },
 
   ];

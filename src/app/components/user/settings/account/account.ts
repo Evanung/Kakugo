@@ -8,9 +8,10 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Avatar} from 'primeng/avatar';
 import {Divider} from 'primeng/divider';
 import {Toast} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {SupabaseService} from '../../../../services/supabase-service';
 import {FormsModule} from '@angular/forms';
+import {ConfirmDialog} from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-profile',
@@ -21,17 +22,19 @@ import {FormsModule} from '@angular/forms';
     Avatar,
     Divider,
     Toast,
-    FormsModule
+    FormsModule,
+    ConfirmDialog
   ],
   templateUrl: './account.html',
   styleUrl: './account.css',
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class Account {
   private authService = inject(AuthService);
   private accountService = inject(AccountService);
   private messageService = inject(MessageService);
   private supabaseService = inject(SupabaseService);
+  private confirmationService = inject(ConfirmationService);
 
   avatarUrl = signal<string>('');
   displayName = signal<string>('');
@@ -43,11 +46,15 @@ export class Account {
   newPassword = signal<string>('');
   resetting = signal<boolean>(false);
 
+  deletePassword = signal<string>('');
+
+
   constructor() {
     this.accountService.profile$.pipe(takeUntilDestroyed()).subscribe(profile => {
       this.avatarUrl.set(this.accountService.getAvatarUrl(profile?.avatar_url ?? null));
       this.displayName.set(profile?.display_name ?? '');
     });
+
   }
 
   async resetPassword() {
@@ -111,10 +118,48 @@ export class Account {
     this.resetting.set(true);
 
     try {
-      await this.accountService.updateUsername(userId, name);  // ← use trimmed name
+      await this.accountService.updateUsername(userId, name);
       this.displayName.set(name);
       this.newUsername.set('');
       this.messageService.add({ severity: 'success', summary: 'Username updated', detail: 'You can update it again in 30 days' });
+    } catch (e: any) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: e.message });
+    } finally {
+      this.resetting.set(false);
+    }
+  }
+
+  confirmDelete() {
+    if (!this.deletePassword){
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please enter the current password to delete the account' });
+      return;
+    }
+
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete your account? This cannot be undone.',
+      header: 'Delete Account',
+      icon: 'pi pi-exclamation-triangle',
+      acceptButtonProps: { label: 'Delete', severity: 'danger' },
+      rejectButtonProps: { label: 'Cancel', severity: 'secondary', outlined: true },
+      accept: () => this.deleteAccount()
+    });
+  }
+  async deleteAccount() {
+    const email = this.authService.currentUser$.value?.email;
+    if (!email) return;
+
+
+    const { error } = await this.supabaseService.signIn(email, this.deletePassword());
+    if (error) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Incorrect Password' });
+      return;
+    }
+
+    this.resetting.set(true);
+
+    try {
+      await this.authService.logout();
+      await this.accountService.deleteAccount();
     } catch (e: any) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: e.message });
     } finally {

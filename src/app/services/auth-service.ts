@@ -25,6 +25,7 @@ export class AuthService {
     const { data, error } = await this.supabase.signUp(display_name, email, password);
     if (error) throw new Error(error.message);
     return data;
+
   }
 
   async resetPassword(email: string) {
@@ -39,7 +40,7 @@ export class AuthService {
 
   async logout() {
     await this.supabase.signOut();
-    this.router.navigate(['/login-page']);
+    await this.router.navigate(['/auth/login']);
   }
 
   async isLoggedIn(): Promise<boolean> {

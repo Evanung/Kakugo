@@ -19,13 +19,13 @@
       [hideOnOutsideClick]="true"
       [hideOnResize]="true"
       resizeSelector=".resize-container-landing1"
-      class="cursor-pointer block lg:hidden text-surface-700 dark:text-surface-100 mt-1"
+      class="cursor-pointer block lg:hidden text-surface-100 mt-1"
     >
       <i class="pi pi-bars text-2xl!"></i>
     </a>
     <div class="items-center grow justify-between hidden lg:flex absolute bg-indigo-950 lg:static w-full left-0 top-full px-12 lg:px-0 z-50 shadow lg:shadow-none">
       <ul class="list-none p-0 py-4 lg:py-0 m-0 flex grow lg:items-center lg:justify-center text-surface-900 dark:text-surface-0 select-none flex-col lg:flex-row cursor-pointer">
-        <li class="relative">
+        <li class="relative overflow-hidden">
           <a
             pStyleClass="@next"
             enterFromClass="hidden"
@@ -57,7 +57,7 @@
                 <span>Customers</span>
               </a>
             </li>
-            <li class="relative">
+            <li class="relative overflow-hidden">
               <a
                 pStyleClass="@next"
                 enterFromClass="hidden"
@@ -80,7 +80,7 @@
                     <span>Help Center</span>
                   </a>
                 </li>
-                <li class="relative">
+                <li class="relative overflow-hidden">
                   <a class="flex px-4 py-2 rounded items-center hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors duration-150 gap-2">
                     <i class="pi pi-question-circle"></i>
                     <span>Faq</span>
@@ -110,18 +110,17 @@
 
 
   <!-- Mobile layout: hidden on lg+ -->
-  <div class="lg:hidden p-12 lg:p-20 pb-0! bg-linear-to-t from-indigo-600/10 from-10% to-transparent flex-col items-center overflow-hidden ">
+  <div class="lg:hidden p-4 lg:p-20 pb-0! bg-linear-to-t from-indigo-600/10 from-10% to-transparent flex-col items-center overflow-hidden ">
   <div class="text-4xl lg:text-5xl text-surface-900 dark:text-surface-0 font-bold mb-1 leading-tight"><h1>The Japanese Writing Tool to Boost Your Learning</h1></div>
-    <p class="text-2xl text-gray-400 mb-8 leading-normal">Our Japanese writing tool built is built to enhance and improve your Japanese and writing. Writing in Japanese is hard. We make it easy</p>
+    <p class="text-2xl text-gray-400 mb-8 leading-normal"> Writing in Japanese is hard. We make it easy. Our Japanese writing tool built is built to enhance and improve your Japanese and writing.</p>
     <p-button type="button" [routerLink]="['/auth/sign-up']" label="Get Started" [outlined]="true"></p-button>
     <div class="flex flex-col mt-5 gap-5">
-      <div class="rounded-lg dark:bg-surface-900 h-full w-full overflow-auto border border-gray-300 dark:border-surface-700">
+      <div class="rounded-lg dark:bg-surface-900 h-full border border-gray-300 dark:border-surface-700">
         <p-tabs lazy [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')">
           <p-tablist>
             <p-tab value="0">Prompt</p-tab>
             <p-tab value="1">Submissions</p-tab>
             <p-tab value="2">Dictionary</p-tab>
-            <p-tab value="3">Grammar</p-tab>
           </p-tablist>
           <p-tabpanels class="h-full">
             <p-tabpanel value="0">
@@ -220,16 +219,16 @@
         </p-tabs>
       </div>
       <div class="h-64">
-        <div class="flex w-full h-full lg:flex-col">
-          <p-editor class="w-full h-full" placeholder="Start typing here">
+        <div class="flex w-full h-full lg:flex-col min-w-0">
+          <p-editor class="w-full h-full min-w-0" placeholder="Start typing here">
             <ng-template #header>
-                      <span class="flex ql-formats h-10 content-center w-full">
-                        <span class="ql-formats">
-                          <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
-                          <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
-                          <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
-                        </span>
-                      </span>
+              <span class="flex ql-formats h-10 content-center w-full">
+                <span class="ql-formats">
+                  <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
+                  <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
+                  <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
+                </span>
+              </span>
             </ng-template>
           </p-editor>
         </div>
@@ -253,7 +252,7 @@
               </div>
 
               <!-- Result -->
-              <div class="grid grid-cols-[50%_50%] h-30">
+              <div class="grid grid-cols-2 gap-2 h-30">
                 <div class="flex h-full w-full p-2 rounded-lg bg-white dark:bg-zinc-950 border border-surface-300 dark:border-surface-600">
                   I study Japanese because it's fun!
                 </div>
@@ -305,7 +304,7 @@
 
   <div class="hidden lg:flex p-12 lg:p-20 pb-0! bg-linear-to-t from-indigo-600/10 from-10% to-transparent flex-col items-center overflow-hidden ">
     <div class="text-4xl lg:text-5xl text-surface-900 dark:text-surface-0 font-bold mb-1 leading-tight"><h1>The Japanese Writing Tool to Boost Your Learning</h1></div>
-    <p class="text-2xl text-gray-400 mb-8 leading-normal">Our Japanese writing tool built is built to enhance and improve your Japanese and writing. Writing in Japanese is hard. We make it easy</p>
+    <p class="text-2xl text-gray-400 mb-8 leading-normal">Writing in Japanese is hard. We make it easy. Our Japanese writing tool built is built to enhance and improve your Japanese and writing.</p>
     <p-button type="button" label="Get Started" [routerLink]="['/auth/sign-up']" [outlined]="true"></p-button>
 
     <div class="flex flex-col h-175 w-full pt-5 px-4">
@@ -543,7 +542,7 @@
         </div>
       </div>
     </div>
-    <div class="xl:flex-1 relative xl:h-auto min-h-80 xl:min-h-full w-full xl:w-auto">
+    <div class="xl:flex-1 relative overflow-hidden xl:h-auto min-h-80 xl:min-h-full w-full xl:w-auto">
       <img
         class="absolute top-0 left-0 w-[calc(100%+5rem)] xl:w-200 max-w-none h-auto border border-surface-800 rounded-2xl"
         src="https://wrwtjkxcjubxlpadntkw.supabase.co/storage/v1/object/public/website_images/Landing6.png"
@@ -553,7 +552,7 @@
   </div>
 
 
-  <div class="bg-surface-0 dark:bg-surface-900 py-20 px-6 md:px-12 lg:px-20 flex flex-col gap-8 justify-center items-center relative">
+  <div class="bg-surface-0 dark:bg-surface-900 py-20 px-6 md:px-12 lg:px-20 flex flex-col gap-8 justify-center items-center relative overflow-hidden">
     <div class="flex flex-col items-center gap-4">
       <h3 class="text-5xl leading-tight font-bold text-surface-900 dark:text-surface-0 text-center">
         <span>How it works</span>
@@ -572,7 +571,7 @@
               <div class="w-px bg-surface-200 dark:bg-surface-700 flex-1"></div>
             </div>
             <div class="flex w-full flex-col gap-4">
-              <div class="w-full h-52 bg-surface-50 dark:bg-surface-800 rounded-[10px] overflow-hidden flex justify-center items-start shadow-inner relative">
+              <div class="w-full h-52 bg-surface-50 dark:bg-surface-800 rounded-[10px] overflow-hidden flex justify-center items-start shadow-inner relative overflow-hidden">
                 <img [src]="item.image" class="absolute bottom-0 left-1/2 translate-x-[-50%]" />
               </div>
               <div class="flex flex-col gap-4">
@@ -599,7 +598,7 @@
         @for (item of timelineItems; track item.id; let index = $index) {
           <div class="flex gap-12" [ngClass]="{ 'flex-row-reverse': index % 2 === 0 }">
             <div class="w-127">
-              <div class="h-52 bg-surface-50 dark:bg-surface-800 rounded-[10px] overflow-hidden flex justify-center items-start shadow-inner relative">
+              <div class="h-52 bg-surface-50 dark:bg-surface-800 rounded-[10px] overflow-hidden flex justify-center items-start shadow-inner relative overflow-hidden">
                 <img [src]="item.image" class="absolute bottom-0 left-1/2 translate-x-[-50%]"/>
               </div>
             </div>

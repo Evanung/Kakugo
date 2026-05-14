@@ -61,6 +61,11 @@ export class AccountService {
     if (current) this.profileSubject.next({ ...current, display_name: name });
   }
 
+  async deleteAccount(): Promise<void> {
+    const { error } = await this.supabase.client.rpc('delete_account');
+    if (error) throw new Error(error.message);
+  }
+
   getAvatarUrl(path: string | null, displayName?: string): string {
     if (!path) {
       const name = encodeURIComponent(displayName ?? 'User');

@@ -25,9 +25,11 @@
 
 }
 
-::ng-deep .p-tabs {
+::ng-deep .p-tab {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  width: 100%;
+  width: auto;
+  overflow: hidden;
 }
+
+

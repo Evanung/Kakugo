@@ -1,27 +1,26 @@
 <div class="max-w-6xl mx-auto px-4 sm:px-8 pt-10">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
 
-    <!-- Write / Prompts buttons — top, full width on mobile, spans 2 cols on desktop -->
     <div class="flex gap-5 lg:col-span-2">
-      <a class="nav-link text-white bg-violet-600 dark:hover:bg-violet-700 border-4 border-violet-500 flex-grow"
+      <a class="nav-link text-white bg-violet-600 dark:hover:bg-violet-700 border-4 border-violet-500 flex-grow justify-between"
          [routerLink]="['/write']">
         <span>Write</span>
+
+        <i class="pi pi-pencil" style="font-size: 1.5rem"></i>
       </a>
-      <a class="nav-link text-white bg-violet-500 dark:hover:bg-violet-600 border-violet-500 flex-grow"
+      <a class="nav-link text-white bg-violet-500 dark:hover:bg-violet-600 border-violet-500 flex-grow justify-between"
          [routerLink]="['/prompts']">
         <span>Prompts</span>
+        <i class="pi pi-bars" style="font-size: 1.5rem"></i>
       </a>
     </div>
     <app-weekly-prompt-dashboard class="w-full lg:col-span-2"></app-weekly-prompt-dashboard>
 
-    <!-- Stats column — spans 3 rows on desktop, sits in middle on mobile -->
     <div class="flex flex-col gap-5 lg:row-span-3 lg:row-start-1 lg:col-start-3">
       <p-datePicker class="w-full" [inline]="true"></p-datePicker>
       <app-prompt-stats class="w-full"></app-prompt-stats>
     </div>
 
-
-    <!-- Feed -->
     <app-feedlist class="w-full lg:col-span-2"></app-feedlist>
 
   </div>

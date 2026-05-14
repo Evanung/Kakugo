@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Carousel} from "primeng/carousel";
 import {FormsModule} from "@angular/forms";
 import {RouterOutlet} from '@angular/router';
-
+import { MessageService } from 'primeng/api';
+import { Toast } from 'primeng/toast';
 @Component({
   selector: 'app-auth-page',
   imports: [
     Carousel,
     FormsModule,
-    RouterOutlet
+    RouterOutlet,
+    Toast
   ],
   templateUrl: './auth-page.html',
   styleUrl: './auth-page.css',
+  providers: [MessageService],
 })
 export class AuthPage {
+
   features = [
     {
       title: 'Quality Curated Prompts',
