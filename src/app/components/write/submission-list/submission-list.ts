@@ -40,6 +40,7 @@ export class SubmissionList {
     this.loadPosts();
   });
 
+
   prompt = input.required<Prompt>();
   refresh = input<number>(0);
   selectedPost = signal<Post | null>(null);
@@ -49,7 +50,8 @@ export class SubmissionList {
 
   editDescription = '';
   isEditing = signal<boolean>(false);
-  posts: Post[] = [];
+  posts = signal<any[]>([]);
+  emptyPost = computed(() => this.posts().length === 0);
 
   menuItems = computed<MenuItem[]>(() => {
     const post = this.selectedPost();
@@ -88,7 +90,8 @@ export class SubmissionList {
   loadPosts() {
     this.postSubmissionService.getPostsFromPromptID(this.prompt().id)
       .subscribe(({ data, error }) => {
-        this.posts = data ?? [];
+        this.posts.set(data ?? []);
+
       });
   }
 
@@ -100,9 +103,9 @@ export class SubmissionList {
     const { error } = await this.postSubmissionService.editPost(post, sanitizeDescription);
 
     if (!error) {
-      this.posts = this.posts.map(p =>
+      this.posts.update (posts => posts.map(p =>
         p.id === post.id ? { ...p, description: sanitizeDescription } : p
-      );
+      ));
       this.isEditing.set(false);
       this.selectedPost.set(null);
     }
@@ -111,9 +114,9 @@ export class SubmissionList {
   async toggleVisibility(post: Post) {
     const { error } = await this.postSubmissionService.toggleVisibility(post);
     if (!error) {
-      this.posts = this.posts.map(p =>
+      this.posts.update (posts => posts.map(p =>
         p.id === post.id ? { ...p, is_public: !post.is_public } : p
-      );
+      ));
       this.messageService.add({ severity: 'info', summary: 'Post SettingsPage', detail: 'Post visibility changed' });
     }
   }
@@ -137,7 +140,7 @@ export class SubmissionList {
         if (!post) return;
         const { error } = await this.postSubmissionService.deletePost(post.id);
         if (!error) {
-          this.posts = this.posts.filter(p => p.id !== post.id);
+          this.posts.update (posts => posts.filter(p => p.id !== post.id));
           this.messageService.add({ severity: 'success', summary: 'Deleted', detail: 'Post deleted' });
         } else {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Could not delete post' });

@@ -4,10 +4,11 @@ import { PromptService } from '../../../services/prompt-service';
 import { SupabaseService } from '../../../services/supabase-service';
 import { switchMap } from 'rxjs';
 import {filter} from 'rxjs/operators';
+import {Skeleton} from 'primeng/skeleton';
 
 @Component({
   selector: 'app-prompt-stats',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, Skeleton],
   templateUrl: './prompt-stats.html',
   styleUrl: './prompt-stats.css',
 })

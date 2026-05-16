@@ -1,23 +1,47 @@
-<div class="flex lg:flex-col gap-3 flex-wrap overflow-auto">
-  <div class="text-xl font-bold">{{ prompt.prompt_title }}</div>
-    @if (prompt.difficulty == 1){
+@if (!isLoading()) {
+  <div class="flex lg:flex-col gap-3 flex-wrap overflow-auto">
+    <div class="text-xl font-bold">{{ prompt?.prompt_title }}</div>
+    @if (prompt?.difficulty == 1){
       <div class="flex w-15 px-10 justify-center rounded-xl border border-lime-600"><td class="text-lime-600">Easy</td></div>
-    }
-    @else if (prompt.difficulty == 2){
+    } @else if (prompt?.difficulty == 2){
       <div class="flex w-15 px-10 justify-center rounded-xl border border-orange-600"><td class="text-orange-600">Medium</td></div>
-
-    }@else {
+    } @else {
       <div class="flex w-15 px-10 justify-center rounded-xl border border-red-600"><td class="text-red-600">Hard</td></div>
     }
-  
-  @for (description of prompt.description; track $index) {
-    <div class="mb-2"> {{ description }} </div>
-  }
-  <div>Possible questions:</div>
-  <ul class="list-disc">
-    @for (question of prompt.questions; track $index) {
-      <li class="ml-5"> {{ question }} </li>
+    @for (description of prompt?.description; track $index) {
+      <div class="mb-2"> {{ description }} </div>
     }
-  </ul>
-</div>
-
+    <div>Possible questions:</div>
+    <ul class="list-disc">
+      @for (question of prompt?.questions; track $index) {
+        <li class="ml-5"> {{ question }} </li>
+      }
+    </ul>
+  </div>
+}
+@else {
+  <div class="flex flex-col gap-4 p-2">
+    <p-skeleton width="70%" height="2rem" />
+    <p-skeleton width="5rem" height="1.5rem" borderRadius="999px" />
+    <div class="flex flex-col gap-2">
+      <p-skeleton width="100%" />
+      <p-skeleton width="100%" />
+      <p-skeleton width="80%" />
+    </div>
+    <div class="flex flex-col gap-2">
+      <p-skeleton width="100%" />
+      <p-skeleton width="60%" />
+    </div>
+    <div class="flex flex-col gap-2">
+      <p-skeleton width="100%" />
+      <p-skeleton width="75%" />
+    </div>
+    <p-skeleton width="30%" />
+    <div class="flex flex-col gap-2 ml-4">
+      <p-skeleton width="85%" />
+      <p-skeleton width="70%" />
+      <p-skeleton width="75%" />
+      <p-skeleton width="60%" />
+    </div>
+  </div>
+}
