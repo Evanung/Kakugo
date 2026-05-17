@@ -1,3 +1,7 @@
 ::ng-deep .danger-item {
   color: #ef4444;
 }
+
+::ng-deep .fieldset-border-color {
+  --p-fieldset-border-color: oklch(62.7% 0.265 303.9);
+}

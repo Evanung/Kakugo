@@ -60,7 +60,10 @@ export class WritePage {
   }
 
   private getSanitizedText(): string {
-    return this.sanitizer.sanitize(SecurityContext.HTML, this.currentText()) ?? '';
+    const sanitized = this.sanitizer.sanitize(SecurityContext.HTML, this.currentText()) ?? '';
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = sanitized;
+    return textarea.value;
   }
 
   ngOnInit() {

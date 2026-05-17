@@ -7,7 +7,57 @@
     <p class="text-lg">Be the first one to respond!</p>
   </div>
 }
-@for(post of posts(); track post.id) {
+@else {
+  <p-accordion value="0">
+    <p-accordion-panel value="0">
+      <p-accordion-header>Native Responses</p-accordion-header>
+      <p-accordion-content>
+        @if (nativePosts().length === 0) {
+          <p class="text-surface-500 text-sm italic">No native responses yet.</p>
+        }
+        @for(post of nativePosts(); track post.id) {
+          <p-fieldset>
+            <ng-template #header>
+              <div class="flex items-center gap-2 px-2">
+                <p-avatar [image]="getPostAvatarUrl(post)" shape="circle" size="large" class="w-10 h-10 rounded-lg"></p-avatar>
+                <div class="text-surface-900 dark:text-surface-0 font-medium leading-tight"> {{ post.profiles.display_name }}</div>
+                @if (!post.is_public){
+                  <i class="pi pi-eye-slash" style="color: slateblue" title="Only visible to you"></i>
+                }
+                @if (isOwnPost(post)) {
+                  <button pButton class="p-button-text p-button-rounded p-button-secondary" [text]="true" (click)="openMenu($event, post, menu)">
+                    <i pButtonIcon class="pi pi-ellipsis-v"></i>
+                  </button>
+                }
+              </div>
+            </ng-template>
+            @if (isEditing() && selectedPost()?.id === post.id) {
+              <p-editor class="h-full" [(ngModel)]="editDescription" [style]="{ height: '150px' }">
+                <ng-template #header>
+                <span class="flex ql-formats content-center w-full">
+                  <span class="ql-formats">
+                    <button type="button" class="ql-bold toolbar-btn" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic toolbar-btn" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline toolbar-btn" aria-label="Underline"></button>
+                  </span>
+                </span>
+                </ng-template>
+              </p-editor>
+              <div class="flex gap-2 justify-end mt-2">
+                <p-button label="Cancel" severity="secondary" [outlined]="true" (click)="cancelEdit()" />
+                <p-button label="Save" (click)="saveEdit()" />
+              </div>
+            } @else {
+              <div class="text-surface-900 dark:text-surface-200 leading-normal" [innerHTML]="post.description | sanitizeHtml"></div>
+            }
+          </p-fieldset>
+        }
+      </p-accordion-content>
+    </p-accordion-panel>
+  </p-accordion>
+}
+
+@for(post of regularPosts(); track post.id) {
    <div class="flex gap-4 py-4 flex-col md:flex-row border-b border-gray-300 dark:border-surface-700">
       <p-avatar [image]="getPostAvatarUrl(post)" shape="circle" size="large" class="w-10 h-10 rounded-lg"></p-avatar>
       <div class="flex-1 flex flex-col gap-3">
@@ -21,8 +71,6 @@
               <i pButtonIcon class="pi pi-ellipsis-v"></i>
             </button>
           }
-
-
         </div>
         @if (isEditing() && selectedPost()?.id === post.id) {
             <p-editor class="h-full" [(ngModel)]="editDescription" [style]="{ height: '150px' }">

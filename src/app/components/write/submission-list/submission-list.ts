@@ -17,12 +17,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {AuthService} from '../../../services/auth-service';
 import {map} from 'rxjs/operators';
 import {AccountService} from '../../../services/user/account-service';
+import {Accordion, AccordionContent, AccordionHeader, AccordionPanel} from 'primeng/accordion';
+import {Fieldset} from 'primeng/fieldset';
 
 @Component({
   selector: 'app-submission-list',
   imports: [
     Avatar, CommonModule, ButtonDirective, Menu, SanitizeHtmlPipe, EditorModule, FormsModule,
-    ButtonIcon, Toast, ConfirmDialogModule, Button, FormsModule
+    ButtonIcon, Toast, ConfirmDialogModule, Button, FormsModule, Accordion, AccordionPanel, AccordionHeader, AccordionContent, Fieldset
   ],
   templateUrl: './submission-list.html',
   styleUrl: './submission-list.css',
@@ -52,6 +54,9 @@ export class SubmissionList {
   isEditing = signal<boolean>(false);
   posts = signal<any[]>([]);
   emptyPost = computed(() => this.posts().length === 0);
+
+  nativePosts = computed(() => this.posts().filter(p => p.profiles?.role === 'Native'));
+  regularPosts = computed(() => this.posts().filter(p => p.profiles?.role !== 'Native'));
 
   menuItems = computed<MenuItem[]>(() => {
     const post = this.selectedPost();
