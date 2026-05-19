@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { TermsOfServicePage } from './terms-of-service-page';
+
+describe('TermsOfServicePage', () => {
+  let component: TermsOfServicePage;
+  let fixture: ComponentFixture<TermsOfServicePage>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TermsOfServicePage],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TermsOfServicePage);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

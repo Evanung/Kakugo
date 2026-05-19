@@ -52,6 +52,18 @@ export const routes: Routes = [
       .then(m => m.PrivacyPolicyPage),
   },
   {
+    path: 'terms-of-service',
+    data: { hideNav: true },
+    loadComponent: () => import('./pages/legal/terms-of-service-page/terms-of-service-page')
+      .then(m => m.TermsOfServicePage),
+  },
+  {
+    path: 'cookie-policy',
+    data: { hideNav: true },
+    loadComponent: () => import('./pages/legal/cookie-policy-page/cookie-policy-page')
+      .then(m => m.CookiePolicyPage),
+  },
+  {
     path: 'settings',
     canActivate: [AuthGuard],
     loadComponent: () => import('./pages/settings-page/settings-page')

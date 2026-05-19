@@ -4,9 +4,9 @@ import {Skeleton} from "primeng/skeleton";
 
 @Component({
   selector: 'app-prompt-info',
-    imports: [
-        Skeleton
-    ],
+  imports: [
+    Skeleton,
+  ],
   templateUrl: './prompt-info.html',
   styleUrl: './prompt-info.css',
 })

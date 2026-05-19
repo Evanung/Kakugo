@@ -9,14 +9,18 @@
       <div class="flex w-15 px-10 justify-center rounded-xl border border-red-600"><td class="text-red-600">Hard</td></div>
     }
     @for (description of prompt?.description; track $index) {
-      <div class="mb-2"> {{ description }} </div>
+      <div class="mb-2"> {{ description }}</div>
     }
-    <div>Possible questions:</div>
-    <ul class="list-disc">
-      @for (question of prompt?.questions; track $index) {
-        <li class="ml-5"> {{ question }} </li>
-      }
-    </ul>
+
+    @if (prompt?.questions?.length !== null){
+      <div>Possible questions:</div>
+      <ul class="list-disc">
+        @for (question of prompt?.questions; track $index) {
+          <li class="ml-5"> {{ question }} </li>
+        }
+      </ul>
+    }
+
   </div>
 }
 @else {
